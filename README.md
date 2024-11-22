@@ -1,16 +1,19 @@
-# Airbnb JavaScript Style Guide() {
+# Airbnb JavaScript Style Guide in Persian() {
 
-*A mostly reasonable approach to JavaScript*
+*یک رویکرد عمدتا معقول به جاوا اسکریپت*
 
-> **Note**: this guide assumes you are using [Babel](https://babeljs.io), and requires that you use [babel-preset-airbnb](https://npmjs.com/babel-preset-airbnb) or the equivalent. It also assumes you are installing shims/polyfills in your app, with [airbnb-browser-shims](https://npmjs.com/airbnb-browser-shims) or the equivalent.
+> <div dir="rtl">
+> <b>یادداشت</b>:
+> این راهنما فرض می‌کند که از <a href="https://babeljs.io">Babel</a> استفاده می‌کنید، و شما میبایست از <a href="https://npmjs.com/babel-preset-airbnb">babel-preset-airbnb</a> یا معادل آن استفاده کنید. همچنین، فرض می‌کند که در حال نصب shims/polyfills در برنامه خود با <a href="https://npmjs.com/airbnb-browser-shims">airbnb-browser-shims</a> یا معادل آن هستید.
+> </div>
 
-[![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb.svg)](https://www.npmjs.com/package/eslint-config-airbnb)
-[![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb-base.svg)](https://www.npmjs.com/package/eslint-config-airbnb-base)
+[![دانلود ها](https://img.shields.io/npm/dm/eslint-config-airbnb.svg)](https://www.npmjs.com/package/eslint-config-airbnb)
+[![دانلود ها](https://img.shields.io/npm/dm/eslint-config-airbnb-base.svg)](https://www.npmjs.com/package/eslint-config-airbnb-base)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-This guide is available in other languages too. See [Translation](#translation)
+این راهنما به زبان های دیگر نیز موجود است. [ترجمه](#translation) را ببینید
 
-Other Style Guides
+راهنما های برنامه نویسی دیگر
 
   - [ES5 (Deprecated)](https://github.com/airbnb/javascript/tree/es5-deprecated/es5)
   - [React](react/)
@@ -18,7 +21,7 @@ Other Style Guides
   - [CSS & Sass](https://github.com/airbnb/css)
   - [Ruby](https://github.com/airbnb/ruby)
 
-## Table of Contents
+## جدول محتوا
 
   1. [Types](#types)
   1. [References](#references)
@@ -63,7 +66,7 @@ Other Style Guides
 ## Types
 
   <a name="types--primitives"></a><a name="1.1"></a>
-  - [1.1](#types--primitives) **Primitives**: When you access a primitive type you work directly on its value.
+  - [1.1](#types--primitives) **Primitives**: <span dir="rtl">وقتی به یک نوع primitive دسترسی پیدا می کنید، مستقیماً با مقدار آن کار می کنید.</span>
 
     - `string`
     - `number`
@@ -104,7 +107,7 @@ Other Style Guides
     console.log(foo[0], bar[0]); // => 9, 9
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## References
 
@@ -159,7 +162,7 @@ Other Style Guides
 
     In the above code, you can see that referencing `a` and `b` will produce a ReferenceError, while `c` contains the number. This is because `a` and `b` are block scoped, while `c` is scoped to the containing function.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Objects
 
@@ -339,7 +342,7 @@ Other Style Guides
     const { a, ...noA } = copy; // noA => { b: 2, c: 3 }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Arrays
 
@@ -504,7 +507,7 @@ Other Style Guides
     ];
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Destructuring
 
@@ -573,7 +576,7 @@ Other Style Guides
     const { left, top } = processInput(input);
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Strings
 
@@ -656,7 +659,7 @@ Other Style Guides
     const foo = `my name is '${name}'`;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Functions
 
@@ -699,7 +702,7 @@ Other Style Guides
   - [7.3](#functions--in-blocks) Never declare a function in a non-function block (`if`, `while`, etc). Assign the function to a variable instead. Browsers will allow you to do it, but they all interpret it differently, which is bad news bears. eslint: [`no-loop-func`](https://eslint.org/docs/rules/no-loop-func)
 
   <a name="functions--note-on-blocks"></a><a name="7.4"></a>
-  - [7.4](#functions--note-on-blocks) **Note:** ECMA-262 defines a `block` as a list of statements. A function declaration is not a statement.
+  - [7.4](#functions--note-on-blocks) **یادداشت:** ECMA-262 defines a `block` as a list of statements. A function declaration is not a statement.
 
     ```javascript
     // bad
@@ -938,7 +941,7 @@ Other Style Guides
     );
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Arrow Functions
 
@@ -1104,7 +1107,7 @@ Other Style Guides
     )
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Classes & Constructors
 
@@ -1302,7 +1305,7 @@ Other Style Guides
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Modules
 
@@ -1474,7 +1477,7 @@ Other Style Guides
     import baz from './baz';
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Iterators and Generators
 
@@ -1588,7 +1591,7 @@ Other Style Guides
     };
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Properties
 
@@ -1635,7 +1638,7 @@ Other Style Guides
     const binary = 2 ** 10;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Variables
 
@@ -1868,7 +1871,7 @@ Other Style Guides
     // 'coords' is now the 'data' object without its 'type' property.
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Hoisting
 
@@ -1884,7 +1887,7 @@ Other Style Guides
 
     // creating a variable declaration after you
     // reference the variable will work due to
-    // variable hoisting. Note: the assignment
+    // variable hoisting. یادداشت: the assignment
     // value of `true` is not hoisted.
     function example() {
       console.log(declaredButNotAssigned); // => undefined
@@ -2017,7 +2020,7 @@ Other Style Guides
 
   - For more information refer to [JavaScript Scoping & Hoisting](https://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting/) by [Ben Cherry](https://www.adequatelygood.com/).
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Comparison Operators & Equality
 
@@ -2229,7 +2232,7 @@ Other Style Guides
     // returns 18
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Blocks
 
@@ -2345,7 +2348,7 @@ Other Style Guides
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Control Statements
 
@@ -2416,7 +2419,7 @@ Other Style Guides
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Comments
 
@@ -2557,7 +2560,7 @@ Other Style Guides
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Whitespace
 
@@ -2920,7 +2923,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--max-len"></a><a name="18.12"></a>
-  - [19.13](#whitespace--max-len) Avoid having lines of code that are longer than 100 characters (including whitespace). Note: per [above](#strings--line-length), long strings are exempt from this rule, and should not be broken up. eslint: [`max-len`](https://eslint.org/docs/rules/max-len)
+  - [19.13](#whitespace--max-len) Avoid having lines of code that are longer than 100 characters (including whitespace). یادداشت: per [above](#strings--line-length), long strings are exempt from this rule, and should not be broken up. eslint: [`max-len`](https://eslint.org/docs/rules/max-len)
 
     > Why? This ensures readability and maintainability.
 
@@ -3057,7 +3060,7 @@ Other Style Guides
     ```
     <!-- markdownlint-enable MD012 -->
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Commas
 
@@ -3192,7 +3195,7 @@ Other Style Guides
     );
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Semicolons
 
@@ -3242,7 +3245,7 @@ Other Style Guides
 
     [Read more](https://stackoverflow.com/questions/7365172/semicolon-before-self-invoking-function/7365214#7365214).
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Type Casting & Coercion
 
@@ -3309,7 +3312,7 @@ Other Style Guides
     ```
 
   <a name="coercion--bitwise"></a><a name="21.5"></a>
-  - [22.5](#coercion--bitwise) **Note:** Be careful when using bitshift operations. Numbers are represented as [64-bit values](https://es5.github.io/#x4.3.19), but bitshift operations always return a 32-bit integer ([source](https://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/airbnb/javascript/issues/109). Largest signed 32-bit Int is 2,147,483,647:
+  - [22.5](#coercion--bitwise) **یادداشت:** Be careful when using bitshift operations. Numbers are represented as [64-bit values](https://es5.github.io/#x4.3.19), but bitshift operations always return a 32-bit integer ([source](https://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/airbnb/javascript/issues/109). Largest signed 32-bit Int is 2,147,483,647:
 
     ```javascript
     2147483647 >> 0; // => 2147483647
@@ -3333,7 +3336,7 @@ Other Style Guides
     const hasAge = !!age;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Naming Conventions
 
@@ -3572,7 +3575,7 @@ Other Style Guides
     };
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Accessors
 
@@ -3641,7 +3644,7 @@ Other Style Guides
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Events
 
@@ -3672,7 +3675,7 @@ Other Style Guides
     });
     ```
 
-  **[⬆ back to top](#table-of-contents)**
+  **[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## jQuery
 
@@ -3741,14 +3744,14 @@ Other Style Guides
     $sidebar.find('ul').hide();
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## ECMAScript 5 Compatibility
 
   <a name="es5-compat--kangax"></a><a name="26.1"></a>
   - [27.1](#es5-compat--kangax) Refer to [Kangax](https://twitter.com/kangax/)’s ES5 [compatibility table](https://compat-table.github.io/compat-table/es5/).
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 <a name="ecmascript-6-styles"></a>
 ## ECMAScript 6+ (ES 2015+) Styles
@@ -3776,7 +3779,7 @@ Other Style Guides
 
     > Why? [They are not finalized](https://tc39.github.io/process-document/), and they are subject to change or to be withdrawn entirely. We want to use JavaScript, and proposals are not JavaScript yet.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Standard Library
 
@@ -3816,7 +3819,7 @@ Other Style Guides
     Number.isFinite(parseInt('2e3', 10)); // true
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Testing
 
@@ -3838,7 +3841,7 @@ Other Style Guides
     - 100% test coverage is a good goal to strive for, even if it’s not always practical to reach it.
     - Whenever you fix a bug, *write a regression test*. A bug fixed without a regression test is almost certainly going to break again in the future.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Performance
 
@@ -3852,7 +3855,7 @@ Other Style Guides
   - [Are JavaScript functions like `map()`, `reduce()`, and `filter()` optimized for traversing arrays?](https://www.quora.com/JavaScript-programming-language-Are-Javascript-functions-like-map-reduce-and-filter-already-optimized-for-traversing-array/answer/Quildreen-Motta)
   - Loading...
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Resources
 
@@ -3934,7 +3937,7 @@ Other Style Guides
   - [JavaScript Air](https://javascriptair.com/)
   - [JavaScript Jabber](https://devchat.tv/js-jabber/)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## In the Wild
 
@@ -4028,7 +4031,7 @@ Other Style Guides
   - **Zit Software**: [zit-software/javascript](https://github.com/zit-software/javascript)
   - **ZocDoc**: [ZocDoc/javascript](https://github.com/ZocDoc/javascript)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Translation
 
@@ -4088,7 +4091,7 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#table-of-contents)**
 
 ## Amendments
 
