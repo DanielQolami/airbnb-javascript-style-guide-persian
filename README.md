@@ -24,9 +24,9 @@
 1. [ارجاعات (references)](#ارجاعات-references)
 1. [شئ ها](#شئ-ها)
 1. [آرایه ها](#آرایه-ها)
-1. [ساختارزدایی (destructuring)](#destructuring)
-1. [رشته‌ها (strings)](#strings)
-1. [توابع](#functions)
+1. [ساختارزدایی (destructuring)](#ساختارزدایی-Destructuring)
+1. [رشته ها (strings)](#رشته-ها-strings)
+1. [توابع](#توابع)
 1. [توابع پیکانی](#arrow-functions)
 1. [کلاس‌ها و سازنده‌ها](#classes--constructors)
 1. [ماژول‌ها (modules)](#modules)
@@ -61,7 +61,7 @@
 1. [اصلاحیه‌ها](#amendments)
 
 
-## انواع (types)
+## انواع (Types)
 
   <a name="types--primitives"></a><a name="1.1"></a>
   - [1.1](#types--primitives) **بدویات (Primitives)**: وقتی به یک نوع بدوی دسترسی پیدا می‌کنید، مستقیماً با مقدار آن نوع کار می‌کنید.
@@ -107,7 +107,7 @@
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## ارجاعات (references)
+## ارجاعات (References)
 
   <a name="references--prefer-const"></a><a name="2.1"></a>
   - [2.1](#references--prefer-const) برای همهٔ ارجاع‌های خود از `const` استفاده کنید؛ از `var` استفاده نکنید. eslint: [`prefer-const`](https://eslint.org/docs/rules/prefer-const)، [`no-const-assign`](https://eslint.org/docs/rules/no-const-assign)
@@ -507,15 +507,15 @@
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Destructuring
+## ساختارزدایی (Destructuring)
 
   <a name="destructuring--object"></a><a name="5.1"></a>
-  - [5.1](#destructuring--object) Use object destructuring when accessing and using multiple properties of an object. eslint: [`prefer-destructuring`](https://eslint.org/docs/rules/prefer-destructuring)
+  - [5.1](#destructuring--object) هنگام دسترسی و استفاده از چندین ویژگیِ یک شئ، از ساختارزدایی شئ (object destructuring) استفاده کنید. eslint: [`prefer-destructuring`](https://eslint.org/docs/rules/prefer-destructuring)
 
-    > Why? Destructuring saves you from creating temporary references for those properties, and from repetitive access of the object. Repeating object access creates more repetitive code, requires more reading, and creates more opportunities for mistakes. Destructuring objects also provides a single site of definition of the object structure that is used in the block, rather than requiring reading the entire block to determine what is used.
+    > چرا؟ ساختارزدایی شما را از ایجاد ارجاعات موقت برای آن ویژگی‌ها و از دسترسی تکراری به شئ بی‌نیاز می‌کند. دسترسی تکراری به شئ باعث ایجاد کدهای تکراری‌تر می‌شود، نیاز به خواندن بیشتری دارد و فرصت‌های بیشتری برای ایجاد اشتباه فراهم می‌کند. علاوه بر این، ساختارزدایی شئ‌ها یک مکان واحد برای تعریف ساختار شئ فراهم می‌کند که در آن بلوک استفاده می‌شود، به جای اینکه نیاز باشد کل بلوک را بخوانید تا بفهمید چه چیزهایی استفاده شده است.
 
     ```javascript
-    // bad
+    // بد
     function getFullName(user) {
       const firstName = user.firstName;
       const lastName = user.lastName;
@@ -523,194 +523,194 @@
       return `${firstName} ${lastName}`;
     }
 
-    // good
+    // خوب
     function getFullName(user) {
       const { firstName, lastName } = user;
       return `${firstName} ${lastName}`;
     }
 
-    // best
+    // بهترین
     function getFullName({ firstName, lastName }) {
       return `${firstName} ${lastName}`;
     }
     ```
 
   <a name="destructuring--array"></a><a name="5.2"></a>
-  - [5.2](#destructuring--array) Use array destructuring. eslint: [`prefer-destructuring`](https://eslint.org/docs/rules/prefer-destructuring)
+  - [5.2](#destructuring--array) از ساختارزدایی آرایه (array destructuring) استفاده کنید. eslint: [`prefer-destructuring`](https://eslint.org/docs/rules/prefer-destructuring)
 
     ```javascript
     const arr = [1, 2, 3, 4];
 
-    // bad
+    // بد
     const first = arr[0];
     const second = arr[1];
 
-    // good
+    // خوب
     const [first, second] = arr;
     ```
 
   <a name="destructuring--object-over-array"></a><a name="5.3"></a>
-  - [5.3](#destructuring--object-over-array) Use object destructuring for multiple return values, not array destructuring.
+  - [5.3](#destructuring--object-over-array) برای مقادیر بازگشتی متعدد، از ساختارزدایی شئ استفاده کنید، نه از ساختارزدایی آرایه.
 
-    > Why? You can add new properties over time or change the order of things without breaking call sites.
+    > چرا؟ می‌توانید به مرور زمان ویژگی‌های جدیدی اضافه کنید یا ترتیب چیزها را تغییر دهید بدون اینکه جایگاه‌های فراخوانی (call sites) خراب شوند.
 
     ```javascript
-    // bad
+    // بد
     function processInput(input) {
-      // then a miracle occurs
+      // سپس یک معجزه رخ می‌دهد
       return [left, right, top, bottom];
     }
 
-    // the caller needs to think about the order of return data
+    // فراخواننده باید به ترتیب داده‌های بازگشتی فکر کند
     const [left, __, top] = processInput(input);
 
-    // good
+    // خوب
     function processInput(input) {
-      // then a miracle occurs
+      // سپس یک معجزه رخ می‌دهد
       return { left, right, top, bottom };
     }
 
-    // the caller selects only the data they need
+    // فراخواننده فقط داده‌هایی که نیاز دارد را انتخاب می‌کند
     const { left, top } = processInput(input);
     ```
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Strings
+## رشته ها (Strings)
 
   <a name="strings--quotes"></a><a name="6.1"></a>
-  - [6.1](#strings--quotes) Use single quotes `''` for strings. eslint: [`quotes`](https://eslint.org/docs/rules/quotes)
+  - [6.1](#strings--quotes) برای رشته‌ها از کوتیشن تکی `''` استفاده کنید. eslint: [`quotes`](https://eslint.org/docs/rules/quotes)
 
     ```javascript
-    // bad
+    // بد
     const name = "Capt. Janeway";
 
-    // bad - template literals should contain interpolation or newlines
+    // بد - رشته‌های قالبی (template literals) باید شامل درج متغیر (interpolation) یا خطوط جدید باشند
     const name = `Capt. Janeway`;
 
-    // good
+    // خوب
     const name = 'Capt. Janeway';
     ```
 
   <a name="strings--line-length"></a><a name="6.2"></a>
-  - [6.2](#strings--line-length) Strings that cause the line to go over 100 characters should not be written across multiple lines using string concatenation.
+  - [6.2](#strings--line-length) رشته‌هایی که باعث می‌شوند طول خط از ۱۰۰ کاراکتر بیشتر شود، نباید با استفاده از الحاق رشته‌ها (string concatenation) در چند خط نوشته شوند.
 
-    > Why? Broken strings are painful to work with and make code less searchable.
+    > چرا؟ کار با رشته‌های شکسته (چند خطی شده با الحاق) دردناک است و کد را کمتر قابل جستجو می‌کند.
 
     ```javascript
-    // bad
+    // بد
     const errorMessage = 'This is a super long error that was thrown because \
     of Batman. When you stop to think about how Batman had anything to do \
     with this, you would get nowhere \
     fast.';
 
-    // bad
+    // بد
     const errorMessage = 'This is a super long error that was thrown because ' +
       'of Batman. When you stop to think about how Batman had anything to do ' +
       'with this, you would get nowhere fast.';
 
-    // good
+    // خوب
     const errorMessage = 'This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.';
     ```
 
   <a name="es6-template-literals"></a><a name="6.4"></a>
-  - [6.3](#es6-template-literals) When programmatically building up strings, use template strings instead of concatenation. eslint: [`prefer-template`](https://eslint.org/docs/rules/prefer-template) [`template-curly-spacing`](https://eslint.org/docs/rules/template-curly-spacing)
+  - [6.3](#es6-template-literals) هنگام ساخت رشته‌ها به صورت برنامه‌نویسی‌شده، به جای الحاق از رشته‌های قالبی (template strings) استفاده کنید. eslint: [`prefer-template`](https://eslint.org/docs/rules/prefer-template) [`template-curly-spacing`](https://eslint.org/docs/rules/template-curly-spacing)
 
-    > Why? Template strings give you a readable, concise syntax with proper newlines and string interpolation features.
+    > چرا؟ رشته‌های قالبی سینتکسی خوانا و مختصر با قابلیت‌های خطوط جدید مناسب و درج متغیر به شما می‌دهند.
 
     ```javascript
-    // bad
+    // بد
     function sayHi(name) {
       return 'How are you, ' + name + '?';
     }
 
-    // bad
+    // بد
     function sayHi(name) {
       return ['How are you, ', name, '?'].join();
     }
 
-    // bad
+    // بد
     function sayHi(name) {
       return `How are you, ${ name }?`;
     }
 
-    // good
+    // خوب
     function sayHi(name) {
       return `How are you, ${name}?`;
     }
     ```
 
   <a name="strings--eval"></a><a name="6.5"></a>
-  - [6.4](#strings--eval) Never use `eval()` on a string; it opens too many vulnerabilities. eslint: [`no-eval`](https://eslint.org/docs/rules/no-eval)
+  - [6.4](#strings--eval) هرگز روی یک رشته از `eval()` استفاده نکنید؛ این کار آسیب‌پذیری‌های زیادی ایجاد می‌کند. eslint: [`no-eval`](https://eslint.org/docs/rules/no-eval)
 
   <a name="strings--escaping"></a>
-  - [6.5](#strings--escaping) Do not unnecessarily escape characters in strings. eslint: [`no-useless-escape`](https://eslint.org/docs/rules/no-useless-escape)
+  - [6.5](#strings--escaping) کاراکترها را در رشته‌ها بدون دلیل escape نکنید. eslint: [`no-useless-escape`](https://eslint.org/docs/rules/no-useless-escape)
 
-    > Why? Backslashes harm readability, thus they should only be present when necessary.
+    > چرا؟ بک‌اسلش‌ها خوانایی را کاهش می‌دهند، بنابراین باید تنها در صورت نیاز، وجود داشته باشند.
 
     ```javascript
-    // bad
+    // بد
     const foo = '\'this\' \i\s \"quoted\"';
 
-    // good
+    // خوب
     const foo = '\'this\' is "quoted"';
     const foo = `my name is '${name}'`;
     ```
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Functions
+## توابع
 
   <a name="functions--declarations"></a><a name="7.1"></a>
-  - [7.1](#functions--declarations) Use named function expressions instead of function declarations. eslint: [`func-style`](https://eslint.org/docs/rules/func-style), [`func-names`](https://eslint.org/docs/latest/rules/func-names)
+  - [7.1](#functions--declarations) به جای اعلان توابع (function declarations)، از عبارات توابعِ نام‌گذاری‌شده (named function expressions) استفاده کنید. eslint: [`func-style`](https://eslint.org/docs/rules/func-style), [`func-names`](https://eslint.org/docs/latest/rules/func-names)
 
-    > Why? Function declarations are hoisted, which means that it’s easy - too easy - to reference the function before it is defined in the file. This harms readability and maintainability. If you find that a function’s definition is large or complex enough that it is interfering with understanding the rest of the file, then perhaps it’s time to extract it to its own module! Don’t forget to explicitly name the expression, regardless of whether or not the name is inferred from the containing variable (which is often the case in modern browsers or when using compilers such as Babel). This eliminates any assumptions made about the Error’s call stack. ([Discussion](https://github.com/airbnb/javascript/issues/794))
+    > چرا؟ اعلان توابع بالا آورده می‌شوند (hoisted)، به این معنی که ارجاع به تابع قبل از تعریف آن در فایل، بسیار آسان است - بیش از حد آسان. این کار به خوانایی و قابلیت نگهداری آسیب می‌زند. اگر متوجه شدید که تعریف یک تابع به قدری بزرگ یا پیچیده است که در درک بقیه فایل اختلال ایجاد می‌کند، شاید زمان آن رسیده که آن را در ماژول جداگانه‌ای استخراج کنید! فراموش نکنید که نام عبارت را صریحاً مشخص کنید، صرف نظر از اینکه آیا نام از متغیر نگهدارنده‌اش استخراج می‌شود یا خیر (که اغلب در مرورگرهای مدرن یا هنگام استفاده از کامپایلرهایی مانند Babel اینطور است). این کار هرگونه فرضیاتی را که درباره پشته فراخوانی (call stack) خطا (Error) وجود دارد، از بین می‌برد. ([بحث](https://github.com/airbnb/javascript/issues/794))
 
     ```javascript
-    // bad
+    // بد
     function foo() {
       // ...
     }
 
-    // bad
+    // بد
     const foo = function () {
       // ...
     };
 
-    // good
-    // lexical name distinguished from the variable-referenced invocation(s)
+    // خوب
+    // نام لغوی (lexical name) متمایز از فراخوانی‌هایی که با متغیر ارجاع داده شده‌اند
     const short = function longUniqueMoreDescriptiveLexicalFoo() {
       // ...
     };
     ```
 
   <a name="functions--iife"></a><a name="7.2"></a>
-  - [7.2](#functions--iife) Wrap immediately invoked function expressions in parentheses. eslint: [`wrap-iife`](https://eslint.org/docs/rules/wrap-iife)
+  - [7.2](#functions--iife) عبارات توابعِ بلافاصله فراخوانی‌شده (IIFE) را داخل پرانتز قرار دهید. eslint: [`wrap-iife`](https://eslint.org/docs/rules/wrap-iife)
 
-    > Why? An immediately invoked function expression is a single unit - wrapping both it, and its invocation parens, in parens, cleanly expresses this. Note that in a world with modules everywhere, you almost never need an IIFE.
+    > چرا؟ یک عبارت تابع بلافاصله فراخوانی‌شده یک واحد واحد است - قرار دادن هم خود آن و هم پرانتزهای فراخوانی‌اش داخل یک پرانتز، این موضوع را به وضوح نشان می‌دهد. توجه داشته باشید که در دنیایی که همه‌جا ماژول وجود دارد، تقریباً هرگز به IIFE نیاز ندارید.
 
     ```javascript
-    // immediately-invoked function expression (IIFE)
+    // عبارت تابع بلافاصله فراخوانی‌شده (IIFE)
     (function () {
       console.log('Welcome to the Internet. Please follow me.');
     }());
     ```
 
   <a name="functions--in-blocks"></a><a name="7.3"></a>
-  - [7.3](#functions--in-blocks) Never declare a function in a non-function block (`if`, `while`, etc). Assign the function to a variable instead. Browsers will allow you to do it, but they all interpret it differently, which is bad news bears. eslint: [`no-loop-func`](https://eslint.org/docs/rules/no-loop-func)
+  - [7.3](#functions--in-blocks) هرگز تابعی را در یک بلوک غیرتابعی (مثل `if`، `while` و غیره) اعلان نکنید. در عوض، تابع را به یک متغیر انتساب دهید. مرورگرها به شما اجازه می‌دهند این کار را انجام دهید، اما همگی آن را به شکل متفاوتی تفسیر می‌کنند که خبر بدی است. eslint: [`no-loop-func`](https://eslint.org/docs/rules/no-loop-func)
 
   <a name="functions--note-on-blocks"></a><a name="7.4"></a>
-  - [7.4](#functions--note-on-blocks) **Note:** ECMA-262 defines a `block` as a list of statements. A function declaration is not a statement.
+  - [7.4](#functions--note-on-blocks) **نکته:** ECMA-262 یک بلوک را به عنوان فهرستی از دستورات (statements) تعریف می‌کند. اعلان تابع (function declaration) یک دستور نیست.
 
     ```javascript
-    // bad
+    // بد
     if (currentUser) {
       function test() {
         console.log('Nope.');
       }
     }
 
-    // good
+    // خوب
     let test;
     if (currentUser) {
       test = () => {
@@ -720,52 +720,52 @@
     ```
 
   <a name="functions--arguments-shadow"></a><a name="7.5"></a>
-  - [7.5](#functions--arguments-shadow) Never name a parameter `arguments`. This will take precedence over the `arguments` object that is given to every function scope.
+  - [7.5](#functions--arguments-shadow) هرگز یک پارامتر را `arguments` نام‌گذاری نکنید. این کار بر شئ `arguments` که به هر دامنه تابعی داده می‌شود، اولویت پیدا می‌کند.
 
     ```javascript
-    // bad
+    // بد
     function foo(name, options, arguments) {
       // ...
     }
 
-    // good
+    // خوب
     function foo(name, options, args) {
       // ...
     }
     ```
 
   <a name="es6-rest"></a><a name="7.6"></a>
-  - [7.6](#es6-rest) Never use `arguments`, opt to use rest syntax `...` instead. eslint: [`prefer-rest-params`](https://eslint.org/docs/rules/prefer-rest-params)
+  - [7.6](#es6-rest) هرگز از `arguments` استفاده نکنید، در عوض از سینتکس rest یعنی `...` استفاده کنید. eslint: [`prefer-rest-params`](https://eslint.org/docs/rules/prefer-rest-params)
 
-    > Why? `...` is explicit about which arguments you want pulled. Plus, rest arguments are a real Array, and not merely Array-like like `arguments`.
+    > چرا؟ `...` صریحاً مشخص می‌کند که کدام آرگومان‌ها را می‌خواهید استخراج کنید. علاوه بر این، آرگومان‌های rest یک آرایه واقعی هستند، نه فقط شبیه به آرایه (مانند `arguments`).
 
     ```javascript
-    // bad
+    // بد
     function concatenateAll() {
       const args = Array.prototype.slice.call(arguments);
       return args.join('');
     }
 
-    // good
+    // خوب
     function concatenateAll(...args) {
       return args.join('');
     }
     ```
 
   <a name="es6-default-parameters"></a><a name="7.7"></a>
-  - [7.7](#es6-default-parameters) Use default parameter syntax rather than mutating function arguments.
+  - [7.7](#es6-default-parameters) به جای تغییر آرگومان‌های تابع، از سینتکس پارامترهای پیش‌فرض استفاده کنید.
 
     ```javascript
-    // really bad
+    // خیلی بد
     function handleThings(opts) {
-      // No! We shouldn’t mutate function arguments.
-      // Double bad: if opts is falsy it'll be set to an object which may
-      // be what you want but it can introduce subtle bugs.
+      // خیر! ما نباید آرگومان‌های تابع را تغییر دهیم.
+      // دو برابر بد: اگر opts falsy باشد، روی یک شئ تنظیم می‌شود که شاید
+      // همان چیزی باشد که می‌خواهید، اما می‌تواند باگ‌های ظریفی ایجاد کند.
       opts = opts || {};
       // ...
     }
 
-    // still bad
+    // هنوز هم بد
     function handleThings(opts) {
       if (opts === void 0) {
         opts = {};
@@ -773,20 +773,20 @@
       // ...
     }
 
-    // good
+    // خوب
     function handleThings(opts = {}) {
       // ...
     }
     ```
 
   <a name="functions--default-side-effects"></a><a name="7.8"></a>
-  - [7.8](#functions--default-side-effects) Avoid side effects with default parameters.
+  - [7.8](#functions--default-side-effects) از اثرات جانبی با پارامترهای پیش‌فرض اجتناب کنید.
 
-    > Why? They are confusing to reason about.
+    > چرا؟ استدلال در مورد آن‌ها گیج‌کننده است.
 
     ```javascript
     let b = 1;
-    // bad
+    // بد
     function count(a = b++) {
       console.log(a);
     }
@@ -797,73 +797,73 @@
     ```
 
   <a name="functions--defaults-last"></a><a name="7.9"></a>
-  - [7.9](#functions--defaults-last) Always put default parameters last. eslint: [`default-param-last`](https://eslint.org/docs/rules/default-param-last)
+  - [7.9](#functions--defaults-last) همیشه پارامترهای پیش‌فرض را در آخر قرار دهید. eslint: [`default-param-last`](https://eslint.org/docs/rules/default-param-last)
 
     ```javascript
-    // bad
+    // بد
     function handleThings(opts = {}, name) {
       // ...
     }
 
-    // good
+    // خوب
     function handleThings(name, opts = {}) {
       // ...
     }
     ```
 
   <a name="functions--constructor"></a><a name="7.10"></a>
-  - [7.10](#functions--constructor) Never use the Function constructor to create a new function. eslint: [`no-new-func`](https://eslint.org/docs/rules/no-new-func)
+  - [7.10](#functions--constructor) برای ساخت یک تابع جدید، هرگز از سازنده Function استفاده نکنید. eslint: [`no-new-func`](https://eslint.org/docs/rules/no-new-func)
 
-    > Why? Creating a function in this way evaluates a string similarly to `eval()`, which opens vulnerabilities.
+    > چرا؟ ایجاد تابع به این روش، رشته‌ای را به شکلی مشابه `eval()` ارزیابی می‌کند که باعث ایجاد آسیب‌پذیری می‌شود.
 
     ```javascript
-    // bad
+    // بد
     const add = new Function('a', 'b', 'return a + b');
 
-    // still bad
+    // هنوز هم بد
     const subtract = Function('a', 'b', 'return a - b');
     ```
 
   <a name="functions--signature-spacing"></a><a name="7.11"></a>
-  - [7.11](#functions--signature-spacing) Spacing in a function signature. eslint: [`space-before-function-paren`](https://eslint.org/docs/rules/space-before-function-paren) [`space-before-blocks`](https://eslint.org/docs/rules/space-before-blocks)
+  - [7.11](#functions--signature-spacing) فاصله‌گذاری در امضای یک تابع. eslint: [`space-before-function-paren`](https://eslint.org/docs/rules/space-before-function-paren) [`space-before-blocks`](https://eslint.org/docs/rules/space-before-blocks)
 
-    > Why? Consistency is good, and you shouldn’t have to add or remove a space when adding or removing a name.
+    > چرا؟ یکپارچگی خوب است و شما نباید هنگام اضافه یا حذف کردن یک نام، مجبور به اضافه یا حذف کردن فاصله باشید.
 
     ```javascript
-    // bad
+    // بد
     const f = function(){};
     const g = function (){};
     const h = function() {};
 
-    // good
+    // خوب
     const x = function () {};
     const y = function a() {};
     ```
 
   <a name="functions--mutate-params"></a><a name="7.12"></a>
-  - [7.12](#functions--mutate-params) Never mutate parameters. eslint: [`no-param-reassign`](https://eslint.org/docs/rules/no-param-reassign)
+  - [7.12](#functions--mutate-params) هرگز پارامترها را دستخوش تغییر (mutate) نکنید. eslint: [`no-param-reassign`](https://eslint.org/docs/rules/no-param-reassign)
 
-    > Why? Manipulating objects passed in as parameters can cause unwanted variable side effects in the original caller.
+    > چرا؟ دستکاری اشیایی که به عنوان پارامتر پاس داده شده‌اند، می‌تواند باعث ایجاد اثرات جانبی ناخواسته متغیر در فراخواننده اصلی شود.
 
     ```javascript
-    // bad
+    // بد
     function f1(obj) {
       obj.key = 1;
     }
 
-    // good
+    // خوب
     function f2(obj) {
       const key = Object.prototype.hasOwnProperty.call(obj, 'key') ? obj.key : 1;
     }
     ```
 
   <a name="functions--reassign-params"></a><a name="7.13"></a>
-  - [7.13](#functions--reassign-params) Never reassign parameters. eslint: [`no-param-reassign`](https://eslint.org/docs/rules/no-param-reassign)
+  - [7.13](#functions--reassign-params) هرگز پارامترها را مجدداً انتساب ندهید. eslint: [`no-param-reassign`](https://eslint.org/docs/rules/no-param-reassign)
 
-    > Why? Reassigning parameters can lead to unexpected behavior, especially when accessing the `arguments` object. It can also cause optimization issues, especially in V8.
+    > چرا؟ انتساب مجدد پارامترها می‌تواند منجر به رفتارهای غیرمنتظره شود، به ویژه هنگام دسترسی به شئ `arguments`. همچنین می‌تواند مشکلاتی در بهینه‌سازی ایجاد کند، به خصوص در V8.
 
     ```javascript
-    // bad
+    // بد
     function f1(a) {
       a = 1;
       // ...
@@ -874,7 +874,7 @@
       // ...
     }
 
-    // good
+    // خوب
     function f3(a) {
       const b = a || 1;
       // ...
@@ -886,38 +886,38 @@
     ```
 
   <a name="functions--spread-vs-apply"></a><a name="7.14"></a>
-  - [7.14](#functions--spread-vs-apply) Prefer the use of the spread syntax `...` to call variadic functions. eslint: [`prefer-spread`](https://eslint.org/docs/rules/prefer-spread)
+  - [7.14](#functions--spread-vs-apply) برای فراخوانی توابع با تعداد آرگومان متغیر (variadic functions)، استفاده از سینتکس spread یعنی `...` را ترجیح دهید. eslint: [`prefer-spread`](https://eslint.org/docs/rules/prefer-spread)
 
-    > Why? It’s cleaner, you don’t need to supply a context, and you can not easily compose `new` with `apply`.
+    > چرا؟ تمیزتر است، نیازی به ارائه یک context ندارید، و نمی‌توانید به راحتی `new` را با `apply` ترکیب کنید.
 
     ```javascript
-    // bad
+    // بد
     const x = [1, 2, 3, 4, 5];
     console.log.apply(console, x);
 
-    // good
+    // خوب
     const x = [1, 2, 3, 4, 5];
     console.log(...x);
 
-    // bad
+    // بد
     new (Function.prototype.bind.apply(Date, [null, 2016, 8, 5]));
 
-    // good
+    // خوب
     new Date(...[2016, 8, 5]);
     ```
 
   <a name="functions--signature-invocation-indentation"></a>
-  - [7.15](#functions--signature-invocation-indentation) Functions with multiline signatures, or invocations, should be indented just like every other multiline list in this guide: with each item on a line by itself, with a trailing comma on the last item. eslint: [`function-paren-newline`](https://eslint.org/docs/rules/function-paren-newline)
+  - [7.15](#functions--signature-invocation-indentation) توابعی که امضا (signature) یا فراخوانی (invocation) چند خطی دارند، باید دقیقاً مانند هر فهرست چند خطی دیگری در این راهنما تورفتگی (indent) داشته باشند: با قرار گرفتن هر آیتم در یک خط مجزا، همراه با یک ویرگول انتهایی (trailing comma) در آخرین آیتم. eslint: [`function-paren-newline`](https://eslint.org/docs/rules/function-paren-newline)
 
     ```javascript
-    // bad
+    // بد
     function foo(bar,
                  baz,
                  quux) {
       // ...
     }
 
-    // good
+    // خوب
     function foo(
       bar,
       baz,
@@ -926,12 +926,12 @@
       // ...
     }
 
-    // bad
+    // بد
     console.log(foo,
       bar,
       baz);
 
-    // good
+    // خوب
     console.log(
       foo,
       bar,
