@@ -1,16 +1,16 @@
-# Airbnb JavaScript Style Guide() {
+# راهنمای نوشتاری جاوااسکریپتِ Airbnb() {
 
-*A mostly reasonable approach to JavaScript*
+*رویکردی، تا حد زیاد معقول به جاوااسکریپت*
 
-> **Note**: this guide assumes you are using [Babel](https://babeljs.io), and requires that you use [babel-preset-airbnb](https://npmjs.com/babel-preset-airbnb) or the equivalent. It also assumes you are installing shims/polyfills in your app, with [airbnb-browser-shims](https://npmjs.com/airbnb-browser-shims) or the equivalent.
+> **نکته**: این راهنما فرض می‌کند از [Babel](https://babeljs.io) استفاده می‌کنید و نیاز دارد از [babel-preset-airbnb](https://npmjs.com/babel-preset-airbnb) یا معادل آن استفاده کنید. همچنین فرض می‌کند شیم/پُلی‌فیل‌ها را در نرم افزار خود نصب می‌کنید، با [airbnb-browser-shims](https://npmjs.com/airbnb-browser-shims) یا معادل آن.
 
 [![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb.svg)](https://www.npmjs.com/package/eslint-config-airbnb)
 [![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb-base.svg)](https://www.npmjs.com/package/eslint-config-airbnb-base)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-This guide is available in other languages too. See [Translation](#translation)
+این راهنما به زبان‌های دیگری هم در دسترس است. [ترجمه](#translation) را ببینید
 
-Other Style Guides
+راهنماهای سبک دیگر
 
   - [ES5 (Deprecated)](https://github.com/airbnb/javascript/tree/es5-deprecated/es5)
   - [React](react/)
@@ -18,52 +18,53 @@ Other Style Guides
   - [CSS & Sass](https://github.com/airbnb/css)
   - [Ruby](https://github.com/airbnb/ruby)
 
-## Table of Contents
+## فهرست مطالب
 
-  1. [Types](#types)
-  1. [References](#references)
-  1. [Objects](#objects)
-  1. [Arrays](#arrays)
-  1. [Destructuring](#destructuring)
-  1. [Strings](#strings)
-  1. [Functions](#functions)
-  1. [Arrow Functions](#arrow-functions)
-  1. [Classes & Constructors](#classes--constructors)
-  1. [Modules](#modules)
-  1. [Iterators and Generators](#iterators-and-generators)
-  1. [Properties](#properties)
-  1. [Variables](#variables)
-  1. [Hoisting](#hoisting)
-  1. [Comparison Operators & Equality](#comparison-operators--equality)
-  1. [Blocks](#blocks)
-  1. [Control Statements](#control-statements)
-  1. [Comments](#comments)
-  1. [Whitespace](#whitespace)
-  1. [Commas](#commas)
-  1. [Semicolons](#semicolons)
-  1. [Type Casting & Coercion](#type-casting--coercion)
-  1. [Naming Conventions](#naming-conventions)
-  1. [Accessors](#accessors)
-  1. [Events](#events)
-  1. [jQuery](#jquery)
-  1. [ECMAScript 5 Compatibility](#ecmascript-5-compatibility)
-  1. [ECMAScript 6+ (ES 2015+) Styles](#ecmascript-6-es-2015-styles)
-  1. [Standard Library](#standard-library)
-  1. [Testing](#testing)
-  1. [Performance](#performance)
-  1. [Resources](#resources)
-  1. [In the Wild](#in-the-wild)
-  1. [Translation](#translation)
-  1. [The JavaScript Style Guide Guide](#the-javascript-style-guide-guide)
-  1. [Chat With Us About JavaScript](#chat-with-us-about-javascript)
-  1. [Contributors](#contributors)
-  1. [License](#license)
-  1. [Amendments](#amendments)
+1. [انواع (types)](#انواع-types)
+1. [ارجاعات (references)](#ارجاعات-references)
+1. [شئ ها](#objects)
+1. [آرایه‌ها](#arrays)
+1. [ساختارزدایی (destructuring)](#destructuring)
+1. [رشته‌ها (strings)](#strings)
+1. [توابع](#functions)
+1. [توابع پیکانی](#arrow-functions)
+1. [کلاس‌ها و سازنده‌ها](#classes--constructors)
+1. [ماژول‌ها (modules)](#modules)
+1. [تکرارکننده‌ها و مولدها (iterators and generators)](#iterators-and-generators)
+1. [متعلقات (properties)](#properties)
+1. [متغیرها](#variables)
+1. [بالا آوردن (Hoisting)](#hoisting)
+1. [عملگرهای مقایسه و برابری](#comparison-operators--equality)
+1. [بلوک‌ها](#blocks)
+1. [دستورهای کنترلی](#control-statements)
+1. [توضیحات (comments)](#comments)
+1. [فاصله‌گذاری](#whitespace)
+1. [ویرگول‌ها](#commas)
+1. [نقطه‌ویرگول‌ها](#semicolons)
+1. [تبدیل نوع و واداشتن به تبدیل (Coercion)](#type-casting--coercion)
+1. [مقررات نام‌گذاری](#naming-conventions)
+1. [اکسسورها (Accessors)](#accessors)
+1. [رویدادها (events)](#events)
+1. [jQuery](#jquery)
+1. [سازگاری با ECMAScript 5](#ecmascript-5-compatibility)
+1. [سبک‌های ECMAScript 6+ (ES 2015+)](#ecmascript-6-es-2015-styles)
+1. [کتابخانه استاندارد](#standard-library)
+1. [آزمایش](#testing)
+1. [کارایی](#performance)
+1. [منابع](#resources)
+1. [در دنیای واقعی](#in-the-wild)
+1. [ترجمه](#translation)
+1. [راهنمای راهنمای سبک جاوااسکریپت](#the-javascript-style-guide-guide)
+1. [با ما درباره جاوااسکریپت گپ بزنید](#chat-with-us-about-javascript)
+1. [همکاران](#contributors)
+1. [مجوز](#license)
+1. [اصلاحیه‌ها](#amendments)
 
-## Types
+
+## انواع (types)
 
   <a name="types--primitives"></a><a name="1.1"></a>
-  - [1.1](#types--primitives) **Primitives**: When you access a primitive type you work directly on its value.
+  - [1.1](#types--primitives) **بدویات (Primitives)**: وقتی به یک نوع بدوی دسترسی پیدا می‌کنید، مستقیماً با مقدار آن نوع کار می‌کنید.
 
     - `string`
     - `number`
@@ -84,10 +85,10 @@ Other Style Guides
     console.log(foo, bar); // => 1, 9
     ```
 
-    - Symbols and BigInts cannot be faithfully polyfilled, so they should not be used when targeting browsers/environments that don’t support them natively.
+    - سمبل‌ها (Symbols) و BigIntها را نمی‌توان به‌طور قطع پُلی‌فیل کرد، بنابراین وقتی برای مرورگرها/محیط‌هایی هدف‌گیری می‌کنید که از آن‌ها به‌صورت بومی پشتیبانی نمی‌کنند، نباید از آن‌ها استفاده کنید.
 
   <a name="types--complex"></a><a name="1.2"></a>
-  - [1.2](#types--complex)  **Complex**: When you access a complex type you work on a reference to its value.
+  - [1.2](#types--complex)  **پیچیده (Complex)**: وقتی به یک نوع پیچیده دسترسی پیدا می‌کنید، با یک ارجاع به مقدار آن نوع کار می‌کنید.
 
     - `object`
     - `array`
@@ -104,38 +105,38 @@ Other Style Guides
     console.log(foo[0], bar[0]); // => 9, 9
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## References
+## ارجاعات (references)
 
   <a name="references--prefer-const"></a><a name="2.1"></a>
-  - [2.1](#references--prefer-const) Use `const` for all of your references; avoid using `var`. eslint: [`prefer-const`](https://eslint.org/docs/rules/prefer-const), [`no-const-assign`](https://eslint.org/docs/rules/no-const-assign)
+  - [2.1](#references--prefer-const) برای همهٔ ارجاع‌های خود از `const` استفاده کنید؛ از `var` استفاده نکنید. eslint: [`prefer-const`](https://eslint.org/docs/rules/prefer-const)، [`no-const-assign`](https://eslint.org/docs/rules/no-const-assign)
 
-    > Why? This ensures that you can’t reassign your references, which can lead to bugs and difficult to comprehend code.
+    > چرا؟ این کار باعث می‌شود نتوانید ارجاع‌های خود را دوباره انتساب دهید، و همین می‌تواند از ایجاد باگ‌ها و کدهایی که فهم آن‌ها دشوار است جلوگیری کند.
 
     ```javascript
-    // bad
+    // بد
     var a = 1;
     var b = 2;
 
-    // good
+    // خوب
     const a = 1;
     const b = 2;
     ```
 
   <a name="references--disallow-var"></a><a name="2.2"></a>
-  - [2.2](#references--disallow-var) If you must reassign references, use `let` instead of `var`. eslint: [`no-var`](https://eslint.org/docs/rules/no-var)
+  - [2.2](#references--disallow-var) اگر مجبورید ارجاع‌ها را دوباره انتساب دهید، به‌جای `var` از `let` استفاده کنید. eslint: [`no-var`](https://eslint.org/docs/rules/no-var)
 
-    > Why? `let` is block-scoped rather than function-scoped like `var`.
+    > چرا؟ `let` دامنهٔ بلوکی دارد، نه دامنهٔ تابعی مثل `var`.
 
     ```javascript
-    // bad
+    // بد
     var count = 1;
     if (true) {
       count += 1;
     }
 
-    // good, use the let.
+    // خوب، از let استفاده کنید
     let count = 1;
     if (true) {
       count += 1;
@@ -143,10 +144,10 @@ Other Style Guides
     ```
 
   <a name="references--block-scope"></a><a name="2.3"></a>
-  - [2.3](#references--block-scope) Note that both `let` and `const` are block-scoped, whereas `var` is function-scoped.
+  - [2.3](#references--block-scope) توجه کنید که هم `let` و هم `const` دامنهٔ بلوکی دارند، در حالی که `var` دامنهٔ تابعی دارد.
 
     ```javascript
-    // const and let only exist in the blocks they are defined in.
+    // `const` و `let` فقط در همان بلوک‌هایی وجود دارند که در آن‌ها تعریف شده‌اند.
     {
       let a = 1;
       const b = 1;
@@ -154,12 +155,12 @@ Other Style Guides
     }
     console.log(a); // ReferenceError
     console.log(b); // ReferenceError
-    console.log(c); // Prints 1
+    console.log(c); // چاپ می شود 1
     ```
 
-    In the above code, you can see that referencing `a` and `b` will produce a ReferenceError, while `c` contains the number. This is because `a` and `b` are block scoped, while `c` is scoped to the containing function.
+    در کد بالا می‌بینید که ارجاع به `a` و `b` باعث ایجاد ReferenceError می‌شود، در حالی که `c` عدد را در خود نگه می‌دارد. این به این دلیل است که `a` و `b` دامنهٔ بلوکی دارند، در حالی که `c` به تابعِ دربرگیرنده محدود است.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Objects
 
@@ -339,7 +340,7 @@ Other Style Guides
     const { a, ...noA } = copy; // noA => { b: 2, c: 3 }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Arrays
 
@@ -504,7 +505,7 @@ Other Style Guides
     ];
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Destructuring
 
@@ -573,7 +574,7 @@ Other Style Guides
     const { left, top } = processInput(input);
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Strings
 
@@ -656,7 +657,7 @@ Other Style Guides
     const foo = `my name is '${name}'`;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Functions
 
@@ -938,7 +939,7 @@ Other Style Guides
     );
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Arrow Functions
 
@@ -1104,7 +1105,7 @@ Other Style Guides
     )
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Classes & Constructors
 
@@ -1302,7 +1303,7 @@ Other Style Guides
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Modules
 
@@ -1474,7 +1475,7 @@ Other Style Guides
     import baz from './baz';
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Iterators and Generators
 
@@ -1588,7 +1589,7 @@ Other Style Guides
     };
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Properties
 
@@ -1635,7 +1636,7 @@ Other Style Guides
     const binary = 2 ** 10;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Variables
 
@@ -1868,7 +1869,7 @@ Other Style Guides
     // 'coords' is now the 'data' object without its 'type' property.
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Hoisting
 
@@ -2017,7 +2018,7 @@ Other Style Guides
 
   - For more information refer to [JavaScript Scoping & Hoisting](https://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting/) by [Ben Cherry](https://www.adequatelygood.com/).
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Comparison Operators & Equality
 
@@ -2229,7 +2230,7 @@ Other Style Guides
     // returns 18
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Blocks
 
@@ -2345,7 +2346,7 @@ Other Style Guides
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Control Statements
 
@@ -2416,7 +2417,7 @@ Other Style Guides
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Comments
 
@@ -2557,7 +2558,7 @@ Other Style Guides
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Whitespace
 
@@ -3057,7 +3058,7 @@ Other Style Guides
     ```
     <!-- markdownlint-enable MD012 -->
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Commas
 
@@ -3192,7 +3193,7 @@ Other Style Guides
     );
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Semicolons
 
@@ -3242,7 +3243,7 @@ Other Style Guides
 
     [Read more](https://stackoverflow.com/questions/7365172/semicolon-before-self-invoking-function/7365214#7365214).
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Type Casting & Coercion
 
@@ -3333,7 +3334,7 @@ Other Style Guides
     const hasAge = !!age;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Naming Conventions
 
@@ -3572,7 +3573,7 @@ Other Style Guides
     };
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Accessors
 
@@ -3641,7 +3642,7 @@ Other Style Guides
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Events
 
@@ -3672,7 +3673,7 @@ Other Style Guides
     });
     ```
 
-  **[⬆ back to top](#table-of-contents)**
+  **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## jQuery
 
@@ -3741,14 +3742,14 @@ Other Style Guides
     $sidebar.find('ul').hide();
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## ECMAScript 5 Compatibility
 
   <a name="es5-compat--kangax"></a><a name="26.1"></a>
   - [27.1](#es5-compat--kangax) Refer to [Kangax](https://twitter.com/kangax/)’s ES5 [compatibility table](https://compat-table.github.io/compat-table/es5/).
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 <a name="ecmascript-6-styles"></a>
 ## ECMAScript 6+ (ES 2015+) Styles
@@ -3776,7 +3777,7 @@ Other Style Guides
 
     > Why? [They are not finalized](https://tc39.github.io/process-document/), and they are subject to change or to be withdrawn entirely. We want to use JavaScript, and proposals are not JavaScript yet.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Standard Library
 
@@ -3816,7 +3817,7 @@ Other Style Guides
     Number.isFinite(parseInt('2e3', 10)); // true
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Testing
 
@@ -3838,7 +3839,7 @@ Other Style Guides
     - 100% test coverage is a good goal to strive for, even if it’s not always practical to reach it.
     - Whenever you fix a bug, *write a regression test*. A bug fixed without a regression test is almost certainly going to break again in the future.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Performance
 
@@ -3852,7 +3853,7 @@ Other Style Guides
   - [Are JavaScript functions like `map()`, `reduce()`, and `filter()` optimized for traversing arrays?](https://www.quora.com/JavaScript-programming-language-Are-Javascript-functions-like-map-reduce-and-filter-already-optimized-for-traversing-array/answer/Quildreen-Motta)
   - Loading...
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Resources
 
@@ -3934,7 +3935,7 @@ Other Style Guides
   - [JavaScript Air](https://javascriptair.com/)
   - [JavaScript Jabber](https://devchat.tv/js-jabber/)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## In the Wild
 
@@ -4028,7 +4029,7 @@ Other Style Guides
   - **Zit Software**: [zit-software/javascript](https://github.com/zit-software/javascript)
   - **ZocDoc**: [ZocDoc/javascript](https://github.com/ZocDoc/javascript)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Translation
 
@@ -4088,7 +4089,7 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## Amendments
 
