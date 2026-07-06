@@ -22,8 +22,8 @@
 
 1. [انواع (types)](#انواع-types)
 1. [ارجاعات (references)](#ارجاعات-references)
-1. [شئ ها](#objects)
-1. [آرایه‌ها](#arrays)
+1. [شئ ها](#شئ-ها)
+1. [آرایه ها](#آرایه-ها)
 1. [ساختارزدایی (destructuring)](#destructuring)
 1. [رشته‌ها (strings)](#strings)
 1. [توابع](#functions)
@@ -31,7 +31,7 @@
 1. [کلاس‌ها و سازنده‌ها](#classes--constructors)
 1. [ماژول‌ها (modules)](#modules)
 1. [تکرارکننده‌ها و مولدها (iterators and generators)](#iterators-and-generators)
-1. [متعلقات (properties)](#properties)
+1. [ویژگی ها (properties)](#properties)
 1. [متغیرها](#variables)
 1. [بالا آوردن (Hoisting)](#hoisting)
 1. [عملگرهای مقایسه و برابری](#comparison-operators--equality)
@@ -162,23 +162,23 @@
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Objects
+## شئ ها
 
   <a name="objects--no-new"></a><a name="3.1"></a>
-  - [3.1](#objects--no-new) Use the literal syntax for object creation. eslint: [`no-new-object`](https://eslint.org/docs/rules/no-new-object)
+  - [3.1](#objects--no-new) برای ساخت شئ‌ها از ساختار دقیق (literal syntax) استفاده کنید. eslint: [`no-new-object`](https://eslint.org/docs/rules/no-new-object)
 
     ```javascript
-    // bad
+    // بد
     const item = new Object();
 
-    // good
+    // خوب
     const item = {};
     ```
 
   <a name="es6-computed-properties"></a><a name="3.4"></a>
-  - [3.2](#es6-computed-properties) Use computed property names when creating objects with dynamic property names.
+  - [3.2](#es6-computed-properties) هنگام ساخت شئ‌هایی با نام ویژگی های پویا، از نام ویژگی‌های محاسبه‌شده (computed property names) استفاده کنید.
 
-    > Why? They allow you to define all the properties of an object in one place.
+    > چرا؟ این کار به شما اجازه می‌دهد تمام ویژگی‌های یک شئ را در یک مکان تعریف کنید.
 
     ```javascript
 
@@ -186,14 +186,14 @@
       return `a key named ${k}`;
     }
 
-    // bad
+    // بد
     const obj = {
       id: 5,
       name: 'San Francisco',
     };
     obj[getKey('enabled')] = true;
 
-    // good
+    // خوب
     const obj = {
       id: 5,
       name: 'San Francisco',
@@ -202,10 +202,10 @@
     ```
 
   <a name="es6-object-shorthand"></a><a name="3.5"></a>
-  - [3.3](#es6-object-shorthand) Use object method shorthand. eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand)
+  - [3.3](#es6-object-shorthand) از مخفف‌نویسی متدهای شئ (object method shorthand) استفاده کنید. eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand)
 
     ```javascript
-    // bad
+    // بد
     const atom = {
       value: 1,
 
@@ -214,7 +214,7 @@
       },
     };
 
-    // good
+    // خوب
     const atom = {
       value: 1,
 
@@ -225,34 +225,34 @@
     ```
 
   <a name="es6-object-concise"></a><a name="3.6"></a>
-  - [3.4](#es6-object-concise) Use property value shorthand. eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand)
+  - [3.4](#es6-object-concise) از مخفف‌نویسی مقدار ویژگی (property value shorthand) استفاده کنید. eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand)
 
-    > Why? It is shorter and descriptive.
+    > چرا؟ کوتاه‌تر و گویاتر است.
 
     ```javascript
     const lukeSkywalker = 'Luke Skywalker';
 
-    // bad
+    // بد
     const obj = {
       lukeSkywalker: lukeSkywalker,
     };
 
-    // good
+    // خوب
     const obj = {
       lukeSkywalker,
     };
     ```
 
   <a name="objects--grouped-shorthand"></a><a name="3.7"></a>
-  - [3.5](#objects--grouped-shorthand) Group your shorthand properties at the beginning of your object declaration.
+  - [3.5](#objects--grouped-shorthand) ویژگی‌های مخفف‌نویسی‌شده را در ابتدای تعریف شئ خود گروه‌بندی کنید.
 
-    > Why? It’s easier to tell which properties are using the shorthand.
+    > چرا؟ تشخیص اینکه کدام ویژگی‌ها از مخفف‌نویسی استفاده می‌کنند، راحت‌تر است.
 
     ```javascript
     const anakinSkywalker = 'Anakin Skywalker';
     const lukeSkywalker = 'Luke Skywalker';
 
-    // bad
+    // بد
     const obj = {
       episodeOne: 1,
       twoJediWalkIntoACantina: 2,
@@ -262,7 +262,7 @@
       anakinSkywalker,
     };
 
-    // good
+    // خوب
     const obj = {
       lukeSkywalker,
       anakinSkywalker,
@@ -274,19 +274,19 @@
     ```
 
   <a name="objects--quoted-props"></a><a name="3.8"></a>
-  - [3.6](#objects--quoted-props) Only quote properties that are invalid identifiers. eslint: [`quote-props`](https://eslint.org/docs/rules/quote-props)
+  - [3.6](#objects--quoted-props) فقط ویژگی‌هایی که شناسه (identifier) نامعتبری هستند را داخل کوتیشن قرار دهید. eslint: [`quote-props`](https://eslint.org/docs/rules/quote-props)
 
-    > Why? In general we consider it subjectively easier to read. It improves syntax highlighting, and is also more easily optimized by many JS engines.
+    > چرا؟ به طور کلی، خواندن آن را راحت‌تر می‌دانیم. هایلایت کردن سینتکس را بهبود می‌بخشد و توسط بسیاری از موتورهای JS راحت‌تر بهینه‌سازی می‌شود.
 
     ```javascript
-    // bad
+    // بد
     const bad = {
       'foo': 3,
       'bar': 4,
       'data-blah': 5,
     };
 
-    // good
+    // خوب
     const good = {
       foo: 3,
       bar: 4,
@@ -295,45 +295,45 @@
     ```
 
   <a name="objects--prototype-builtins"></a>
-  - [3.7](#objects--prototype-builtins) Do not call `Object.prototype` methods directly, such as `hasOwnProperty`, `propertyIsEnumerable`, and `isPrototypeOf`. eslint: [`no-prototype-builtins`](https://eslint.org/docs/rules/no-prototype-builtins)
+  - [3.7](#objects--prototype-builtins) متدهای `Object.prototype` مانند `hasOwnProperty`، `propertyIsEnumerable` و `isPrototypeOf` را مستقیماً فراخوانی نکنید. eslint: [`no-prototype-builtins`](https://eslint.org/docs/rules/no-prototype-builtins)
 
-    > Why? These methods may be shadowed by properties on the object in question - consider `{ hasOwnProperty: false }` - or, the object may be a null object (`Object.create(null)`). In modern browsers that support ES2022, or with a polyfill such as <https://npmjs.com/object.hasown>, `Object.hasOwn` can also be used as an alternative to `Object.prototype.hasOwnProperty.call`.
+    > چرا؟ این متدها ممکن است توسط ویژگی‌های روی شئ مورد نظر پنهان شوند (shadowed) - برای مثال `{ hasOwnProperty: false }` را در نظر بگیرید - و یا ممکن است شئ، یک شئ تهی (null object) باشد (`Object.create(null)`). در مرورگرهای مدرنی که از ES2022 پشتیبانی می‌کنند، یا با یک پُلی‌فیل مانند <https://npmjs.com/object.hasown>، می‌توان از `Object.hasOwn` به عنوان جایگزینی برای `Object.prototype.hasOwnProperty.call` استفاده کرد.
 
     ```javascript
-    // bad
+    // بد
     console.log(object.hasOwnProperty(key));
 
-    // good
+    // خوب
     console.log(Object.prototype.hasOwnProperty.call(object, key));
 
-    // better
-    const has = Object.prototype.hasOwnProperty; // cache the lookup once, in module scope.
+    // بهتر
+    const has = Object.prototype.hasOwnProperty; // جستجو را یک بار، در دامنه ماژول کش کنید.
     console.log(has.call(object, key));
 
-    // best
-    console.log(Object.hasOwn(object, key)); // only supported in browsers that support ES2022
+    // بهترین
+    console.log(Object.hasOwn(object, key)); // فقط در مرورگرهایی که از ES2022 پشتیبانی می‌کنند، پشتیبانی می‌شود
 
-    /* or */
+    /* یا */
     import has from 'has'; // https://www.npmjs.com/package/has
     console.log(has(object, key));
-    /* or */
+    /* یا */
     console.log(Object.hasOwn(object, key)); // https://www.npmjs.com/package/object.hasown
     ```
 
   <a name="objects--rest-spread"></a>
-  - [3.8](#objects--rest-spread) Prefer the object spread syntax over [`Object.assign`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) to shallow-copy objects. Use the object rest parameter syntax to get a new object with certain properties omitted. eslint: [`prefer-object-spread`](https://eslint.org/docs/rules/prefer-object-spread)
+  - [3.8](#objects--rest-spread) برای کپی سطحی (shallow-copy) کردن شئ‌ها، به جای [`Object.assign`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) از سینتکس spread شئ‌ها استفاده کنید. برای به دست آوردن یک شئ جدید با حذف شدن برخی ویژگی‌ها، از سینتکس پارامتر rest شئ‌ها استفاده کنید. eslint: [`prefer-object-spread`](https://eslint.org/docs/rules/prefer-object-spread)
 
     ```javascript
-    // very bad
+    // خیلی بد
     const original = { a: 1, b: 2 };
-    const copy = Object.assign(original, { c: 3 }); // this mutates `original` ಠ_ಠ
-    delete copy.a; // so does this
+    const copy = Object.assign(original, { c: 3 }); // این کار `original` را تغییر می‌دهد ಠ_ಠ
+    delete copy.a; // این هم همینطور
 
-    // bad
+    // بد
     const original = { a: 1, b: 2 };
     const copy = Object.assign({}, original, { c: 3 }); // copy => { a: 1, b: 2, c: 3 }
 
-    // good
+    // خوب
     const original = { a: 1, b: 2 };
     const copy = { ...original, c: 3 }; // copy => { a: 1, b: 2, c: 3 }
 
@@ -342,37 +342,37 @@
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Arrays
+## آرایه ها
 
   <a name="arrays--literals"></a><a name="4.1"></a>
-  - [4.1](#arrays--literals) Use the literal syntax for array creation. eslint: [`no-array-constructor`](https://eslint.org/docs/rules/no-array-constructor)
+  - [4.1](#arrays--literals) برای ساخت آرایه‌ها از ساختار دقیق (literal syntax) استفاده کنید. eslint: [`no-array-constructor`](https://eslint.org/docs/rules/no-array-constructor)
 
     ```javascript
-    // bad
+    // بد
     const items = new Array();
 
-    // good
+    // خوب
     const items = [];
     ```
 
   <a name="arrays--push"></a><a name="4.2"></a>
-  - [4.2](#arrays--push) Use [Array#push](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/push) instead of direct assignment to add items to an array.
+  - [4.2](#arrays--push) برای اضافه کردن آیتم‌ها به یک آرایه، به جای انتساب مستقیم از [Array#push](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/push) استفاده کنید.
 
     ```javascript
     const someStack = [];
 
-    // bad
+    // بد
     someStack[someStack.length] = 'abracadabra';
 
-    // good
+    // خوب
     someStack.push('abracadabra');
     ```
 
   <a name="es6-array-spreads"></a><a name="4.3"></a>
-  - [4.3](#es6-array-spreads) Use array spreads `...` to copy arrays.
+  - [4.3](#es6-array-spreads) برای کپی کردن آرایه‌ها از عملگر spread یعنی `...` استفاده کنید.
 
     ```javascript
-    // bad
+    // بد
     const len = items.length;
     const itemsCopy = [];
     let i;
@@ -381,73 +381,73 @@
       itemsCopy[i] = items[i];
     }
 
-    // good
+    // خوب
     const itemsCopy = [...items];
     ```
 
   <a name="arrays--from"></a>
   <a name="arrays--from-iterable"></a><a name="4.4"></a>
-  - [4.4](#arrays--from-iterable) To convert an iterable object to an array, use spreads `...` instead of [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from)
+  - [4.4](#arrays--from-iterable) برای تبدیل یک شئ قابل پیمایش (iterable) به آرایه، به جای [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) از عملگر spread یعنی `...` استفاده کنید.
 
     ```javascript
     const foo = document.querySelectorAll('.foo');
 
-    // good
+    // خوب
     const nodes = Array.from(foo);
 
-    // best
+    // بهترین
     const nodes = [...foo];
     ```
 
   <a name="arrays--from-array-like"></a>
-  - [4.5](#arrays--from-array-like) Use [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) for converting an array-like object to an array.
+  - [4.5](#arrays--from-array-like) برای تبدیل یک شئ شبیه به آرایه (array-like) به آرایه، از [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) استفاده کنید.
 
     ```javascript
     const arrLike = { 0: 'foo', 1: 'bar', 2: 'baz', length: 3 };
 
-    // bad
+    // بد
     const arr = Array.prototype.slice.call(arrLike);
 
-    // good
+    // خوب
     const arr = Array.from(arrLike);
     ```
 
   <a name="arrays--mapping"></a>
-  - [4.6](#arrays--mapping) Use [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) instead of spread `...` for mapping over iterables, because it avoids creating an intermediate array.
+  - [4.6](#arrays--mapping) برای نگاشت (map) روی اشیاء قابل پیمایش (iterable)، به جای spread یعنی `...` از [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) استفاده کنید، زیرا از ایجاد یک آرایه واسطه جلوگیری می‌کند.
 
     ```javascript
-    // bad
+    // بد
     const baz = [...foo].map(bar);
 
-    // good
+    // خوب
     const baz = Array.from(foo, bar);
     ```
 
   <a name="arrays--callback-return"></a><a name="4.5"></a>
-  - [4.7](#arrays--callback-return) Use return statements in array method callbacks. It’s ok to omit the return if the function body consists of a single statement returning an expression without side effects, following [8.2](#arrows--implicit-return). eslint: [`array-callback-return`](https://eslint.org/docs/rules/array-callback-return)
+  - [4.7](#arrays--callback-return) در توابع کال‌بک (callback) متدهای آرایه، از دستور `return` استفاده کنید. اگر بدنهٔ تابع از یک دستور واحد تشکیل شده باشد که یک عبارت بدون اثرات جانبی را برمی‌گرداند، طبق قانون [8.2](#arrows--implicit-return) حذف کردن `return` مشکلی ندارد. eslint: [`array-callback-return`](https://eslint.org/docs/rules/array-callback-return)
 
     ```javascript
-    // good
+    // خوب
     [1, 2, 3].map((x) => {
       const y = x + 1;
       return x * y;
     });
 
-    // good
+    // خوب
     [1, 2, 3].map((x) => x + 1);
 
-    // bad - no returned value means `acc` becomes undefined after the first iteration
+    // بد - عدم برگرداندن مقدار به این معنی است که `acc` پس از اولین تکرار تبدیل به undefined می‌شود
     [[0, 1], [2, 3], [4, 5]].reduce((acc, item, index) => {
       const flatten = acc.concat(item);
     });
 
-    // good
+    // خوب
     [[0, 1], [2, 3], [4, 5]].reduce((acc, item, index) => {
       const flatten = acc.concat(item);
       return flatten;
     });
 
-    // bad
+    // بد
     inbox.filter((msg) => {
       const { subject, author } = msg;
       if (subject === 'Mockingbird') {
@@ -457,7 +457,7 @@
       }
     });
 
-    // good
+    // خوب
     inbox.filter((msg) => {
       const { subject, author } = msg;
       if (subject === 'Mockingbird') {
@@ -469,10 +469,10 @@
     ```
 
   <a name="arrays--bracket-newline"></a>
-  - [4.8](#arrays--bracket-newline) Use line breaks after opening array brackets and before closing array brackets, if an array has multiple lines
+  - [4.8](#arrays--bracket-newline) اگر یک آرایه در چند خط قرار دارد، بعد از براکت بازکننده و قبل از براکت بسته‌کنندهٔ آرایه، خط‌شکن (خط جدید) قرار دهید.
 
     ```javascript
-    // bad
+    // بد
     const arr = [
       [0, 1], [2, 3], [4, 5],
     ];
@@ -487,7 +487,7 @@
       1, 2,
     ];
 
-    // good
+    // خوب
     const arr = [[0, 1], [2, 3], [4, 5]];
 
     const objectInArray = [
