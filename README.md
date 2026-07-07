@@ -34,10 +34,10 @@
 1. [ویژگی ها (properties)](#ویژگی-ها-properties)
 1. [متغیر ها](#متغیر-ها)
 1. [بالا آوردن (Hoisting)](#بالا-آوردن-Hoisting)
-1. [عملگرهای مقایسه و برابری](#comparison-operators--equality)
-1. [بلوک‌ها](#blocks)
-1. [دستورهای کنترلی](#control-statements)
-1. [توضیحات (comments)](#comments)
+1. [عملگرهای مقایسه و برابری](#عملگرهای-مقایسه-و-برابری)
+1. [بلوک ها](#بلوک-ها)
+1. [دستورهای کنترلی](#دستورهای-کنترلی)
+1. [توضیحات (comments)](#توضیحات-Comments)
 1. [فاصله‌گذاری](#whitespace)
 1. [ویرگول‌ها](#commas)
 1. [نقطه‌ویرگول‌ها](#semicolons)
@@ -2021,73 +2021,73 @@
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Comparison Operators & Equality
+## عملگرهای مقایسه و برابری
 
   <a name="comparison--eqeqeq"></a><a name="15.1"></a>
-  - [15.1](#comparison--eqeqeq) Use `===` and `!==` over `==` and `!=`. eslint: [`eqeqeq`](https://eslint.org/docs/rules/eqeqeq)
+  - [15.1](#comparison--eqeqeq) به جای `==` و `!=` از `===` و `!==` استفاده کنید. eslint: [`eqeqeq`](https://eslint.org/docs/rules/eqeqeq)
 
   <a name="comparison--if"></a><a name="15.2"></a>
-  - [15.2](#comparison--if) Conditional statements such as the `if` statement evaluate their expression using coercion with the `ToBoolean` abstract method and always follow these simple rules:
+  - [15.2](#comparison--if) دستورهای شرطی مانند دستور `if` عبارت خود را با استفاده از تبدیل (coercion) از طریق متد انتزاعی `ToBoolean` ارزیابی می‌کنند و همیشه این قوانین ساده را دنبال می‌کنند:
 
-    - **Objects** evaluate to **true**
-    - **Undefined** evaluates to **false**
-    - **Null** evaluates to **false**
-    - **Booleans** evaluate to **the value of the boolean**
-    - **Numbers** evaluate to **false** if **+0, -0, or NaN**, otherwise **true**
-    - **Strings** evaluate to **false** if an empty string `''`, otherwise **true**
+    - **اشیاء (Objects)** به **true** ارزیابی می‌شوند
+    - **مقدار Undefined** به **false** ارزیابی می‌شود
+    - **مقدار Null** به **false** ارزیابی می‌شود
+    - **بولین‌ها (Booleans)** به **مقدار خودِ بولین** ارزیابی می‌شوند
+    - **اعداد (Numbers)** در صورتی که **+0، -0 یا NaN** باشند به **false** ارزیابی می‌شوند، در غیر این صورت **true**
+    - **رشته‌ها (Strings)** در صورتی که رشته خالی `''` باشند به **false** ارزیابی می‌شوند، در غیر این صورت **true**
 
     ```javascript
     if ([0] && []) {
       // true
-      // an array (even an empty one) is an object, objects will evaluate to true
+      // یک آرایه (حتی آرایه خالی) یک شئ است، و اشیاء به true ارزیابی می‌شوند
     }
     ```
 
   <a name="comparison--shortcuts"></a><a name="15.3"></a>
-  - [15.3](#comparison--shortcuts) Use shortcuts for booleans, but explicit comparisons for strings and numbers.
+  - [15.3](#comparison--shortcuts) برای بولین‌ها از میان‌برها، اما برای رشته‌ها و اعداد از مقایسه‌های صریح استفاده کنید.
 
     ```javascript
-    // bad
+    // بد
     if (isValid === true) {
       // ...
     }
 
-    // good
+    // خوب
     if (isValid) {
       // ...
     }
 
-    // bad
+    // بد
     if (name) {
       // ...
     }
 
-    // good
+    // خوب
     if (name !== '') {
       // ...
     }
 
-    // bad
+    // بد
     if (collection.length) {
       // ...
     }
 
-    // good
+    // خوب
     if (collection.length > 0) {
       // ...
     }
     ```
 
   <a name="comparison--moreinfo"></a><a name="15.4"></a>
-  - [15.4](#comparison--moreinfo) For more information see [Truth, Equality, and JavaScript](https://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) by Angus Croll.
+  - [15.4](#comparison--moreinfo) برای اطلاعات بیشتر به مرجع [حقیقت، برابری و جاوااسکریپت (Truth, Equality, and JavaScript)](https://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) اثر آنگوس کرول (Angus Croll) مراجعه کنید.
 
   <a name="comparison--switch-blocks"></a><a name="15.5"></a>
-  - [15.5](#comparison--switch-blocks) Use braces to create blocks in `case` and `default` clauses that contain lexical declarations (e.g. `let`, `const`, `function`, and `class`). eslint: [`no-case-declarations`](https://eslint.org/docs/rules/no-case-declarations)
+  - [15.5](#comparison--switch-blocks) برای ایجاد بلوک در بندهای `case` و `default` که حاوی اعلان‌های لغوی (مانند `let`، `const`، `function` و `class`) هستند، از آکولاد استفاده کنید. eslint: [`no-case-declarations`](https://eslint.org/docs/rules/no-case-declarations)
 
-    > Why? Lexical declarations are visible in the entire `switch` block but only get initialized when assigned, which only happens when its `case` is reached. This causes problems when multiple `case` clauses attempt to define the same thing.
+    > چرا؟ اعلان‌های لغوی در کل بلوک `switch` قابل مشاهده هستند اما تنها زمانی مقداردهی اولیه می‌شوند که انتساب داده شوند، که این اتفاق فقط زمانی می‌افتد که به `case` مربوطه برسید. این موضوع زمانی که چندین بند `case` سعی می‌کنند یک چیز واحد را تعریف کنند، باعث ایجاد مشکل می‌شود.
 
     ```javascript
-    // bad
+    // بد
     switch (foo) {
       case 1:
         let x = 1;
@@ -2104,7 +2104,7 @@
         class C {}
     }
 
-    // good
+    // خوب
     switch (foo) {
       case 1: {
         let x = 1;
@@ -2130,37 +2130,37 @@
     ```
 
   <a name="comparison--nested-ternaries"></a><a name="15.6"></a>
-  - [15.6](#comparison--nested-ternaries) Ternaries should not be nested and generally be single line expressions. eslint: [`no-nested-ternary`](https://eslint.org/docs/rules/no-nested-ternary)
+  - [15.6](#comparison--nested-ternaries) سه‌تایی‌ها (Ternaries) نباید تودرتو باشند و به طور کلی باید عبارات تک‌خطی باشند. eslint: [`no-nested-ternary`](https://eslint.org/docs/rules/no-nested-ternary)
 
     ```javascript
-    // bad
+    // بد
     const foo = maybe1 > maybe2
       ? 'bar'
       : value1 > value2 ? 'baz' : null;
 
-    // split into 2 separated ternary expressions
+    // تقسیم به 2 عبارت سه‌تایی مجزا
     const maybeNull = value1 > value2 ? 'baz' : null;
 
-    // better
+    // بهتر
     const foo = maybe1 > maybe2
       ? 'bar'
       : maybeNull;
 
-    // best
+    // بهترین
     const foo = maybe1 > maybe2 ? 'bar' : maybeNull;
     ```
 
   <a name="comparison--unneeded-ternary"></a><a name="15.7"></a>
-  - [15.7](#comparison--unneeded-ternary) Avoid unneeded ternary statements. eslint: [`no-unneeded-ternary`](https://eslint.org/docs/rules/no-unneeded-ternary)
+  - [15.7](#comparison--unneeded-ternary) از دستورات سه‌تایی غیرضروری اجتناب کنید. eslint: [`no-unneeded-ternary`](https://eslint.org/docs/rules/no-unneeded-ternary)
 
     ```javascript
-    // bad
+    // بد
     const foo = a ? a : b;
     const bar = c ? true : false;
     const baz = c ? false : true;
     const quux = a != null ? a : b;
 
-    // good
+    // خوب
     const foo = a || b;
     const bar = !!c;
     const baz = !c;
@@ -2168,103 +2168,103 @@
     ```
 
   <a name="comparison--no-mixed-operators"></a>
-  - [15.8](#comparison--no-mixed-operators) When mixing operators, enclose them in parentheses. The only exception is the standard arithmetic operators: `+`, `-`, and `**` since their precedence is broadly understood. We recommend enclosing `/` and `*` in parentheses because their precedence can be ambiguous when they are mixed.
+  - [15.8](#comparison--no-mixed-operators) هنگام ترکیب عملگرها، آن‌ها را داخل پرانتز قرار دهید. تنها استثنا عملگرهای ریاضی استاندارد: `+`، `-` و `**` هستند، زیرا اولویت آن‌ها به طور گسترده درک شده است. ما توصیه می‌کنیم `/` و `*` را داخل پرانتز قرار دهید زیرا اولویت آن‌ها هنگام ترکیب می‌تواند مبهم باشد.
   eslint: [`no-mixed-operators`](https://eslint.org/docs/rules/no-mixed-operators)
 
-    > Why? This improves readability and clarifies the developer’s intention.
+    > چرا؟ این کار خوانایی را بهبود می‌بخشد و قصد توسعه‌دهنده را روشن می‌کند.
 
     ```javascript
-    // bad
+    // بد
     const foo = a && b < 0 || c > 0 || d + 1 === 0;
 
-    // bad
+    // بد
     const bar = a ** b - 5 % d;
 
-    // bad
-    // one may be confused into thinking (a || b) && c
+    // بد
+    // ممکن است فرد فکر کند (a || b) && c است
     if (a || b && c) {
       return d;
     }
 
-    // bad
+    // بد
     const bar = a + b / c * d;
 
-    // good
+    // خوب
     const foo = (a && b < 0) || c > 0 || (d + 1 === 0);
 
-    // good
+    // خوب
     const bar = a ** b - (5 % d);
 
-    // good
+    // خوب
     if (a || (b && c)) {
       return d;
     }
 
-    // good
+    // خوب
     const bar = a + (b / c) * d;
     ```
 
   <a name="nullish-coalescing-operator"></a>
-  - [15.9](#nullish-coalescing-operator) The nullish coalescing operator (`??`) is a logical operator that returns its right-hand side operand when its left-hand side operand is `null` or `undefined`. Otherwise, it returns the left-hand side operand.
+  - [15.9](#nullish-coalescing-operator) عملگر ادغام تهی (nullish coalescing operator - `??`) یک عملگر منطقی است که در صورتی که عملوند سمت چپ آن `null` یا `undefined` باشد، عملوند سمت راست را برمی‌گرداند. در غیر این صورت، عملوند سمت چپ را برمی‌گرداند.
 
-    > Why? It provides precision by distinguishing null/undefined from other falsy values, enhancing code clarity and predictability.
+    > چرا؟ با متمایز کردن null/undefined از سایر مقادیر falsy، دقت را فراهم می‌کند و وضوح و پیش‌بینی‌پذیری کد را افزایش می‌دهد.
 
     ```javascript
-    // bad
+    // بد
     const value = 0 ?? 'default';
-    // returns 0, not 'default'
+    // 0 را برمی‌گرداند، نه 'default'
 
-    // bad
+    // بد
     const value = '' ?? 'default';
-    // returns '', not 'default'
+    // '' را برمی‌گرداند، نه 'default'
 
-    // good
+    // خوب
     const value = null ?? 'default';
-    // returns 'default'
+    // 'default' را برمی‌گرداند
 
-    // good
+    // خوب
     const user = {
       name: 'John',
       age: null
     };
     const age = user.age ?? 18;
-    // returns 18
+    // 18 را برمی‌گرداند
     ```
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Blocks
+## بلوک ها
 
   <a name="blocks--braces"></a><a name="16.1"></a>
-  - [16.1](#blocks--braces) Use braces with all multiline blocks. eslint: [`nonblock-statement-body-position`](https://eslint.org/docs/rules/nonblock-statement-body-position)
+  - [16.1](#blocks--braces) در تمام بلوک‌های چندخطی از آکولاد استفاده کنید. eslint: [`nonblock-statement-body-position`](https://eslint.org/docs/rules/nonblock-statement-body-position)
 
     ```javascript
-    // bad
+    // بد
     if (test)
       return false;
 
-    // good
+    // خوب
     if (test) return false;
 
-    // good
+    // خوب
     if (test) {
       return false;
     }
 
-    // bad
+    // بد
     function foo() { return false; }
 
-    // good
+    // خوب
     function bar() {
       return false;
     }
     ```
 
   <a name="blocks--cuddled-elses"></a><a name="16.2"></a>
-  - [16.2](#blocks--cuddled-elses) If you’re using multiline blocks with `if` and `else`, put `else` on the same line as your `if` block’s closing brace. eslint: [`brace-style`](https://eslint.org/docs/rules/brace-style)
+  - [16.2](#blocks--cuddled-elses) اگر از بلوک‌های چندخطی با `if` و `else` استفاده می‌کنید، `else` را در همان خطی قرار دهید که آکولاد بسته‌شده‌ی بلوک `if` قرار دارد. eslint: [`brace-style`](https://eslint.org/docs/rules/brace-style)
 
     ```javascript
-    // bad
+    // بد
     if (test) {
       thing1();
       thing2();
@@ -2273,7 +2273,7 @@
       thing3();
     }
 
-    // good
+    // خوب
     if (test) {
       thing1();
       thing2();
@@ -2283,10 +2283,10 @@
     ```
 
   <a name="blocks--no-else-return"></a><a name="16.3"></a>
-  - [16.3](#blocks--no-else-return) If an `if` block always executes a `return` statement, the subsequent `else` block is unnecessary. A `return` in an `else if` block following an `if` block that contains a `return` can be separated into multiple `if` blocks. eslint: [`no-else-return`](https://eslint.org/docs/rules/no-else-return)
+  - [16.3](#blocks--no-else-return) اگر یک بلوک `if` همیشه یک دستور `return` را اجرا می‌کند، بلوک `else` بعدی غیرضروری است. یک `return` در یک بلوک `else if` که بعد از یک بلوک `if` حاوی `return` می‌آید، می‌تواند به چندین بلوک `if` جداگانه تقسیم شود. eslint: [`no-else-return`](https://eslint.org/docs/rules/no-else-return)
 
     ```javascript
-    // bad
+    // بد
     function foo() {
       if (x) {
         return x;
@@ -2295,7 +2295,7 @@
       }
     }
 
-    // bad
+    // بد
     function cats() {
       if (x) {
         return x;
@@ -2304,7 +2304,7 @@
       }
     }
 
-    // bad
+    // بد
     function dogs() {
       if (x) {
         return x;
@@ -2315,7 +2315,7 @@
       }
     }
 
-    // good
+    // خوب
     function foo() {
       if (x) {
         return x;
@@ -2324,7 +2324,7 @@
       return y;
     }
 
-    // good
+    // خوب
     function cats() {
       if (x) {
         return x;
@@ -2335,7 +2335,7 @@
       }
     }
 
-    // good
+    // خوب
     function dogs(x) {
       if (x) {
         if (z) {
@@ -2349,32 +2349,32 @@
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Control Statements
+## دستورهای کنترلی
 
   <a name="control-statements"></a>
-  - [17.1](#control-statements) In case your control statement (`if`, `while` etc.) gets too long or exceeds the maximum line length, each (grouped) condition could be put into a new line. The logical operator should begin the line.
+  - [17.1](#control-statements) در صورتی که دستور کنترلی شما (`if`، `while` و غیره) بیش از حد طولانی شد یا از حداکثر طول خط فراتر رفت، می‌توان هر شرط (یا گروهی از شروط) را در یک خط جدید قرار داد. عملگر منطقی باید در ابتدای خط قرار گیرد.
 
-    > Why? Requiring operators at the beginning of the line keeps the operators aligned and follows a pattern similar to method chaining. This also improves readability by making it easier to visually follow complex logic.
+    > چرا؟ الزام به قرار دادن عملگرها در ابتدای خط، باعث می‌شود عملگرها تراز شده باقی بمانند و از الگویی مشابه زنجیره‌سازی متدها پیروی کند. این کار همچنین با راحت‌تر کردن پیگیری بصری منطق پیچیده، خوانایی را بهبود می‌بخشد.
 
     ```javascript
-    // bad
+    // بد
     if ((foo === 123 || bar === 'abc') && doesItLookGoodWhenItBecomesThatLong() && isThisReallyHappening()) {
       thing1();
     }
 
-    // bad
+    // بد
     if (foo === 123 &&
       bar === 'abc') {
       thing1();
     }
 
-    // bad
+    // بد
     if (foo === 123
       && bar === 'abc') {
       thing1();
     }
 
-    // bad
+    // بد
     if (
       foo === 123 &&
       bar === 'abc'
@@ -2382,7 +2382,7 @@
       thing1();
     }
 
-    // good
+    // خوب
     if (
       foo === 123
       && bar === 'abc'
@@ -2390,7 +2390,7 @@
       thing1();
     }
 
-    // good
+    // خوب
     if (
       (foo === 123 || bar === 'abc')
       && doesItLookGoodWhenItBecomesThatLong()
@@ -2399,20 +2399,20 @@
       thing1();
     }
 
-    // good
+    // خوب
     if (foo === 123 && bar === 'abc') {
       thing1();
     }
     ```
 
   <a name="control-statement--value-selection"></a><a name="control-statements--value-selection"></a>
-  - [17.2](#control-statements--value-selection) Don't use selection operators in place of control statements.
+  - [17.2](#control-statements--value-selection) از عملگرهای انتخابی (selection operators) به جای دستورهای کنترلی استفاده نکنید.
 
     ```javascript
-    // bad
+    // بد
     !isRunning && startRunning();
 
-    // good
+    // خوب
     if (!isRunning) {
       startRunning();
     }
@@ -2420,15 +2420,15 @@
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Comments
+## توضیحات (Comments)
 
   <a name="comments--multiline"></a><a name="17.1"></a>
-  - [18.1](#comments--multiline) Use `/** ... */` for multiline comments.
+  - [18.1](#comments--multiline) برای توضیحات چندخطی از `/** ... */` استفاده کنید.
 
     ```javascript
-    // bad
-    // make() returns a new element
-    // based on the passed in tag name
+    // بد
+    // make() یک المان جدید بر اساس
+    // نام تگ پاس داده شده برمی‌گرداند
     //
     // @param {String} tag
     // @return {Element} element
@@ -2439,10 +2439,10 @@
       return element;
     }
 
-    // good
+    // خوب
     /**
-     * make() returns a new element
-     * based on the passed-in tag name
+     * make() یک المان جدید بر اساس
+     * نام تگ پاس داده شده برمی‌گرداند
      */
     function make(tag) {
 
@@ -2453,38 +2453,38 @@
     ```
 
   <a name="comments--singleline"></a><a name="17.2"></a>
-  - [18.2](#comments--singleline) Use `//` for single line comments. Place single line comments on a newline above the subject of the comment. Put an empty line before the comment unless it’s on the first line of a block.
+  - [18.2](#comments--singleline) برای توضیحات تک‌خطی از `//` استفاده کنید. توضیحات تک‌خطی را در یک خط جدید، بالای موضوعِ توضیح قرار دهید. مگر اینکه توضیح در خط اول یک بلوک باشد، یک خط خالی قبل از آن قرار دهید.
 
     ```javascript
-    // bad
-    const active = true;  // is current tab
+    // بد
+    const active = true;  // تب جاری است
 
-    // good
-    // is current tab
+    // خوب
+    // تب جاری است
     const active = true;
 
-    // bad
+    // بد
     function getType() {
       console.log('fetching type...');
-      // set the default type to 'no type'
+      // نوع پیش‌فرض را روی 'no type' تنظیم کنید
       const type = this.type || 'no type';
 
       return type;
     }
 
-    // good
+    // خوب
     function getType() {
       console.log('fetching type...');
 
-      // set the default type to 'no type'
+      // نوع پیش‌فرض را روی 'no type' تنظیم کنید
       const type = this.type || 'no type';
 
       return type;
     }
 
-    // also good
+    // همچنین خوب است
     function getType() {
-      // set the default type to 'no type'
+      // نوع پیش‌فرض را روی 'no type' تنظیم کنید
       const type = this.type || 'no type';
 
       return type;
@@ -2492,21 +2492,21 @@
     ```
 
   <a name="comments--spaces"></a>
-  - [18.3](#comments--spaces) Start all comments with a space to make it easier to read. eslint: [`spaced-comment`](https://eslint.org/docs/rules/spaced-comment)
+  - [18.3](#comments--spaces) برای خوانایی بهتر، تمام توضیحات را با یک فاصله شروع کنید. eslint: [`spaced-comment`](https://eslint.org/docs/rules/spaced-comment)
 
     ```javascript
-    // bad
-    //is current tab
+    // بد
+    //تب جاری است
     const active = true;
 
-    // good
-    // is current tab
+    // خوب
+    // تب جاری است
     const active = true;
 
-    // bad
+    // بد
     /**
-     *make() returns a new element
-     *based on the passed-in tag name
+     *make() یک المان جدید بر اساس
+     *نام تگ پاس داده شده برمی‌گرداند
      */
     function make(tag) {
 
@@ -2515,10 +2515,10 @@
       return element;
     }
 
-    // good
+    // خوب
     /**
-     * make() returns a new element
-     * based on the passed-in tag name
+     * make() یک المان جدید بر اساس
+     * نام تگ پاس داده شده برمی‌گرداند
      */
     function make(tag) {
 
@@ -2529,31 +2529,31 @@
     ```
 
   <a name="comments--actionitems"></a><a name="17.3"></a>
-  - [18.4](#comments--actionitems) Prefixing your comments with `FIXME` or `TODO` helps other developers quickly understand if you’re pointing out a problem that needs to be revisited, or if you’re suggesting a solution to the problem that needs to be implemented. These are different than regular comments because they are actionable. The actions are `FIXME: -- need to figure this out` or `TODO: -- need to implement`.
+  - [18.4](#comments--actionitems) قرار دادن پیشوند `FIXME` یا `TODO` قبل از توضیحات به توسعه‌دهندگان دیگر کمک می‌کند تا به سرعت بفهمند که آیا شما به مشکلی اشاره می‌کنید که نیاز به بررسی مجدد دارد، یا آیا راه حلی برای مشکلی پیشنهاد می‌دهید که نیاز به پیاده‌سازی دارد. این موارد با توضیحات معمولی متفاوت هستند زیرا قابل اجرا (actionable) هستند. این اقدامات به شکل `FIXME: -- باید این مورد را بررسی کرد` یا `TODO: -- نیاز به پیاده‌سازی دارد` هستند.
 
   <a name="comments--fixme"></a><a name="17.4"></a>
-  - [18.5](#comments--fixme) Use `// FIXME:` to annotate problems.
+  - [18.5](#comments--fixme) برای نشانه‌گذاری مشکلات از `// FIXME:` استفاده کنید.
 
     ```javascript
     class Calculator extends Abacus {
       constructor() {
         super();
 
-        // FIXME: shouldn’t use a global here
+        // FIXME: نباید از یک متغیر سراسری اینجا استفاده شود
         total = 0;
       }
     }
     ```
 
   <a name="comments--todo"></a><a name="17.5"></a>
-  - [18.6](#comments--todo) Use `// TODO:` to annotate solutions to problems.
+  - [18.6](#comments--todo) برای نشانه‌گذاری راه‌حل مشکلات از `// TODO:` استفاده کنید.
 
     ```javascript
     class Calculator extends Abacus {
       constructor() {
         super();
 
-        // TODO: total should be configurable by an options param
+        // TODO: مقدار total باید توسط یک پارامتر options قابل پیکربندی باشد
         this.total = 0;
       }
     }
