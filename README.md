@@ -39,11 +39,11 @@
 1. [دستورهای کنترلی](#دستورهای-کنترلی)
 1. [توضیحات (comments)](#توضیحات-Comments)
 1. [فاصله گذاری](#فاصله-گذاری)
-1. [ویرگول‌ها](#commas)
-1. [نقطه‌ویرگول‌ها](#semicolons)
-1. [تبدیل نوع و واداشتن به تبدیل (Coercion)](#type-casting--coercion)
-1. [مقررات نام‌گذاری](#naming-conventions)
-1. [اکسسورها (Accessors)](#accessors)
+1. [ویرگول ها](#ویرگول-ها)
+1. [نقطه ویرگول ها](#نقطه-ویرگول-ها)
+1. [تبدیل نوع و واداشتن به تبدیل (Coercion)](#تبدیل-نوع-و-واداشتن-به-تبدیل-Coercion)
+1. [مقررات نام گذاری](#مقررات-نام-گذاری)
+1. [اکسسورها (Accessors)](#اکسسورها-Accessors)
 1. [رویدادها (events)](#events)
 1. [jQuery](#jquery)
 1. [سازگاری با ECMAScript 5](#ecmascript-5-compatibility)
@@ -3060,27 +3060,27 @@
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Commas
+## ویرگول ها
 
   <a name="commas--leading-trailing"></a><a name="19.1"></a>
-  - [20.1](#commas--leading-trailing) Leading commas: **Nope.** eslint: [`comma-style`](https://eslint.org/docs/rules/comma-style)
+  - [20.1](#commas--leading-trailing) ویرگول‌های ابتدایی: **نخیر.** eslint: [`comma-style`](https://eslint.org/docs/rules/comma-style)
 
     ```javascript
-    // bad
+    // بد
     const story = [
         once
       , upon
       , aTime
     ];
 
-    // good
+    // خوب
     const story = [
       once,
       upon,
       aTime,
     ];
 
-    // bad
+    // بد
     const hero = {
         firstName: 'Ada'
       , lastName: 'Lovelace'
@@ -3088,7 +3088,7 @@
       , superPower: 'computers'
     };
 
-    // good
+    // خوب
     const hero = {
       firstName: 'Ada',
       lastName: 'Lovelace',
@@ -3098,12 +3098,12 @@
     ```
 
   <a name="commas--dangling"></a><a name="19.2"></a>
-  - [20.2](#commas--dangling) Additional trailing comma: **Yup.** eslint: [`comma-dangle`](https://eslint.org/docs/rules/comma-dangle)
+  - [20.2](#commas--dangling) ویرگول انتهایی اضافه کردن: **بله.** eslint: [`comma-dangle`](https://eslint.org/docs/rules/comma-dangle)
 
-    > Why? This leads to cleaner git diffs. Also, transpilers like Babel will remove the additional trailing comma in the transpiled code which means you don’t have to worry about the [trailing comma problem](https://github.com/airbnb/javascript/blob/es5-deprecated/es5/README.md#commas) in legacy browsers.
+    > چرا؟ این کار منجر به تمیزتر شدن تفاوت‌های گیت (git diffs) می‌شود. همچنین ترنسپایلرهایی مانند Babel، ویرگول انتهایی اضافی را در کد ترنسپایل شده حذف می‌کنند که به این معنی است که نیازی نیست نگران [مشکل ویرگول انتهایی](https://github.com/airbnb/javascript/blob/es5-deprecated/es5/README.md#commas) در مرورگرهای قدیمی باشید.
 
     ```diff
-    // bad - git diff without trailing comma
+    // بد - git diff بدون ویرگول انتهایی
     const hero = {
          firstName: 'Florence',
     -    lastName: 'Nightingale'
@@ -3111,7 +3111,7 @@
     +    inventorOf: ['coxcomb chart', 'modern nursing']
     };
 
-    // good - git diff with trailing comma
+    // خوب - git diff با ویرگول انتهایی
     const hero = {
          firstName: 'Florence',
          lastName: 'Nightingale',
@@ -3120,7 +3120,7 @@
     ```
 
     ```javascript
-    // bad
+    // بد
     const hero = {
       firstName: 'Dana',
       lastName: 'Scully'
@@ -3131,7 +3131,7 @@
       'Superman'
     ];
 
-    // good
+    // خوب
     const hero = {
       firstName: 'Dana',
       lastName: 'Scully',
@@ -3142,49 +3142,49 @@
       'Superman',
     ];
 
-    // bad
+    // بد
     function createHero(
       firstName,
       lastName,
       inventorOf
     ) {
-      // does nothing
+      // کاری انجام نمی‌دهد
     }
 
-    // good
+    // خوب
     function createHero(
       firstName,
       lastName,
       inventorOf,
     ) {
-      // does nothing
+      // کاری انجام نمی‌دهد
     }
 
-    // good (note that a comma must not appear after a "rest" element)
+    // خوب (توجه کنید که ویرگول نباید بعد از یک عنصر "rest" ظاهر شود)
     function createHero(
       firstName,
       lastName,
       inventorOf,
       ...heroArgs
     ) {
-      // does nothing
+      // کاری انجام نمی‌دهد
     }
 
-    // bad
+    // بد
     createHero(
       firstName,
       lastName,
       inventorOf
     );
 
-    // good
+    // خوب
     createHero(
       firstName,
       lastName,
       inventorOf,
     );
 
-    // good (note that a comma must not appear after a "rest" element)
+    // خوب (توجه کنید که ویرگول نباید بعد از یک عنصر "rest" ظاهر شود)
     createHero(
       firstName,
       lastName,
@@ -3195,63 +3195,63 @@
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Semicolons
+## نقطه ویرگول ها
 
   <a name="semicolons--required"></a><a name="20.1"></a>
-  - [21.1](#semicolons--required) **Yup.** eslint: [`semi`](https://eslint.org/docs/rules/semi)
+  - [21.1](#semicolons--required) **بله.** eslint: [`semi`](https://eslint.org/docs/rules/semi)
 
-    > Why? When JavaScript encounters a line break without a semicolon, it uses a set of rules called [Automatic Semicolon Insertion](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion) to determine whether it should regard that line break as the end of a statement, and (as the name implies) place a semicolon into your code before the line break if it thinks so. ASI contains a few eccentric behaviors, though, and your code will break if JavaScript misinterprets your line break. These rules will become more complicated as new features become a part of JavaScript. Explicitly terminating your statements and configuring your linter to catch missing semicolons will help prevent you from encountering issues.
+    > چرا؟ وقتی جاوااسکریپت با یک خط شکسته بدون نقطه ویرگول مواجه می‌شود، از مجموعه‌ای از قوانین به نام [درج خودکار نقطه‌ویرگول (Automatic Semicolon Insertion)](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion) استفاده می‌کند تا تعیین کند آیا باید آن خط شکسته را به عنوان پایان یک دستور در نظر بگیرد یا خیر و (همان‌طور که از نامش پیداست) اگر چنین تصور کند، یک نقطه‌ویرگول قبل از خط شکسته در کد شما قرار دهد. با این حال، ASI شامل چندین رفتار عجیب و غریب است و اگر جاوااسکریپت خط شکسته شما را اشتباه تفسیر کند، کد شما خراب می‌شود. این قوانین با اضافه شدن ویژگی‌های جدید به جاوااسکریپت پیچیده‌تر خواهند شد. پایان دادن صریح به دستورات خود و پیکربندی لینتر برای گرفتن نقطه‌ویرگول‌های جاودان شده به شما کمک می‌کند تا از مواجهه با مشکلات جلوگیری کنید.
 
     ```javascript
-    // bad - raises exception
+    // بد - خطا پرتاب می‌کند
     const luke = {}
     const leia = {}
     [luke, leia].forEach((jedi) => jedi.father = 'vader')
 
-    // bad - raises exception
+    // بد - خطا پرتاب می‌کند
     const reaction = "No! That’s impossible!"
     (async function meanwhileOnTheFalcon() {
       // handle `leia`, `lando`, `chewie`, `r2`, `c3p0`
       // ...
     }())
 
-    // bad - returns `undefined` instead of the value on the next line - always happens when `return` is on a line by itself because of ASI!
+    // بد - به جای مقدار در خط بعدی، `undefined` برمی‌گرداند - این همیشه وقتی `return` در یک خط به تنهایی قرار دارد به دلیل ASI رخ می‌دهد!
     function foo() {
       return
         'search your feelings, you know it to be foo'
     }
 
-    // good
+    // خوب
     const luke = {};
     const leia = {};
     [luke, leia].forEach((jedi) => {
       jedi.father = 'vader';
     });
 
-    // good
+    // خوب
     const reaction = 'No! That’s impossible!';
     (async function meanwhileOnTheFalcon() {
       // handle `leia`, `lando`, `chewie`, `r2`, `c3p0`
       // ...
     }());
 
-    // good
+    // خوب
     function foo() {
       return 'search your feelings, you know it to be foo';
     }
     ```
 
-    [Read more](https://stackoverflow.com/questions/7365172/semicolon-before-self-invoking-function/7365214#7365214).
+    [بیشتر بخوانید](https://stackoverflow.com/questions/7365172/semicolon-before-self-invoking-function/7365214#7365214).
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Type Casting & Coercion
+## تبدیل نوع و واداشتن به تبدیل (Coercion)
 
   <a name="coercion--explicit"></a><a name="21.1"></a>
-  - [22.1](#coercion--explicit) Perform type coercion at the beginning of the statement.
+  - [22.1](#coercion--explicit) واداشتن به تبدیل نوع (type coercion) را در ابتدای دستور انجام دهید.
 
   <a name="coercion--strings"></a><a name="21.2"></a>
-  - [22.2](#coercion--strings) Strings: eslint: [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
+  - [22.2](#coercion--strings) رشته ها: eslint: [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
 
     ```javascript
     // => this.reviewScore = 9;
@@ -3260,57 +3260,57 @@
     const totalScore = new String(this.reviewScore); // typeof totalScore is "object" not "string"
 
     // bad
-    const totalScore = this.reviewScore + ''; // invokes this.reviewScore.valueOf()
+    const totalScore = this.reviewScore + ''; // این کار باعث فراخوانی this.reviewScore.valueOf() می‌شود
 
     // bad
-    const totalScore = this.reviewScore.toString(); // isn’t guaranteed to return a string
+    const totalScore = this.reviewScore.toString(); // تضمین نمی‌کند که یک رشته برگرداند
 
     // good
     const totalScore = String(this.reviewScore);
     ```
 
   <a name="coercion--numbers"></a><a name="21.3"></a>
-  - [22.3](#coercion--numbers) Numbers: Use `Number` for type casting and `parseInt` always with a radix for parsing strings. eslint: [`radix`](https://eslint.org/docs/rules/radix) [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
+  - [22.3](#coercion--numbers) اعداد: برای تبدیل نوع از `Number` و برای تجزیه رشته‌ها همیشه از `parseInt` به همراه یک مبنای عددی (radix) استفاده کنید. eslint: [`radix`](https://eslint.org/docs/rules/radix) [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
 
-    > Why? The `parseInt` function produces an integer value dictated by interpretation of the contents of the string argument according to the specified radix. Leading whitespace in string is ignored. If radix is `undefined` or `0`, it is assumed to be `10` except when the number begins with the character pairs `0x` or `0X`, in which case a radix of 16 is assumed. This differs from ECMAScript 3, which merely discouraged (but allowed) octal interpretation. Many implementations have not adopted this behavior as of 2013. And, because older browsers must be supported, always specify a radix.
+    > چرا؟ تابع `parseInt` یک مقدار صحیح تولید می‌کند که بر اساس تفسیر محتویات آرگومان رشته‌ای طبق مبنای مشخص شده، دیکته می‌شود. فاصله‌های سفید ابتدایی در رشته نادیده گرفته می‌شود. اگر مبنای عددی (radix) `undefined` یا `0` باشد، فرض می‌شود که `10` است، مگر اینکه عدد با جفت کاراکترهای `0x` یا `0X` شروع شود، که در این صورت مبنای 16 فرض می‌شود. این با ECMAScript 3 که صرفاً تفسیر هشت‌تایی (octal) را منع می‌کرد (اما اجازه می‌داد) متفاوت است. بسیاری از پیاده‌سازی‌ها تا سال 2013 این رفتار را اتخاذ نکرده‌اند. و از آنجا که باید از مرورگرهای قدیمی پشتیبانی کرد، همیشه یک مبنای عددی مشخص کنید.
 
     ```javascript
     const inputValue = '4';
 
-    // bad
+    // بد
     const val = new Number(inputValue);
 
-    // bad
+    // بد
     const val = +inputValue;
 
-    // bad
+    // بد
     const val = inputValue >> 0;
 
-    // bad
+    // بد
     const val = parseInt(inputValue);
 
-    // good
+    // خوب
     const val = Number(inputValue);
 
-    // good
+    // خوب
     const val = parseInt(inputValue, 10);
     ```
 
   <a name="coercion--comment-deviations"></a><a name="21.4"></a>
-  - [22.4](#coercion--comment-deviations) If for whatever reason you are doing something wild and `parseInt` is your bottleneck and need to use Bitshift for [performance reasons](https://web.archive.org/web/20200414205431/https://jsperf.com/coercion-vs-casting/3), leave a comment explaining why and what you’re doing.
+  - [22.4](#coercion--comment-deviations) اگر به هر دلیلی کاری عجیب و غریب انجام می‌دهید و `parseInt` گلوگاه (bottleneck) شماست و به دلیل [مسائل مربوط به کارایی](https://web.archive.org/web/20200414205431/https://jsperf.com/coercion-vs-casting/3) مجبور به استفاده از عملیات شیفت بیتی (Bitshift) هستید، توضیحی گذاشته و دلیل کارتان و آنچه انجام می‌دهید را شرح دهید.
 
     ```javascript
-    // good
+    // خوب
     /**
-     * parseInt was the reason my code was slow.
-     * Bitshifting the String to coerce it to a
-     * Number made it a lot faster.
+     * parseInt دلیل کندی کد من بود.
+     * شیفت بیتیِ رشته برای واداشتن آن به یک عدد
+     * باعث شد بسیار سریع‌تر شود.
      */
     const val = inputValue >> 0;
     ```
 
   <a name="coercion--bitwise"></a><a name="21.5"></a>
-  - [22.5](#coercion--bitwise) **Note:** Be careful when using bitshift operations. Numbers are represented as [64-bit values](https://es5.github.io/#x4.3.19), but bitshift operations always return a 32-bit integer ([source](https://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/airbnb/javascript/issues/109). Largest signed 32-bit Int is 2,147,483,647:
+  - [22.5](#coercion--bitwise) **نکته:** هنگام استفاده از عملیات شیفت بیتی محتاط باشید. اعداد به صورت [مقادیر ۶۴ بیتی](https://es5.github.io/#x4.3.19) نمایش داده می‌شوند، اما عملیات شیفت بیتی همیشه یک عدد صحیح ۳۲ بیتی برمی‌گردانند ([منبع](https://es5.github.io/#x11.7)). شیفت بیتی می‌تواند منجر به رفتارهای غیرمنتظره برای مقادیر صحیح بزرگتر از ۳۲ بیت شود. [بحث](https://github.com/airbnb/javascript/issues/109). بزرگترین عدد صحیح علامت‌دار ۳۲ بیتی 2,147,483,647 است:
 
     ```javascript
     2147483647 >> 0; // => 2147483647
@@ -3319,59 +3319,59 @@
     ```
 
   <a name="coercion--booleans"></a><a name="21.6"></a>
-  - [22.6](#coercion--booleans) Booleans: eslint: [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
+  - [22.6](#coercion--booleans) بولین‌ها: eslint: [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
 
     ```javascript
     const age = 0;
 
-    // bad
+    // بد
     const hasAge = new Boolean(age);
 
-    // good
+    // خوب
     const hasAge = Boolean(age);
 
-    // best
+    // بهترین
     const hasAge = !!age;
     ```
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Naming Conventions
+## مقررات نام گذاری
 
   <a name="naming--descriptive"></a><a name="22.1"></a>
-  - [23.1](#naming--descriptive) Avoid single letter names. Be descriptive with your naming. eslint: [`id-length`](https://eslint.org/docs/rules/id-length)
+  - [23.1](#naming--descriptive) از نام‌های تک‌حرفی اجتناب کنید. نام‌گذاری‌هایتان باید توصیفی باشند. eslint: [`id-length`](https://eslint.org/docs/rules/id-length)
 
     ```javascript
-    // bad
+    // بد
     function q() {
       // ...
     }
 
-    // good
+    // خوب
     function query() {
       // ...
     }
     ```
 
   <a name="naming--camelCase"></a><a name="22.2"></a>
-  - [23.2](#naming--camelCase) Use camelCase when naming objects, functions, and instances. eslint: [`camelcase`](https://eslint.org/docs/rules/camelcase)
+  - [23.2](#naming--camelCase) هنگام نام‌گذاری اشیاء، توابع و نمونه‌ها (instances) از `camelCase` استفاده کنید. eslint: [`camelcase`](https://eslint.org/docs/rules/camelcase)
 
     ```javascript
-    // bad
+    // بد
     const OBJEcttsssss = {};
     const this_is_my_object = {};
     function c() {}
 
-    // good
+    // خوب
     const thisIsMyObject = {};
     function thisIsMyFunction() {}
     ```
 
   <a name="naming--PascalCase"></a><a name="22.3"></a>
-  - [23.3](#naming--PascalCase) Use PascalCase only when naming constructors or classes. eslint: [`new-cap`](https://eslint.org/docs/rules/new-cap)
+  - [23.3](#naming--PascalCase) از `PascalCase` فقط هنگام نام‌گذاری سازنده‌ها (constructors) یا کلاس‌ها استفاده کنید. eslint: [`new-cap`](https://eslint.org/docs/rules/new-cap)
 
     ```javascript
-    // bad
+    // بد
     function user(options) {
       this.name = options.name;
     }
@@ -3380,7 +3380,7 @@
       name: 'nope',
     });
 
-    // good
+    // خوب
     class User {
       constructor(options) {
         this.name = options.name;
@@ -3393,30 +3393,30 @@
     ```
 
   <a name="naming--leading-underscore"></a><a name="22.4"></a>
-  - [23.4](#naming--leading-underscore) Do not use trailing or leading underscores. eslint: [`no-underscore-dangle`](https://eslint.org/docs/rules/no-underscore-dangle)
+  - [23.4](#naming--leading-underscore) از خط زیر (_) انتهایی یا ابتدایی استفاده نکنید. eslint: [`no-underscore-dangle`](https://eslint.org/docs/rules/no-underscore-dangle)
 
-    > Why? JavaScript does not have the concept of privacy in terms of properties or methods. Although a leading underscore is a common convention to mean “private”, in fact, these properties are fully public, and as such, are part of your public API contract. This convention might lead developers to wrongly think that a change won’t count as breaking, or that tests aren’t needed. tl;dr: if you want something to be “private”, it must not be observably present.
+    > چرا؟ جاوااسکریپت از نظر ویژگی‌ها یا متدها، مفهوم خصوصی‌سازی (privacy) ندارد. اگرچه خط زیر ابتدایی یک قرارداد رایج برای به معنای "خصوصی" است، اما در واقع این ویژگی‌ها کاملاً عمومی هستند و در نتیجه، بخشی از قرارداد API عمومی شما محسوب می‌شوند. این قرارداد ممکن است باعث شود توسعه‌دهندگان به اشتباه فکر کنند که یک تغییر، فوری (تکان دهنده - breaking) محسوب نمی‌شود، یا نیازی به تست ندارد. خلاصه: اگر می‌خواهید چیزی "خصوصی" باشد، نباید به صورت مشهود حضور داشته باشد.
 
     ```javascript
-    // bad
+    // بد
     this.__firstName__ = 'Panda';
     this.firstName_ = 'Panda';
     this._firstName = 'Panda';
 
-    // good
+    // خوب
     this.firstName = 'Panda';
 
-    // good, in environments where WeakMaps are available
-    // see https://compat-table.github.io/compat-table/es6/#test-WeakMap
+    // خوب، در محیط‌هایی که WeakMap در دسترس است
+    // ببینید https://compat-table.github.io/compat-table/es6/#test-WeakMap
     const firstNames = new WeakMap();
     firstNames.set(this, 'Panda');
     ```
 
   <a name="naming--self-this"></a><a name="22.5"></a>
-  - [23.5](#naming--self-this) Don’t save references to `this`. Use arrow functions or [Function#bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+  - [23.5](#naming--self-this) ارجاعات `this` را ذخیره نکنید. از توابع پیکانی یا [Function#bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) استفاده کنید.
 
     ```javascript
-    // bad
+    // بد
     function foo() {
       const self = this;
       return function () {
@@ -3424,7 +3424,7 @@
       };
     }
 
-    // bad
+    // بد
     function foo() {
       const that = this;
       return function () {
@@ -3432,7 +3432,7 @@
       };
     }
 
-    // good
+    // خوب
     function foo() {
       return () => {
         console.log(this);
@@ -3441,43 +3441,43 @@
     ```
 
   <a name="naming--filename-matches-export"></a><a name="22.6"></a>
-  - [23.6](#naming--filename-matches-export) A base filename should exactly match the name of its default export.
+  - [23.6](#naming--filename-matches-export) نام فایلِ پایه باید دقیقاً با نام خروجی پیش‌فرض (default export) آن مطابقت داشته باشد.
 
     ```javascript
-    // file 1 contents
+    // محتوای فایل 1
     class CheckBox {
       // ...
     }
     export default CheckBox;
 
-    // file 2 contents
+    // محتوای فایل 2
     export default function fortyTwo() { return 42; }
 
-    // file 3 contents
+    // محتوای فایل 3
     export default function insideDirectory() {}
 
-    // in some other file
-    // bad
-    import CheckBox from './checkBox'; // PascalCase import/export, camelCase filename
-    import FortyTwo from './FortyTwo'; // PascalCase import/filename, camelCase export
-    import InsideDirectory from './InsideDirectory'; // PascalCase import/filename, camelCase export
+    // در برخی فایل‌های دیگر
+    // بد
+    import CheckBox from './checkBox'; // ورودی/خروجی PascalCase، نام فایل camelCase
+    import FortyTwo from './FortyTwo'; // ورودی/نام فایل PascalCase، خروجی camelCase
+    import InsideDirectory from './InsideDirectory'; // ورودی/نام فایل PascalCase، خروجی camelCase
 
-    // bad
-    import CheckBox from './check_box'; // PascalCase import/export, snake_case filename
-    import forty_two from './forty_two'; // snake_case import/filename, camelCase export
-    import inside_directory from './inside_directory'; // snake_case import, camelCase export
-    import index from './inside_directory/index'; // requiring the index file explicitly
-    import insideDirectory from './insideDirectory/index'; // requiring the index file explicitly
+    // بد
+    import CheckBox from './check_box'; // ورودی/خروجی PascalCase، نام فایل snake_case
+    import forty_two from './forty_two'; // ورودی/نام فایل snake_case، خروجی camelCase
+    import inside_directory from './inside_directory'; // ورودی snake_case، خروجی camelCase
+    import index from './inside_directory/index'; // صراحتاً درخواست فایل index
+    import insideDirectory from './insideDirectory/index'; // صراحتاً درخواست فایل index
 
-    // good
-    import CheckBox from './CheckBox'; // PascalCase export/import/filename
-    import fortyTwo from './fortyTwo'; // camelCase export/import/filename
-    import insideDirectory from './insideDirectory'; // camelCase export/import/directory name/implicit "index"
-    // ^ supports both insideDirectory.js and insideDirectory/index.js
+    // خوب
+    import CheckBox from './CheckBox'; // خروجی/ورودی/نام فایل PascalCase
+    import fortyTwo from './fortyTwo'; // خروجی/ورودی/نام فایل camelCase
+    import insideDirectory from './insideDirectory'; // خروجی/ورودی/نام دایرکتوری/"index" ضمنی camelCase
+    // ^ از هر دو مورد insideDirectory.js و insideDirectory/index.js پشتیبانی می‌کند
     ```
 
   <a name="naming--camelCase-default-export"></a><a name="22.7"></a>
-  - [23.7](#naming--camelCase-default-export) Use camelCase when you export-default a function. Your filename should be identical to your function’s name.
+  - [23.7](#naming--camelCase-default-export) هنگام export-default کردن یک تابع از `camelCase` استفاده کنید. نام فایل شما باید دقیقاً با نام تابع شما یکسان باشد.
 
     ```javascript
     function makeStyleGuide() {
@@ -3488,7 +3488,7 @@
     ```
 
   <a name="naming--PascalCase-singleton"></a><a name="22.8"></a>
-  - [23.8](#naming--PascalCase-singleton) Use PascalCase when you export a constructor / class / singleton / function library / bare object.
+  - [23.8](#naming--PascalCase-singleton) هنگام صادر کردن یک سازنده / کلاس / سینگلتون (singleton) / کتابخانه تابع / شئ خام (bare object) از `PascalCase` استفاده کنید.
 
     ```javascript
     const AirbnbStyleGuide = {
@@ -3500,74 +3500,74 @@
     ```
 
   <a name="naming--Acronyms-and-Initialisms"></a>
-  - [23.9](#naming--Acronyms-and-Initialisms) Acronyms and initialisms should always be all uppercased, or all lowercased.
+  - [23.9](#naming--Acronyms-and-Initialisms) مخفف‌ها و سرنام‌ها (Acronyms and initialisms) همیشه باید کاملاً با حروف بزرگ یا کاملاً با حروف کوچک نوشته شوند.
 
-    > Why? Names are for readability, not to appease a computer algorithm.
+    > چرا؟ نام‌ها برای خوانایی هستند، نه برای ارضای یک الگوریتم کامپیوتری.
 
     ```javascript
-    // bad
+    // بد
     import SmsContainer from './containers/SmsContainer';
 
-    // bad
+    // بد
     const HttpRequests = [
       // ...
     ];
 
-    // good
+    // خوب
     import SMSContainer from './containers/SMSContainer';
 
-    // good
+    // خوب
     const HTTPRequests = [
       // ...
     ];
 
-    // also good
+    // همچنین خوب است
     const httpRequests = [
       // ...
     ];
 
-    // best
+    // بهترین
     import TextMessageContainer from './containers/TextMessageContainer';
 
-    // best
+    // بهترین
     const requests = [
       // ...
     ];
     ```
 
   <a name="naming--uppercase"></a>
-  - [23.10](#naming--uppercase) You may optionally uppercase a constant only if it (1) is exported, (2) is a `const` (it can not be reassigned), and (3) the programmer can trust it (and its nested properties) to never change.
+  - [23.10](#naming--uppercase) شما می‌توانید به صورت اختیاری یک ثابت را با حروف بزرگ بنویسید تنها در صورتی که (۱) صادر شده (export) باشد، (۲) یک `const` باشد (نمی‌تواند مجدداً انتساب داده شود)، و (۳) برنامه‌نویس بتواند به آن (و ویژگی‌های تودرتویش) اعتماد کند که هرگز تغییر نمی‌کند.
 
-    > Why? This is an additional tool to assist in situations where the programmer would be unsure if a variable might ever change. UPPERCASE_VARIABLES are letting the programmer know that they can trust the variable (and its properties) not to change.
-    - What about all `const` variables? - This is unnecessary, so uppercasing should not be used for constants within a file. It should be used for exported constants however.
-    - What about exported objects? - Uppercase at the top level of export (e.g. `EXPORTED_OBJECT.key`) and maintain that all nested properties do not change.
+    > چرا؟ این یک ابزار اضافی برای کمک در شرایطی است که برنامه‌نویس مطمئن نیست آیا یک متغیر ممکن است تغییر کند یا خیر. متغیرهای_بزرگ‌نویسی_شده (UPPERCASE_VARIABLES) به برنامه‌نویس اطلاع می‌دهند که می‌توانند به متغیر (و ویژگی‌های آن) اعتماد کنند که تغییر نخواهند کرد.
+    - در مورد همه متغیرهای `const` چه اتفاقی می‌افتد؟ - این کار غیرضروری است، بنابراین نباید برای ثابت‌های درون یک فایل از بزرگ‌نویسی استفاده کرد. با این حال، باید برای ثابت‌های صادر شده (exported) استفاده شود.
+    - در مورد اشیاء صادر شده چه؟ - در سطح بالای صادرات بزرگ‌نویسی کنید (مثلاً `EXPORTED_OBJECT.key`) و تضمین کنید که تمام ویژگی‌های تودرتو تغییر نمی‌کنند.
 
     ```javascript
-    // bad
-    const PRIVATE_VARIABLE = 'should not be unnecessarily uppercased within a file';
+    // بد
+    const PRIVATE_VARIABLE = 'نباید درون یک فایل به طور غیرضروری بزرگ‌نویسی شود';
 
-    // bad
-    export const THING_TO_BE_CHANGED = 'should obviously not be uppercased';
+    // بد
+    export const THING_TO_BE_CHANGED = 'واضح است که نباید بزرگ‌نویسی شود';
 
-    // bad
-    export let REASSIGNABLE_VARIABLE = 'do not use let with uppercase variables';
+    // بد
+    export let REASSIGNABLE_VARIABLE = 'از let همراه با متغیرهای بزرگ‌نویسی شده استفاده نکنید';
 
     // ---
 
-    // allowed but does not supply semantic value
+    // مجاز است اما ارزش معنایی (semantic value) ارائه نمی‌دهد
     export const apiKey = 'SOMEKEY';
 
-    // better in most cases
+    // در بیشتر موارد بهتر است
     export const API_KEY = 'SOMEKEY';
 
     // ---
 
-    // bad - unnecessarily uppercases key while adding no semantic value
+    // بد - در حالی که هیچ ارزش معنایی ارائه نمی‌دهد، به صورت غیرضروری کلید را بزرگ‌نویسی می‌کند
     export const MAPPING = {
       KEY: 'value'
     };
 
-    // good
+    // خوب
     export const MAPPING = {
       key: 'value',
     };
@@ -3575,16 +3575,16 @@
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Accessors
+## اکسسورها (Accessors)
 
   <a name="accessors--not-required"></a><a name="23.1"></a>
-  - [24.1](#accessors--not-required) Accessor functions for properties are not required.
+  - [24.1](#accessors--not-required) توابع اکسسور برای ویژگی‌ها الزامی نیستند.
 
   <a name="accessors--no-getters-setters"></a><a name="23.2"></a>
-  - [24.2](#accessors--no-getters-setters) Do not use JavaScript getters/setters as they cause unexpected side effects and are harder to test, maintain, and reason about. Instead, if you do make accessor functions, use `getVal()` and `setVal('hello')`.
+  - [24.2](#accessors--no-getters-setters) از گِتِرها/سِتِرهای جاوااسکریپت (getters/setters) استفاده نکنید زیرا آن‌ها باعث ایجاد اثرات جانبی غیرمنتظره می‌شوند و تست، نگهداری و استدلال در مورد آن‌ها دشوارتر است. در عوض، اگر توابع اکسسور می‌سازید، از `getVal()` و `setVal('hello')` استفاده کنید.
 
     ```javascript
-    // bad
+    // بد
     class Dragon {
       get age() {
         // ...
@@ -3595,7 +3595,7 @@
       }
     }
 
-    // good
+    // خوب
     class Dragon {
       getAge() {
         // ...
@@ -3608,22 +3608,22 @@
     ```
 
   <a name="accessors--boolean-prefix"></a><a name="23.3"></a>
-  - [24.3](#accessors--boolean-prefix) If the property/method is a `boolean`, use `isVal()` or `hasVal()`.
+  - [24.3](#accessors--boolean-prefix) اگر ویژگی/متد از نوع `boolean` است، از `isVal()` یا `hasVal()` استفاده کنید.
 
     ```javascript
-    // bad
+    // بد
     if (!dragon.age()) {
       return false;
     }
 
-    // good
+    // خوب
     if (!dragon.hasAge()) {
       return false;
     }
     ```
 
   <a name="accessors--consistent"></a><a name="23.4"></a>
-  - [24.4](#accessors--consistent) It’s okay to create `get()` and `set()` functions, but be consistent.
+  - [24.4](#accessors--consistent) ایجاد توابع `get()` و `set()` اشکالی ندارد، اما یکپارچه باشید.
 
     ```javascript
     class Jedi {
