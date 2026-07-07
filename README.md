@@ -27,9 +27,9 @@
 1. [ساختارزدایی (destructuring)](#ساختارزدایی-Destructuring)
 1. [رشته ها (strings)](#رشته-ها-strings)
 1. [توابع](#توابع)
-1. [توابع پیکانی](#arrow-functions)
-1. [کلاس‌ها و سازنده‌ها](#classes--constructors)
-1. [ماژول‌ها (modules)](#modules)
+1. [توابع پیکانی](#توابع-پیکانی)
+1. [کلاس ها و سازنده ها](#کلاس-ها-و-سازنده-ها)
+1. [ماژول ها (modules)](#ماژول-ها-modules)
 1. [تکرارکننده‌ها و مولدها (iterators and generators)](#iterators-and-generators)
 1. [ویژگی ها (properties)](#properties)
 1. [متغیرها](#variables)
@@ -941,23 +941,23 @@
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Arrow Functions
+## توابع پیکانی
 
   <a name="arrows--use-them"></a><a name="8.1"></a>
-  - [8.1](#arrows--use-them) When you must use an anonymous function (as when passing an inline callback), use arrow function notation. eslint: [`prefer-arrow-callback`](https://eslint.org/docs/rules/prefer-arrow-callback), [`arrow-spacing`](https://eslint.org/docs/rules/arrow-spacing)
+  - [8.1](#arrows--use-them) زمانی که مجبور به استفاده از یک تابع ناشناس هستید (مانند زمانی که یک کال‌بک درون‌خطی پاس می‌دهید)، از نمادنگاری تابع پیکانی استفاده کنید. eslint: [`prefer-arrow-callback`](https://eslint.org/docs/rules/prefer-arrow-callback), [`arrow-spacing`](https://eslint.org/docs/rules/arrow-spacing)
 
-    > Why? It creates a version of the function that executes in the context of `this`, which is usually what you want, and is a more concise syntax.
+    > چرا؟ این کار نسخه‌ای از تابع را ایجاد می‌کند که در بافت (context) `this` اجرا می‌شود، که معمولاً همان چیزی است که می‌خواهید، و سینتکسی مختصرتر است.
 
-    > Why not? If you have a fairly complicated function, you might move that logic out into its own named function expression.
+    > چرا نه؟ اگر تابع نسبتاً پیچیده‌ای دارید، ممکن است بخواهید آن منطق را به یک عبارت تابعِ نام‌گذاری‌شده و جداگانه منتقل کنید.
 
     ```javascript
-    // bad
+    // بد
     [1, 2, 3].map(function (x) {
       const y = x + 1;
       return x * y;
     });
 
-    // good
+    // خوب
     [1, 2, 3].map((x) => {
       const y = x + 1;
       return x * y;
@@ -965,64 +965,64 @@
     ```
 
   <a name="arrows--implicit-return"></a><a name="8.2"></a>
-  - [8.2](#arrows--implicit-return) If the function body consists of a single statement returning an [expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) without side effects, omit the braces and use the implicit return. Otherwise, keep the braces and use a `return` statement. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens), [`arrow-body-style`](https://eslint.org/docs/rules/arrow-body-style)
+  - [8.2](#arrows--implicit-return) اگر بدنهٔ تابع از یک دستور واحد تشکیل شده باشد که یک [عبارت](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) بدون اثرات جانبی را برمی‌گرداند، آکولادها را حذف کرده و از بازگشت ضمنی (implicit return) استفاده کنید. در غیر این صورت، آکولادها را نگه دارید و از دستور `return` استفاده کنید. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens), [`arrow-body-style`](https://eslint.org/docs/rules/arrow-body-style)
 
-    > Why? Syntactic sugar. It reads well when multiple functions are chained together.
+    > چرا؟ راه را هموار کردن (Syntactic sugar). هنگامی که چند تابع به هم زنجیر می‌شوند، خوانایی خوبی دارد.
 
     ```javascript
-    // bad
+    // بد
     [1, 2, 3].map((number) => {
       const nextNumber = number + 1;
       `A string containing the ${nextNumber}.`;
     });
 
-    // good
+    // خوب
     [1, 2, 3].map((number) => `A string containing the ${number + 1}.`);
 
-    // good
+    // خوب
     [1, 2, 3].map((number) => {
       const nextNumber = number + 1;
       return `A string containing the ${nextNumber}.`;
     });
 
-    // good
+    // خوب
     [1, 2, 3].map((number, index) => ({
       [index]: number,
     }));
 
-    // No implicit return with side effects
+    // بدون بازگشت ضمنی در صورت وجود اثرات جانبی
     function foo(callback) {
       const val = callback();
       if (val === true) {
-        // Do something if callback returns true
+        // اگر کال‌بک true برمی‌گرداند کاری انجام دهید
       }
     }
 
     let bool = false;
 
-    // bad
+    // بد
     foo(() => bool = true);
 
-    // good
+    // خوب
     foo(() => {
       bool = true;
     });
     ```
 
   <a name="arrows--paren-wrap"></a><a name="8.3"></a>
-  - [8.3](#arrows--paren-wrap) In case the expression spans over multiple lines, wrap it in parentheses for better readability.
+  - [8.3](#arrows--paren-wrap) در صورتی که عبارت در چند خط پهن می‌شود، برای خوانایی بهتر آن را داخل پرانتز قرار دهید.
 
-    > Why? It shows clearly where the function starts and ends.
+    > چرا؟ به وضوح نشان می‌دهد که تابع از کجا شروع و به کجا ختم می‌شود.
 
     ```javascript
-    // bad
+    // بد
     ['get', 'post', 'put'].map((httpMethod) => Object.prototype.hasOwnProperty.call(
         httpMagicObjectWithAVeryLongName,
         httpMethod,
       )
     );
 
-    // good
+    // خوب
     ['get', 'post', 'put'].map((httpMethod) => (
       Object.prototype.hasOwnProperty.call(
         httpMagicObjectWithAVeryLongName,
@@ -1032,34 +1032,34 @@
     ```
 
   <a name="arrows--one-arg-parens"></a><a name="8.4"></a>
-  - [8.4](#arrows--one-arg-parens) Always include parentheses around arguments for clarity and consistency. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens)
+  - [8.4](#arrows--one-arg-parens) همیشه برای شفافیت و یکپارچگی، پرانتزها را دور آرگومان‌ها قرار دهید. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens)
 
-    > Why? Minimizes diff churn when adding or removing arguments.
+    > چرا؟ تفاوت ها (diff) هنگام اضافه یا حذف آرگومان‌ها را به حداقل می‌رساند.
 
     ```javascript
-    // bad
+    // بد
     [1, 2, 3].map(x => x * x);
 
-    // good
+    // خوب
     [1, 2, 3].map((x) => x * x);
 
-    // bad
+    // بد
     [1, 2, 3].map(number => (
       `A long string with the ${number}. It’s so long that we don’t want it to take up space on the .map line!`
     ));
 
-    // good
+    // خوب
     [1, 2, 3].map((number) => (
       `A long string with the ${number}. It’s so long that we don’t want it to take up space on the .map line!`
     ));
 
-    // bad
+    // بد
     [1, 2, 3].map(x => {
       const y = x + 1;
       return x * y;
     });
 
-    // good
+    // خوب
     [1, 2, 3].map((x) => {
       const y = x + 1;
       return x * y;
@@ -1067,19 +1067,19 @@
     ```
 
   <a name="arrows--confusing"></a><a name="8.5"></a>
-  - [8.5](#arrows--confusing) Avoid confusing arrow function syntax (`=>`) with comparison operators (`<=`, `>=`). eslint: [`no-confusing-arrow`](https://eslint.org/docs/rules/no-confusing-arrow)
+  - [8.5](#arrows--confusing) از اشتباه گرفتن سینتکس تابع پیکانی (`=>`) با عملگرهای مقایسه‌ای (`<=`، `>=`) اجتناب کنید. eslint: [`no-confusing-arrow`](https://eslint.org/docs/rules/no-confusing-arrow)
 
     ```javascript
-    // bad
+    // بد
     const itemHeight = (item) => item.height <= 256 ? item.largeSize : item.smallSize;
 
-    // bad
+    // بد
     const itemHeight = (item) => item.height >= 256 ? item.largeSize : item.smallSize;
 
-    // good
+    // خوب
     const itemHeight = (item) => (item.height <= 256 ? item.largeSize : item.smallSize);
 
-    // good
+    // خوب
     const itemHeight = (item) => {
       const { height, largeSize, smallSize } = item;
       return height <= 256 ? largeSize : smallSize;
@@ -1087,17 +1087,17 @@
     ```
 
   <a name="whitespace--implicit-arrow-linebreak"></a>
-  - [8.6](#whitespace--implicit-arrow-linebreak) Enforce the location of arrow function bodies with implicit returns. eslint: [`implicit-arrow-linebreak`](https://eslint.org/docs/rules/implicit-arrow-linebreak)
+  - [8.6](#whitespace--implicit-arrow-linebreak) مکان بدنهٔ توابع پیکانی که دارای بازگشت ضمنی هستند را یکسان نگه دارید. eslint: [`implicit-arrow-linebreak`](https://eslint.org/docs/rules/implicit-arrow-linebreak)
 
     ```javascript
-    // bad
+    // بد
     (foo) =>
       bar;
 
     (foo) =>
       (bar);
 
-    // good
+    // خوب
     (foo) => bar;
     (foo) => (bar);
     (foo) => (
@@ -1107,15 +1107,15 @@
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Classes & Constructors
+## کلاس ها و سازنده ها
 
   <a name="constructors--use-class"></a><a name="9.1"></a>
-  - [9.1](#constructors--use-class) Always use `class`. Avoid manipulating `prototype` directly.
+  - [9.1](#constructors--use-class) همیشه از `class` استفاده کنید. از دستکاری مستقیم `prototype` خودداری کنید.
 
-    > Why? `class` syntax is more concise and easier to reason about.
+    > چرا؟ سینتکس `class` مختصرتر است و استدلال در مورد آن آسان‌تر است.
 
     ```javascript
-    // bad
+    // بد
     function Queue(contents = []) {
       this.queue = [...contents];
     }
@@ -1125,7 +1125,7 @@
       return value;
     };
 
-    // good
+    // خوب
     class Queue {
       constructor(contents = []) {
         this.queue = [...contents];
@@ -1139,12 +1139,12 @@
     ```
 
   <a name="constructors--extends"></a><a name="9.2"></a>
-  - [9.2](#constructors--extends) Use `extends` for inheritance.
+  - [9.2](#constructors--extends) برای وراثت از `extends` استفاده کنید.
 
-    > Why? It is a built-in way to inherit prototype functionality without breaking `instanceof`.
+    > چرا؟ این یک روش توکار (built-in) برای به ارث بردن قابلیت‌های prototype است بدون اینکه `instanceof` را خراب کند.
 
     ```javascript
-    // bad
+    // بد
     const inherits = require('inherits');
     function PeekableQueue(contents) {
       Queue.apply(this, contents);
@@ -1154,7 +1154,7 @@
       return this.queue[0];
     };
 
-    // good
+    // خوب
     class PeekableQueue extends Queue {
       peek() {
         return this.queue[0];
@@ -1163,10 +1163,10 @@
     ```
 
   <a name="constructors--chaining"></a><a name="9.3"></a>
-  - [9.3](#constructors--chaining) Methods can return `this` to help with method chaining.
+  - [9.3](#constructors--chaining) متدها می‌توانند `this` را برگردانند تا به زنجیره‌سازی متدها (method chaining) کمک کنند.
 
     ```javascript
-    // bad
+    // بد
     Jedi.prototype.jump = function () {
       this.jumping = true;
       return true;
@@ -1180,7 +1180,7 @@
     luke.jump(); // => true
     luke.setHeight(20); // => undefined
 
-    // good
+    // خوب
     class Jedi {
       jump() {
         this.jumping = true;
@@ -1200,7 +1200,7 @@
     ```
 
   <a name="constructors--tostring"></a><a name="9.4"></a>
-  - [9.4](#constructors--tostring) It’s okay to write a custom `toString()` method, just make sure it works successfully and causes no side effects.
+  - [9.4](#constructors--tostring) نوشتن یک متد سفارشی `toString()` اشکالی ندارد، فقط مطمئن شوید که با موفقیت کار می‌کند و هیچ اثر جانبی ایجاد نمی‌کند.
 
     ```javascript
     class Jedi {
@@ -1219,10 +1219,10 @@
     ```
 
   <a name="constructors--no-useless"></a><a name="9.5"></a>
-  - [9.5](#constructors--no-useless) Classes have a default constructor if one is not specified. An empty constructor function or one that just delegates to a parent class is unnecessary. eslint: [`no-useless-constructor`](https://eslint.org/docs/rules/no-useless-constructor)
+  - [9.5](#constructors--no-useless) کلاس‌ها در صورت عدم مشخص شدن، یک سازنده (constructor) پیش‌فرض دارند. یک تابع سازنده خالی یا سازنده‌ای که فقط کارها را به کلاس والد واگذار می‌کند، غیرضروری است. eslint: [`no-useless-constructor`](https://eslint.org/docs/rules/no-useless-constructor)
 
     ```javascript
-    // bad
+    // بد
     class Jedi {
       constructor() {}
 
@@ -1231,14 +1231,14 @@
       }
     }
 
-    // bad
+    // بد
     class Rey extends Jedi {
       constructor(...args) {
         super(...args);
       }
     }
 
-    // good
+    // خوب
     class Rey extends Jedi {
       constructor(...args) {
         super(...args);
@@ -1248,54 +1248,54 @@
     ```
 
   <a name="classes--no-duplicate-members"></a>
-  - [9.6](#classes--no-duplicate-members) Avoid duplicate class members. eslint: [`no-dupe-class-members`](https://eslint.org/docs/rules/no-dupe-class-members)
+  - [9.6](#classes--no-duplicate-members) از اعضای تکراری در کلاس خودداری کنید. eslint: [`no-dupe-class-members`](https://eslint.org/docs/rules/no-dupe-class-members)
 
-    > Why? Duplicate class member declarations will silently prefer the last one - having duplicates is almost certainly a bug.
+    > چرا؟ اعلان اعضای تکراری کلاس، بی سر و صدا، آخرین مورد را ترجیح می‌دهد - داشتن موارد تکراری تقریباً قطعا یک باگ است.
 
     ```javascript
-    // bad
+    // بد
     class Foo {
       bar() { return 1; }
       bar() { return 2; }
     }
 
-    // good
+    // خوب
     class Foo {
       bar() { return 1; }
     }
 
-    // good
+    // خوب
     class Foo {
       bar() { return 2; }
     }
     ```
 
   <a name="classes--methods-use-this"></a>
-  - [9.7](#classes--methods-use-this) Class methods should use `this` or be made into a static method unless an external library or framework requires using specific non-static methods. Being an instance method should indicate that it behaves differently based on properties of the receiver. eslint: [`class-methods-use-this`](https://eslint.org/docs/rules/class-methods-use-this)
+  - [9.7](#classes--methods-use-this) متدهای کلاس باید از `this` استفاده کنند یا به یک متد استاتیک (static) تبدیل شوند، مگر اینکه یک کتابخانه یا فریم‌ورک خارجی، استفاده از متدهای خاصِ غیراستاتیک را ایجاب کند. بودنِ یک متدِ نمونه (instance method) باید نشان‌دهنده این باشد که رفتار آن بر اساس ویژگی‌های گیرنده (receiver) متفاوت است. eslint: [`class-methods-use-this`](https://eslint.org/docs/rules/class-methods-use-this)
 
     ```javascript
-    // bad
+    // بد
     class Foo {
       bar() {
         console.log('bar');
       }
     }
 
-    // good - this is used
+    // خوب - از this استفاده شده است
     class Foo {
       bar() {
         console.log(this.bar);
       }
     }
 
-    // good - constructor is exempt
+    // خوب - constructor مستثنی است
     class Foo {
       constructor() {
         // ...
       }
     }
 
-    // good - static methods aren't expected to use this
+    // خوب - از متدهای استاتیک انتظار نمی‌رود که از this استفاده کنند
     class Foo {
       static bar() {
         console.log('bar');
@@ -1305,71 +1305,71 @@
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Modules
+## ماژول ها (modules)
 
   <a name="modules--use-them"></a><a name="10.1"></a>
-  - [10.1](#modules--use-them) Always use modules (`import`/`export`) over a non-standard module system. You can always transpile to your preferred module system.
+  - [10.1](#modules--use-them) همیشه به جای سیستم‌های ماژول غیراستاندارد، از ماژول‌ها (`import`/`export`) استفاده کنید. شما همیشه می‌توانید کد را به سیستم ماژول دلخواه خود transpile (تبدیل) کنید.
 
-    > Why? Modules are the future, let’s start using the future now.
+    > چرا؟ ماژول‌ها آینده هستند، بیایید از همین الان از آینده استفاده کنیم.
 
     ```javascript
-    // bad
+    // بد
     const AirbnbStyleGuide = require('./AirbnbStyleGuide');
     module.exports = AirbnbStyleGuide.es6;
 
-    // ok
+    // قابل قبول
     import AirbnbStyleGuide from './AirbnbStyleGuide';
     export default AirbnbStyleGuide.es6;
 
-    // best
+    // بهترین
     import { es6 } from './AirbnbStyleGuide';
     export default es6;
     ```
 
   <a name="modules--no-wildcard"></a><a name="10.2"></a>
-  - [10.2](#modules--no-wildcard) Do not use wildcard imports.
+  - [10.2](#modules--no-wildcard) از واردات شَخلِه (wildcard imports) استفاده نکنید.
 
-    > Why? This makes sure you have a single default export.
+    > چرا؟ این کار تضمین می‌کند که شما یک خروجی پیش‌فرض (default export) واحد داشته باشید.
 
     ```javascript
-    // bad
+    // بد
     import * as AirbnbStyleGuide from './AirbnbStyleGuide';
 
-    // good
+    // خوب
     import AirbnbStyleGuide from './AirbnbStyleGuide';
     ```
 
   <a name="modules--no-export-from-import"></a><a name="10.3"></a>
-  - [10.3](#modules--no-export-from-import) And do not export directly from an import.
+  - [10.3](#modules--no-export-from-import) و مستقیماً از یک import، export نگیرید.
 
-    > Why? Although the one-liner is concise, having one clear way to import and one clear way to export makes things consistent.
+    > چرا؟ هرچند نوشتن آن در یک خط مختصر است، اما داشتن یک راه مشخص برای وارد کردن و یک راه مشخص برای صادر کردن، باعث یکپارچگی می‌شود.
 
     ```javascript
-    // bad
+    // بد
     // filename es6.js
     export { es6 as default } from './AirbnbStyleGuide';
 
-    // good
+    // خوب
     // filename es6.js
     import { es6 } from './AirbnbStyleGuide';
     export default es6;
     ```
 
   <a name="modules--no-duplicate-imports"></a>
-  - [10.4](#modules--no-duplicate-imports) Only import from a path in one place.
- eslint: [`no-duplicate-imports`](https://eslint.org/docs/rules/no-duplicate-imports)
-    > Why? Having multiple lines that import from the same path can make code harder to maintain.
+  - [10.4](#modules--no-duplicate-imports) فقط از یک مسیر را در یک مکان وارد کنید.
+  eslint: [`no-duplicate-imports`](https://eslint.org/docs/rules/no-duplicate-imports)
+    > چرا؟ داشتن چندین خط که از یک مسیر یکسان وارد می‌کنند، می‌تواند حفظ و نگهداری کد را سخت‌تر کند.
 
     ```javascript
-    // bad
+    // بد
     import foo from 'foo';
     // … some other imports … //
     import { named1, named2 } from 'foo';
 
-    // good
+    // خوب
     import foo, { named1, named2 } from 'foo';
 
-    // good
+    // خوب
     import foo, {
       named1,
       named2,
@@ -1377,46 +1377,46 @@
     ```
 
   <a name="modules--no-mutable-exports"></a>
-  - [10.5](#modules--no-mutable-exports) Do not export mutable bindings.
- eslint: [`import/no-mutable-exports`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/no-mutable-exports.md)
-    > Why? Mutation should be avoided in general, but in particular when exporting mutable bindings. While this technique may be needed for some special cases, in general, only constant references should be exported.
+  - [10.5](#modules--no-mutable-exports) اتصالات (bindings) قابل تغییر (mutable) را صادر نکنید.
+  eslint: [`import/no-mutable-exports`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/no-mutable-exports.md)
+    > چرا؟ به طور کلی باید از تغییر (mutation) اجتناب کرد، اما به ویژه هنگام صادر کردن اتصالات قابل تغییر. در حالی که این تکنیک ممکن است برای برخی موارد خاص نیاز باشد، به طور کلی فقط باید ارجاعات ثابت (const) صادر شوند.
 
     ```javascript
-    // bad
+    // بد
     let foo = 3;
     export { foo };
 
-    // good
+    // خوب
     const foo = 3;
     export { foo };
     ```
 
   <a name="modules--prefer-default-export"></a>
-  - [10.6](#modules--prefer-default-export) In modules with a single export, prefer default export over named export.
- eslint: [`import/prefer-default-export`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/prefer-default-export.md)
-    > Why? To encourage more files that only ever export one thing, which is better for readability and maintainability.
+  - [10.6](#modules--prefer-default-export) در ماژول‌هایی با تنها یک خروجی، خروجی پیش‌فرض (default export) را به خروجی نام‌گذاری‌شده (named export) ترجیح دهید.
+  eslint: [`import/prefer-default-export`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/prefer-default-export.md)
+    > چرا؟ برای تشویق فایل‌های بیشتری که فقط یک چیز را صادر می‌کنند، که برای خوانایی و قابلیت نگهداری بهتر است.
 
     ```javascript
-    // bad
+    // بد
     export function foo() {}
 
-    // good
+    // خوب
     export default function foo() {}
     ```
 
   <a name="modules--imports-first"></a>
-  - [10.7](#modules--imports-first) Put all `import`s above non-import statements.
- eslint: [`import/first`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/first.md)
-    > Why? Since `import`s are hoisted, keeping them all at the top prevents surprising behavior.
+  - [10.7](#modules--imports-first) تمام `import`ها را بالاتر از دستورات غیرِ وارداتی قرار دهید.
+  eslint: [`import/first`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/first.md)
+    > چرا؟ از آنجایی که `import`ها بالا آورده می‌شوند (hoisted)، نگه داشتن همه آن‌ها در بالا از رفتارهای غیرمنتظره جلوگیری می‌کند.
 
     ```javascript
-    // bad
+    // بد
     import foo from 'foo';
     foo.init();
 
     import bar from 'bar';
 
-    // good
+    // خوب
     import foo from 'foo';
     import bar from 'bar';
 
@@ -1424,16 +1424,16 @@
     ```
 
   <a name="modules--multiline-imports-over-newlines"></a>
-  - [10.8](#modules--multiline-imports-over-newlines) Multiline imports should be indented just like multiline array and object literals.
- eslint: [`object-curly-newline`](https://eslint.org/docs/rules/object-curly-newline)
+  - [10.8](#modules--multiline-imports-over-newlines) واردات چندخطی باید دقیقاً مانند لیترال‌های چندخطی آرایه و شئ، فاصله گذاری (indent) داشته باشند.
+  eslint: [`object-curly-newline`](https://eslint.org/docs/rules/object-curly-newline)
 
-    > Why? The curly braces follow the same indentation rules as every other curly brace block in the style guide, as do the trailing commas.
+    > چرا؟ آکولادها از همان قوانین فاصله گذاری پیروی می‌کنند که هر بلوک آکولاد دیگری در این راهنما دارد، و ویرگول‌های انتهایی (trailing commas) نیز همینطور.
 
     ```javascript
-    // bad
+    // بد
     import {longNameA, longNameB, longNameC, longNameD, longNameE} from 'path';
 
-    // good
+    // خوب
     import {
       longNameA,
       longNameB,
@@ -1444,32 +1444,32 @@
     ```
 
   <a name="modules--no-webpack-loader-syntax"></a>
-  - [10.9](#modules--no-webpack-loader-syntax) Disallow Webpack loader syntax in module import statements.
- eslint: [`import/no-webpack-loader-syntax`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/no-webpack-loader-syntax.md)
-    > Why? Since using Webpack syntax in the imports couples the code to a module bundler. Prefer using the loader syntax in `webpack.config.js`.
+  - [10.9](#modules--no-webpack-loader-syntax) استفاده از سینتکس لودرهای Webpack در دستورات واردات ماژول ممنوع است.
+  eslint: [`import/no-webpack-loader-syntax`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/no-webpack-loader-syntax.md)
+    > چرا؟ از آنجایی که استفاده از سینتکس Webpack در واردات، کد را به یک باندلر ماژول وابسته می‌کند. استفاده از سینتکس لودر در `webpack.config.js` ترجیح داده می‌شود.
 
     ```javascript
-    // bad
+    // بد
     import fooSass from 'css!sass!foo.scss';
     import barCss from 'style!css!bar.css';
 
-    // good
+    // خوب
     import fooSass from 'foo.scss';
     import barCss from 'bar.css';
     ```
 
   <a name="modules--import-extensions"></a>
-  - [10.10](#modules--import-extensions) Do not include JavaScript filename extensions
- eslint: [`import/extensions`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/extensions.md)
-    > Why? Including extensions inhibits refactoring, and inappropriately hardcodes implementation details of the module you're importing in every consumer.
+  - [10.10](#modules--import-extensions) پسوندهای نام فایل جاوااسکریپت را لحاظ نکنید.
+  eslint: [`import/extensions`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/extensions.md)
+    > چرا؟ لحاظ کردن پسوندها، بازنویسی کد (refactoring) را محدود می‌کند و جزئیات پیاده‌سازی ماژولی که در حال وارد کردن آن هستید را به صورت نامناسبی در هر مصرف‌کننده، هاردکد (سخت‌کد) می‌کند.
 
     ```javascript
-    // bad
+    // بد
     import foo from './foo.js';
     import bar from './bar.jsx';
     import baz from './baz/index.jsx';
 
-    // good
+    // خوب
     import foo from './foo';
     import bar from './bar';
     import baz from './baz';
