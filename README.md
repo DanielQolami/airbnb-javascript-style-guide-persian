@@ -38,7 +38,7 @@
 1. [بلوک ها](#بلوک-ها)
 1. [دستورهای کنترلی](#دستورهای-کنترلی)
 1. [توضیحات (comments)](#توضیحات-Comments)
-1. [فاصله‌گذاری](#whitespace)
+1. [فاصله گذاری](#فاصله-گذاری)
 1. [ویرگول‌ها](#commas)
 1. [نقطه‌ویرگول‌ها](#semicolons)
 1. [تبدیل نوع و واداشتن به تبدیل (Coercion)](#type-casting--coercion)
@@ -2561,49 +2561,49 @@
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Whitespace
+## فاصله گذاری
 
   <a name="whitespace--spaces"></a><a name="18.1"></a>
-  - [19.1](#whitespace--spaces) Use soft tabs (space character) set to 2 spaces. eslint: [`indent`](https://eslint.org/docs/rules/indent)
+  - [19.1](#whitespace--spaces) از تب‌های نرم (کاراکتر فاصله) تنظیم‌شده روی ۲ فاصله استفاده کنید. eslint: [`indent`](https://eslint.org/docs/rules/indent)
 
     ```javascript
-    // bad
+    // بد
     function foo() {
     ∙∙∙∙let name;
     }
 
-    // bad
+    // بد
     function bar() {
     ∙let name;
     }
 
-    // good
+    // خوب
     function baz() {
     ∙∙let name;
     }
     ```
 
   <a name="whitespace--before-blocks"></a><a name="18.2"></a>
-  - [19.2](#whitespace--before-blocks) Place 1 space before the leading brace. eslint: [`space-before-blocks`](https://eslint.org/docs/rules/space-before-blocks)
+  - [19.2](#whitespace--before-blocks) قبل از آکولادِ شروع، ۱ فاصله قرار دهید. eslint: [`space-before-blocks`](https://eslint.org/docs/rules/space-before-blocks)
 
     ```javascript
-    // bad
+    // بد
     function test(){
       console.log('test');
     }
 
-    // good
+    // خوب
     function test() {
       console.log('test');
     }
 
-    // bad
+    // بد
     dog.set('attr',{
       age: '1 year',
       breed: 'Bernese Mountain Dog',
     });
 
-    // good
+    // خوب
     dog.set('attr', {
       age: '1 year',
       breed: 'Bernese Mountain Dog',
@@ -2611,53 +2611,53 @@
     ```
 
   <a name="whitespace--around-keywords"></a><a name="18.3"></a>
-  - [19.3](#whitespace--around-keywords) Place 1 space before the opening parenthesis in control statements (`if`, `while` etc.). Place no space between the argument list and the function name in function calls and declarations. eslint: [`keyword-spacing`](https://eslint.org/docs/rules/keyword-spacing)
+  - [19.3](#whitespace--around-keywords) قبل از پرانتز بازِ دستورهای کنترلی (`if`، `while` و غیره) ۱ فاصله قرار دهید. بین لیست آرگومان‌ها و نام تابع در فراخوانی‌ها و اعلان‌های توابع، فاصله‌ای قرار ندهید. eslint: [`keyword-spacing`](https://eslint.org/docs/rules/keyword-spacing)
 
     ```javascript
-    // bad
+    // بد
     if(isJedi) {
       fight ();
     }
 
-    // good
+    // خوب
     if (isJedi) {
       fight();
     }
 
-    // bad
+    // بد
     function fight () {
       console.log ('Swooosh!');
     }
 
-    // good
+    // خوب
     function fight() {
       console.log('Swooosh!');
     }
     ```
 
   <a name="whitespace--infix-ops"></a><a name="18.4"></a>
-  - [19.4](#whitespace--infix-ops) Set off operators with spaces. eslint: [`space-infix-ops`](https://eslint.org/docs/rules/space-infix-ops)
+  - [19.4](#whitespace--infix-ops) اطراف عملگرها فاصله قرار دهید. eslint: [`space-infix-ops`](https://eslint.org/docs/rules/space-infix-ops)
 
     ```javascript
-    // bad
+    // بد
     const x=y+5;
 
-    // good
+    // خوب
     const x = y + 5;
     ```
 
   <a name="whitespace--newline-at-end"></a><a name="18.5"></a>
-  - [19.5](#whitespace--newline-at-end) End files with a single newline character. eslint: [`eol-last`](https://eslint.org/docs/rules/eol-last)
+  - [19.5](#whitespace--newline-at-end) فایل‌ها را با یک کاراکتر خط جدید (newline) به پایان برسانید. eslint: [`eol-last`](https://eslint.org/docs/rules/eol-last)
 
     ```javascript
-    // bad
+    // بد
     import { es6 } from './AirbnbStyleGuide';
       // ...
     export default es6;
     ```
 
     ```javascript
-    // bad
+    // بد
     import { es6 } from './AirbnbStyleGuide';
       // ...
     export default es6;↵
@@ -2665,21 +2665,20 @@
     ```
 
     ```javascript
-    // good
+    // خوب
     import { es6 } from './AirbnbStyleGuide';
       // ...
     export default es6;↵
     ```
 
   <a name="whitespace--chains"></a><a name="18.6"></a>
-  - [19.6](#whitespace--chains) Use indentation when making long method chains (more than 2 method chains). Use a leading dot, which
-    emphasizes that the line is a method call, not a new statement. eslint: [`newline-per-chained-call`](https://eslint.org/docs/rules/newline-per-chained-call) [`no-whitespace-before-property`](https://eslint.org/docs/rules/no-whitespace-before-property)
+  - [19.6](#whitespace--chains) هنگام ایجاد زنجیره‌های طولانیِ متد (بیش از ۲ زنجیره متد)، از فاصله گذاری (indent) استفاده کنید. از نقطه ابتدایی (leading dot) استفاده کنید، که تأکید می‌کند این خط یک فراخوانی متد است، نه یک دستور جدید. eslint: [`newline-per-chained-call`](https://eslint.org/docs/rules/newline-per-chained-call) [`no-whitespace-before-property`](https://eslint.org/docs/rules/no-whitespace-before-property)
 
     ```javascript
-    // bad
+    // بد
     $('#items').find('.selected').highlight().end().find('.open').updateCount();
 
-    // bad
+    // بد
     $('#items').
       find('.selected').
         highlight().
@@ -2687,7 +2686,7 @@
       find('.open').
         updateCount();
 
-    // good
+    // خوب
     $('#items')
       .find('.selected')
         .highlight()
@@ -2695,13 +2694,13 @@
       .find('.open')
         .updateCount();
 
-    // bad
+    // بد
     const leds = stage.selectAll('.led').data(data).enter().append('svg:svg').classed('led', true)
         .attr('width', (radius + margin) * 2).append('svg:g')
         .attr('transform', `translate(${radius + margin}, ${radius + margin})`)
         .call(tron.led);
 
-    // good
+    // خوب
     const leds = stage.selectAll('.led')
         .data(data)
       .enter().append('svg:svg')
@@ -2711,7 +2710,7 @@
         .attr('transform', `translate(${radius + margin}, ${radius + margin})`)
         .call(tron.led);
 
-    // good
+    // خوب
     const leds = stage.selectAll('.led').data(data);
     const svg = leds.enter().append('svg:svg');
     svg.classed('led', true).attr('width', (radius + margin) * 2);
@@ -2720,23 +2719,23 @@
     ```
 
   <a name="whitespace--after-blocks"></a><a name="18.7"></a>
-  - [19.7](#whitespace--after-blocks) Leave a blank line after blocks and before the next statement.
+  - [19.7](#whitespace--after-blocks) بعد از بلوک‌ها و قبل از دستور بعدی، یک خط خالی بگذارید.
 
     ```javascript
-    // bad
+    // بد
     if (foo) {
       return bar;
     }
     return baz;
 
-    // good
+    // خوب
     if (foo) {
       return bar;
     }
 
     return baz;
 
-    // bad
+    // بد
     const obj = {
       foo() {
       },
@@ -2745,7 +2744,7 @@
     };
     return obj;
 
-    // good
+    // خوب
     const obj = {
       foo() {
       },
@@ -2756,7 +2755,7 @@
 
     return obj;
 
-    // bad
+    // بد
     const arr = [
       function foo() {
       },
@@ -2765,7 +2764,7 @@
     ];
     return arr;
 
-    // good
+    // خوب
     const arr = [
       function foo() {
       },
@@ -2778,17 +2777,17 @@
     ```
 
   <a name="whitespace--padded-blocks"></a><a name="18.8"></a>
-  - [19.8](#whitespace--padded-blocks) Do not pad your blocks with blank lines. eslint: [`padded-blocks`](https://eslint.org/docs/rules/padded-blocks)
+  - [19.8](#whitespace--padded-blocks) بلوک‌های خود را با خطوط خالی پد (pad - پُر) نکنید. eslint: [`padded-blocks`](https://eslint.org/docs/rules/padded-blocks)
 
     ```javascript
-    // bad
+    // بد
     function bar() {
 
       console.log(foo);
 
     }
 
-    // bad
+    // بد
     if (baz) {
 
       console.log(quux);
@@ -2797,7 +2796,7 @@
 
     }
 
-    // bad
+    // بد
     class Foo {
 
       constructor(bar) {
@@ -2805,12 +2804,12 @@
       }
     }
 
-    // good
+    // خوب
     function bar() {
       console.log(foo);
     }
 
-    // good
+    // خوب
     if (baz) {
       console.log(quux);
     } else {
@@ -2819,11 +2818,11 @@
     ```
 
   <a name="whitespace--no-multiple-blanks"></a>
-  - [19.9](#whitespace--no-multiple-blanks) Do not use multiple blank lines to pad your code. eslint: [`no-multiple-empty-lines`](https://eslint.org/docs/rules/no-multiple-empty-lines)
+  - [19.9](#whitespace--no-multiple-blanks) برای پد (پُر) کردن کد خود از چندین خط خالی استفاده نکنید. eslint: [`no-multiple-empty-lines`](https://eslint.org/docs/rules/no-multiple-empty-lines)
 
     <!-- markdownlint-disable MD012 -->
     ```javascript
-    // bad
+    // بد
     class Person {
       constructor(fullName, email, birthday) {
         this.fullName = fullName;
@@ -2852,7 +2851,7 @@
       }
     }
 
-    // good
+    // خوب
     class Person {
       constructor(fullName, email, birthday) {
         this.fullName = fullName;
@@ -2873,67 +2872,67 @@
     ```
 
   <a name="whitespace--in-parens"></a><a name="18.9"></a>
-  - [19.10](#whitespace--in-parens) Do not add spaces inside parentheses. eslint: [`space-in-parens`](https://eslint.org/docs/rules/space-in-parens)
+  - [19.10](#whitespace--in-parens) داخل پرانتزها فاصله اضافه نکنید. eslint: [`space-in-parens`](https://eslint.org/docs/rules/space-in-parens)
 
     ```javascript
-    // bad
+    // بد
     function bar( foo ) {
       return foo;
     }
 
-    // good
+    // خوب
     function bar(foo) {
       return foo;
     }
 
-    // bad
+    // بد
     if ( foo ) {
       console.log(foo);
     }
 
-    // good
+    // خوب
     if (foo) {
       console.log(foo);
     }
     ```
 
   <a name="whitespace--in-brackets"></a><a name="18.10"></a>
-  - [19.11](#whitespace--in-brackets) Do not add spaces inside brackets. eslint: [`array-bracket-spacing`](https://eslint.org/docs/rules/array-bracket-spacing)
+  - [19.11](#whitespace--in-brackets) داخل براکت‌ها فاصله اضافه نکنید. eslint: [`array-bracket-spacing`](https://eslint.org/docs/rules/array-bracket-spacing)
 
     ```javascript
-    // bad
+    // بد
     const foo = [ 1, 2, 3 ];
     console.log(foo[ 0 ]);
 
-    // good
+    // خوب
     const foo = [1, 2, 3];
     console.log(foo[0]);
     ```
 
   <a name="whitespace--in-braces"></a><a name="18.11"></a>
-  - [19.12](#whitespace--in-braces) Add spaces inside curly braces. eslint: [`object-curly-spacing`](https://eslint.org/docs/rules/object-curly-spacing)
+  - [19.12](#whitespace--in-braces) داخل آکولادها فاصله اضافه کنید. eslint: [`object-curly-spacing`](https://eslint.org/docs/rules/object-curly-spacing)
 
     ```javascript
-    // bad
+    // بد
     const foo = {clark: 'kent'};
 
-    // good
+    // خوب
     const foo = { clark: 'kent' };
     ```
 
   <a name="whitespace--max-len"></a><a name="18.12"></a>
-  - [19.13](#whitespace--max-len) Avoid having lines of code that are longer than 100 characters (including whitespace). Note: per [above](#strings--line-length), long strings are exempt from this rule, and should not be broken up. eslint: [`max-len`](https://eslint.org/docs/rules/max-len)
+  - [19.13](#whitespace--max-len) از داشتن خطوط کد طولانی‌تر از ۱۰۰ کاراکتر (شامل فاصله‌ها) خودداری کنید. توجه: بر اساس [بخش بالا](#strings--line-length)، رشته‌های طولانی از این قانون مستثنی هستند و نباید شکسته شوند. eslint: [`max-len`](https://eslint.org/docs/rules/max-len)
 
-    > Why? This ensures readability and maintainability.
+    > چرا؟ این کار خوانایی و قابلیت نگهداری را تضمین می‌کند.
 
     ```javascript
-    // bad
+    // بد
     const foo = jsonData && jsonData.foo && jsonData.foo.bar && jsonData.foo.bar.baz && jsonData.foo.bar.baz.quux && jsonData.foo.bar.baz.quux.xyzzy;
 
-    // bad
+    // بد
     $.ajax({ method: 'POST', url: 'https://airbnb.com/', data: { name: 'John' } }).done(() => console.log('Congratulations!')).fail(() => console.log('You have failed this city.'));
 
-    // good
+    // خوب
     const foo = jsonData
       && jsonData.foo
       && jsonData.foo.bar
@@ -2941,7 +2940,7 @@
       && jsonData.foo.bar.baz.quux
       && jsonData.foo.bar.baz.quux.xyzzy;
 
-    // better
+    // بهتر
     const foo = jsonData
       ?.foo
       ?.bar
@@ -2949,7 +2948,7 @@
       ?.quux
       ?.xyzzy;
 
-    // good
+    // خوب
     $.ajax({
       method: 'POST',
       url: 'https://airbnb.com/',
@@ -2960,42 +2959,42 @@
     ```
 
   <a name="whitespace--block-spacing"></a>
-  - [19.14](#whitespace--block-spacing) Require consistent spacing inside an open block token and the next token on the same line. This rule also enforces consistent spacing inside a close block token and previous token on the same line. eslint: [`block-spacing`](https://eslint.org/docs/rules/block-spacing)
+  - [19.14](#whitespace--block-spacing) فاصله‌گذاری یکپارچه را داخل توکنِ بلوکِ باز و توکن بعدی در همان خط الزامی کنید. این قانون همچنین فاصله‌گذاری یکپارچه را داخل توکنِ بلوکِ بسته و توکن قبلی در همان خط اعمال می‌کند. eslint: [`block-spacing`](https://eslint.org/docs/rules/block-spacing)
 
     ```javascript
-    // bad
+    // بد
     function foo() {return true;}
     if (foo) { bar = 0;}
 
-    // good
+    // خوب
     function foo() { return true; }
     if (foo) { bar = 0; }
     ```
 
   <a name="whitespace--comma-spacing"></a>
-  - [19.15](#whitespace--comma-spacing) Avoid spaces before commas and require a space after commas. eslint: [`comma-spacing`](https://eslint.org/docs/rules/comma-spacing)
+  - [19.15](#whitespace--comma-spacing) از فاصله قبل از ویرگول‌ها خودداری کنید و یک فاصله بعد از ویرگول‌ها الزامی کنید. eslint: [`comma-spacing`](https://eslint.org/docs/rules/comma-spacing)
 
     ```javascript
-    // bad
+    // بد
     const foo = 1,bar = 2;
     const arr = [1 , 2];
 
-    // good
+    // خوب
     const foo = 1, bar = 2;
     const arr = [1, 2];
     ```
 
   <a name="whitespace--computed-property-spacing"></a>
-  - [19.16](#whitespace--computed-property-spacing) Enforce spacing inside of computed property brackets. eslint: [`computed-property-spacing`](https://eslint.org/docs/rules/computed-property-spacing)
+  - [19.16](#whitespace--computed-property-spacing) فاصله‌گذاری داخل براکت‌های ویژگی محاسبه‌شده (computed property) را اعمال کنید. eslint: [`computed-property-spacing`](https://eslint.org/docs/rules/computed-property-spacing)
 
     ```javascript
-    // bad
+    // بد
     obj[foo ]
     obj[ 'foo']
     const x = {[ b ]: a}
     obj[foo[ bar ]]
 
-    // good
+    // خوب
     obj[foo]
     obj['foo']
     const x = { [b]: a }
@@ -3003,56 +3002,56 @@
     ```
 
   <a name="whitespace--func-call-spacing"></a>
-  - [19.17](#whitespace--func-call-spacing) Avoid spaces between functions and their invocations. eslint: [`func-call-spacing`](https://eslint.org/docs/rules/func-call-spacing)
+  - [19.17](#whitespace--func-call-spacing) بین توابع و فراخوانی‌های آن‌ها فاصله‌ای قرار ندهید. eslint: [`func-call-spacing`](https://eslint.org/docs/rules/func-call-spacing)
 
     ```javascript
-    // bad
+    // بد
     func ();
 
     func
     ();
 
-    // good
+    // خوب
     func();
     ```
 
   <a name="whitespace--key-spacing"></a>
-  - [19.18](#whitespace--key-spacing) Enforce spacing between keys and values in object literal properties. eslint: [`key-spacing`](https://eslint.org/docs/rules/key-spacing)
+  - [19.18](#whitespace--key-spacing) فاصله‌گذاری بین کلیدها و مقادیر در ویژگی‌های لیترالِ شئ را اعمال کنید. eslint: [`key-spacing`](https://eslint.org/docs/rules/key-spacing)
 
     ```javascript
-    // bad
+    // بد
     const obj = { foo : 42 };
     const obj2 = { foo:42 };
 
-    // good
+    // خوب
     const obj = { foo: 42 };
     ```
 
   <a name="whitespace--no-trailing-spaces"></a>
-  - [19.19](#whitespace--no-trailing-spaces) Avoid trailing spaces at the end of lines. eslint: [`no-trailing-spaces`](https://eslint.org/docs/rules/no-trailing-spaces)
+  - [19.19](#whitespace--no-trailing-spaces) از فاصله‌های پشت سرهم (trailing spaces) در انتهای خطوط خودداری کنید. eslint: [`no-trailing-spaces`](https://eslint.org/docs/rules/no-trailing-spaces)
 
   <a name="whitespace--no-multiple-empty-lines"></a>
-  - [19.20](#whitespace--no-multiple-empty-lines) Avoid multiple empty lines, only allow one newline at the end of files, and avoid a newline at the beginning of files. eslint: [`no-multiple-empty-lines`](https://eslint.org/docs/rules/no-multiple-empty-lines)
+  - [19.20](#whitespace--no-multiple-empty-lines) از چندین خط خالی خودداری کنید، فقط اجازه دهید یک خط جدید در انتهای فایل وجود داشته باشد، و از خط جدید در ابتدای فایل‌ها اجتناب کنید. eslint: [`no-multiple-empty-lines`](https://eslint.org/docs/rules/no-multiple-empty-lines)
 
     <!-- markdownlint-disable MD012 -->
     ```javascript
-    // bad - multiple empty lines
+    // بد - چندین خط خالی
     const x = 1;
 
 
     const y = 2;
 
-    // bad - 2+ newlines at end of file
+    // بد - 2+ خط جدید در انتهای فایل
     const x = 1;
     const y = 2;
 
 
-    // bad - 1+ newline(s) at beginning of file
+    // بد - 1+ خط(های) جدید در ابتدای فایل
 
     const x = 1;
     const y = 2;
 
-    // good
+    // خوب
     const x = 1;
     const y = 2;
 
