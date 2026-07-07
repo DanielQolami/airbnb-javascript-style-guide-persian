@@ -30,10 +30,10 @@
 1. [توابع پیکانی](#توابع-پیکانی)
 1. [کلاس ها و سازنده ها](#کلاس-ها-و-سازنده-ها)
 1. [ماژول ها (modules)](#ماژول-ها-modules)
-1. [تکرارکننده‌ها و مولدها (iterators and generators)](#iterators-and-generators)
-1. [ویژگی ها (properties)](#properties)
-1. [متغیرها](#variables)
-1. [بالا آوردن (Hoisting)](#hoisting)
+1. [تکرارکننده ها و مولد ها (Iterators and Generators)](#تکرارکننده-ها-و-مولد-ها-Iterators-and-Generators)
+1. [ویژگی ها (properties)](#ویژگی-ها-properties)
+1. [متغیر ها](#متغیر-ها)
+1. [بالا آوردن (Hoisting)](#بالا-آوردن-Hoisting)
 1. [عملگرهای مقایسه و برابری](#comparison-operators--equality)
 1. [بلوک‌ها](#blocks)
 1. [دستورهای کنترلی](#control-statements)
@@ -1477,113 +1477,113 @@
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Iterators and Generators
+## تکرارکننده ها و مولد ها (Iterators and Generators)
 
   <a name="iterators--nope"></a><a name="11.1"></a>
-  - [11.1](#iterators--nope) Don’t use iterators. Prefer JavaScript’s higher-order functions instead of loops like `for-in` or `for-of`. eslint: [`no-iterator`](https://eslint.org/docs/rules/no-iterator) [`no-restricted-syntax`](https://eslint.org/docs/rules/no-restricted-syntax)
+  - [11.1](#iterators--nope) از تکرارکننده‌ها (iterators) استفاده نکنید. به جای حلقه‌هایی مانند `for-in` یا `for-of`، توابع مرتبه بالای جاوااسکریپت را ترجیح دهید. eslint: [`no-iterator`](https://eslint.org/docs/rules/no-iterator) [`no-restricted-syntax`](https://eslint.org/docs/rules/no-restricted-syntax)
 
-    > Why? This enforces our immutable rule. Dealing with pure functions that return values is easier to reason about than side effects.
+    > چرا؟ این کار قانون تغییرناپذیری (immutable) ما را اعمال می‌کند. کار با توابع خالصی که مقادیری را برمی‌گردانند، در مقایسه با اثرات جانبی، استدلال در موردشان آسان‌تر است.
 
-    > Use `map()` / `every()` / `filter()` / `find()` / `findIndex()` / `reduce()` / `some()` / ... to iterate over arrays, and `Object.keys()` / `Object.values()` / `Object.entries()` to produce arrays so you can iterate over objects.
+    > برای پیمایش آرایه‌ها از `map()` / `every()` / `filter()` / `find()` / `findIndex()` / `reduce()` / `some()` / ... استفاده کنید و برای تولید آرایه‌هایی که بتوانید اشیاء را پیمایش کنید، از `Object.keys()` / `Object.values()` / `Object.entries()` استفاده کنید.
 
     ```javascript
     const numbers = [1, 2, 3, 4, 5];
 
-    // bad
+    // بد
     let sum = 0;
     for (let num of numbers) {
       sum += num;
     }
     sum === 15;
 
-    // good
+    // خوب
     let sum = 0;
     numbers.forEach((num) => {
       sum += num;
     });
     sum === 15;
 
-    // best (use the functional force)
+    // بهترین (از نیروی تابعی استفاده کنید)
     const sum = numbers.reduce((total, num) => total + num, 0);
     sum === 15;
 
-    // bad
+    // بد
     const increasedByOne = [];
     for (let i = 0; i < numbers.length; i++) {
       increasedByOne.push(numbers[i] + 1);
     }
 
-    // good
+    // خوب
     const increasedByOne = [];
     numbers.forEach((num) => {
       increasedByOne.push(num + 1);
     });
 
-    // best (keeping it functional)
+    // بهترین (نگه داشتن حالت تابعی)
     const increasedByOne = numbers.map((num) => num + 1);
     ```
 
   <a name="generators--nope"></a><a name="11.2"></a>
-  - [11.2](#generators--nope) Don’t use generators for now.
+  - [11.2](#generators--nope) فعلاً از مولدها (Generators) استفاده نکنید.
 
-    > Why? They don’t transpile well to ES5.
+    > چرا؟ آن‌ها به خوبی به ES5 ترنسپایل نمی‌شوند.
 
   <a name="generators--spacing"></a>
-  - [11.3](#generators--spacing) If you must use generators, or if you disregard [our advice](#generators--nope), make sure their function signature is spaced properly. eslint: [`generator-star-spacing`](https://eslint.org/docs/rules/generator-star-spacing)
+  - [11.3](#generators--spacing) اگر مجبور به استفاده از مولدها هستید، یا اگر [توصیه ما](#generators--nope) را نادیده می‌گیرید، مطمئن شوید که امضای تابع آن‌ها به درستی فاصله‌گذاری شده است. eslint: [`generator-star-spacing`](https://eslint.org/docs/rules/generator-star-spacing)
 
-    > Why? `function` and `*` are part of the same conceptual keyword - `*` is not a modifier for `function`, `function*` is a unique construct, different from `function`.
+    > چرا؟ `function` و `*` بخشی از یک کلمه کلیدی مفهومی یکسان هستند - `*` یک اصلاح‌کننده برای `function` نیست، `function*` یک ساختار منحصر‌به‌فرد است که با `function` متفاوت است.
 
     ```javascript
-    // bad
+    // بد
     function * foo() {
       // ...
     }
 
-    // bad
+    // بد
     const bar = function * () {
       // ...
     };
 
-    // bad
+    // بد
     const baz = function *() {
       // ...
     };
 
-    // bad
+    // بد
     const quux = function*() {
       // ...
     };
 
-    // bad
+    // بد
     function*foo() {
       // ...
     }
 
-    // bad
+    // بد
     function *foo() {
       // ...
     }
 
-    // very bad
+    // خیلی بد
     function
     *
     foo() {
       // ...
     }
 
-    // very bad
+    // خیلی بد
     const wat = function
     *
     () {
       // ...
     };
 
-    // good
+    // خوب
     function* foo() {
       // ...
     }
 
-    // good
+    // خوب
     const foo = function* () {
       // ...
     };
@@ -1591,10 +1591,10 @@
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Properties
+## ویژگی ها (properties)
 
   <a name="properties--dot"></a><a name="12.1"></a>
-  - [12.1](#properties--dot) Use dot notation when accessing properties. eslint: [`dot-notation`](https://eslint.org/docs/rules/dot-notation)
+  - [12.1](#properties--dot) هنگام دسترسی به ویژگی‌ها از نمادگذاری نقطه‌ای (dot notation) استفاده کنید. eslint: [`dot-notation`](https://eslint.org/docs/rules/dot-notation)
 
     ```javascript
     const luke = {
@@ -1602,15 +1602,15 @@
       age: 28,
     };
 
-    // bad
+    // بد
     const isJedi = luke['jedi'];
 
-    // good
+    // خوب
     const isJedi = luke.jedi;
     ```
 
   <a name="properties--bracket"></a><a name="12.2"></a>
-  - [12.2](#properties--bracket) Use bracket notation `[]` when accessing properties with a variable.
+  - [12.2](#properties--bracket) هنگام دسترسی به ویژگی‌ها با استفاده از یک متغیر، از نمادگذاری براکتی `[]` استفاده کنید.
 
     ```javascript
     const luke = {
@@ -1626,73 +1626,73 @@
     ```
 
   <a name="es2016-properties--exponentiation-operator"></a>
-  - [12.3](#es2016-properties--exponentiation-operator) Use exponentiation operator `**` when calculating exponentiations. eslint: [`prefer-exponentiation-operator`](https://eslint.org/docs/rules/prefer-exponentiation-operator).
+  - [12.3](#es2016-properties--exponentiation-operator) هنگام محاسبه توان، از عملگر توان `**` استفاده کنید. eslint: [`prefer-exponentiation-operator`](https://eslint.org/docs/rules/prefer-exponentiation-operator).
 
     ```javascript
-    // bad
+    // بد
     const binary = Math.pow(2, 10);
 
-    // good
+    // خوب
     const binary = 2 ** 10;
     ```
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Variables
+## متغیر ها
 
   <a name="variables--const"></a><a name="13.1"></a>
-  - [13.1](#variables--const) Always use `const` or `let` to declare variables. Not doing so will result in global variables. We want to avoid polluting the global namespace. Captain Planet warned us of that. eslint: [`no-undef`](https://eslint.org/docs/rules/no-undef) [`prefer-const`](https://eslint.org/docs/rules/prefer-const)
+  - [13.1](#variables--const) همیشه برای اعلان متغیرها از `const` یا `let` استفاده کنید. عدم انجام این کار منجر به ایجاد متغیرهای سراسری (global) می‌شود. ما می‌خواهیم از آلوده کردن فضای نام سراسری جلوگیری کنیم. کاپیتان پلنت به ما در این باره هشدار داده بود. eslint: [`no-undef`](https://eslint.org/docs/rules/no-undef) [`prefer-const`](https://eslint.org/docs/rules/prefer-const)
 
     ```javascript
-    // bad
+    // بد
     superPower = new SuperPower();
 
-    // good
+    // خوب
     const superPower = new SuperPower();
     ```
 
   <a name="variables--one-const"></a><a name="13.2"></a>
-  - [13.2](#variables--one-const) Use one `const` or `let` declaration per variable or assignment. eslint: [`one-var`](https://eslint.org/docs/rules/one-var)
+  - [13.2](#variables--one-const) برای هر متغیر یا انتساب، از یک اعلان `const` یا `let` مجزا استفاده کنید. eslint: [`one-var`](https://eslint.org/docs/rules/one-var)
 
-    > Why? It’s easier to add new variable declarations this way, and you never have to worry about swapping out a `;` for a `,` or introducing punctuation-only diffs. You can also step through each declaration with the debugger, instead of jumping through all of them at once.
+    > چرا؟ این روش اضافه کردن اعلان‌های متغیر جدید را آسان‌تر می‌کند، و دیگر نیازی نیست نگران جایگزینی `;` با `,` یا ایجاد تفاوت ها (diff) فقط نقطه‌گذاری باشید. همچنین می‌توانید با دیباگر (debugger) هر اعلان را مرحله به مرحله پیش بروید، به جای اینکه همه را به یکباره رد شوید.
 
     ```javascript
-    // bad
+    // بد
     const items = getItems(),
         goSportsTeam = true,
         dragonball = 'z';
 
-    // bad
-    // (compare to above, and try to spot the mistake)
+    // بد
+    // (با بالا مقایسه کنید و سعی کنید اشتباه را پیدا کنید)
     const items = getItems(),
         goSportsTeam = true;
         dragonball = 'z';
 
-    // good
+    // خوب
     const items = getItems();
     const goSportsTeam = true;
     const dragonball = 'z';
     ```
 
   <a name="variables--const-let-group"></a><a name="13.3"></a>
-  - [13.3](#variables--const-let-group) Group all your `const`s and then group all your `let`s.
+  - [13.3](#variables--const-let-group) ابتدا همهٔ `const`های خود و سپس همهٔ `let`های خود را گروه‌بندی کنید.
 
-    > Why? This is helpful when later on you might need to assign a variable depending on one of the previously assigned variables.
+    > چرا؟ این کار زمانی مفید است که بعداً ممکن است نیاز داشته باشید متغیری را بر اساس یکی از متغیرهای از پیش اختصاص داده شده، مقداردهی کنید.
 
     ```javascript
-    // bad
+    // بد
     let i, len, dragonball,
         items = getItems(),
         goSportsTeam = true;
 
-    // bad
+    // بد
     let i;
     const items = getItems();
     let dragonball;
     const goSportsTeam = true;
     let len;
 
-    // good
+    // خوب
     const goSportsTeam = true;
     const items = getItems();
     let dragonball;
@@ -1701,12 +1701,12 @@
     ```
 
   <a name="variables--define-where-used"></a><a name="13.4"></a>
-  - [13.4](#variables--define-where-used) Assign variables where you need them, but place them in a reasonable place.
+  - [13.4](#variables--define-where-used) متغیرها را جایی مقداردهی کنید که به آن‌ها نیاز دارید، اما در یک مکان منطقی قرارشان دهید.
 
-    > Why? `let` and `const` are block scoped and not function scoped.
+    > چرا؟ `let` و `const` دامنه بلوکی دارند، نه دامنه تابعی.
 
     ```javascript
-    // bad - unnecessary function call
+    // بد - فراخوانی تابع غیرضروری
     function checkName(hasName) {
       const name = getName();
 
@@ -1722,7 +1722,7 @@
       return name;
     }
 
-    // good
+    // خوب
     function checkName(hasName) {
       if (hasName === 'test') {
         return false;
@@ -1740,45 +1740,45 @@
     ```
 
   <a name="variables--no-chain-assignment"></a><a name="13.5"></a>
-  - [13.5](#variables--no-chain-assignment) Don’t chain variable assignments. eslint: [`no-multi-assign`](https://eslint.org/docs/rules/no-multi-assign)
+  - [13.5](#variables--no-chain-assignment) انتساب متغیرها را زنجیره‌ای نکنید. eslint: [`no-multi-assign`](https://eslint.org/docs/rules/no-multi-assign)
 
-    > Why? Chaining variable assignments creates implicit global variables.
+    > چرا؟ انتساب زنجیره‌ای متغیرها، متغیرهای سراسری ضمنی ایجاد می‌کند.
 
     ```javascript
-    // bad
+    // بد
     (function example() {
-      // JavaScript interprets this as
+      // جاوااسکریپت این را به این شکل تفسیر می‌کند
       // let a = ( b = ( c = 1 ) );
-      // The let keyword only applies to variable a; variables b and c become
-      // global variables.
+      // کلمه کلیدی let فقط روی متغیر a اعمال می‌شود؛ متغیرهای b و c به
+      // متغیرهای سراسری تبدیل می‌شوند.
       let a = b = c = 1;
     }());
 
-    console.log(a); // throws ReferenceError
+    console.log(a); // خطای ReferenceError پرتاب می‌کند
     console.log(b); // 1
     console.log(c); // 1
 
-    // good
+    // خوب
     (function example() {
       let a = 1;
       let b = a;
       let c = a;
     }());
 
-    console.log(a); // throws ReferenceError
-    console.log(b); // throws ReferenceError
-    console.log(c); // throws ReferenceError
+    console.log(a); // خطای ReferenceError پرتاب می‌کند
+    console.log(b); // خطای ReferenceError پرتاب می‌کند
+    console.log(c); // خطای ReferenceError پرتاب می‌کند
 
-    // the same applies for `const`
+    // همین امر برای `const` نیز صدق می‌کند
     ```
 
   <a name="variables--unary-increment-decrement"></a><a name="13.6"></a>
-  - [13.6](#variables--unary-increment-decrement) Avoid using unary increments and decrements (`++`, `--`). eslint [`no-plusplus`](https://eslint.org/docs/rules/no-plusplus)
+  - [13.6](#variables--unary-increment-decrement) از افزایش و کاهش یگانه (`++`, `--`) اجتناب کنید. eslint [`no-plusplus`](https://eslint.org/docs/rules/no-plusplus)
 
-    > Why? Per the eslint documentation, unary increment and decrement statements are subject to automatic semicolon insertion and can cause silent errors with incrementing or decrementing values within an application. It is also more expressive to mutate your values with statements like `num += 1` instead of `num++` or `num ++`. Disallowing unary increment and decrement statements also prevents you from pre-incrementing/pre-decrementing values unintentionally which can also cause unexpected behavior in your programs.
+    > چرا؟ بر اساس مستندات eslint، دستورات افزایش و کاهش یگانه مستعد درج خودکار سمی‌کالن (automatic semicolon insertion) هستند و می‌توانند باعث خطاهای خاموش در افزایش یا کاهش مقادیر درون یک برنامه شوند. همچنین تغییر مقادیر با دستوراتی مانند `num += 1` به جای `num++` یا `num ++` گویاتر است. ممنوع کردن دستورات افزایش و کاهش یگانه همچنین شما را از افزایش/کاهش پیشین (pre-incrementing/pre-decrementing) مقادیر به صورت ناخواسته باز می‌دارد که می‌تواند باعث رفتارهای غیرمنتظره در برنامه‌های شما شود.
 
     ```javascript
-    // bad
+    // بد
 
     const array = [1, 2, 3];
     let num = 1;
@@ -1795,7 +1795,7 @@
       }
     }
 
-    // good
+    // خوب
 
     const array = [1, 2, 3];
     let num = 1;
@@ -1806,53 +1806,53 @@
     const truthyCount = array.filter(Boolean).length;
     ```
 
-<a name="variables--linebreak"></a>
-  - [13.7](#variables--linebreak) Avoid linebreaks before or after `=` in an assignment. If your assignment violates [`max-len`](https://eslint.org/docs/rules/max-len), surround the value in parens. eslint [`operator-linebreak`](https://eslint.org/docs/rules/operator-linebreak).
+  <a name="variables--linebreak"></a>
+  - [13.7](#variables--linebreak) از خط‌شکن (خط جدید) قبل یا بعد از `=` در یک انتساب اجتناب کنید. اگر انتساب شما [`max-len`](https://eslint.org/docs/rules/max-len) را نقض می‌کند، مقدار را داخل پرانتز قرار دهید. eslint [`operator-linebreak`](https://eslint.org/docs/rules/operator-linebreak).
 
-    > Why? Linebreaks surrounding `=` can obfuscate the value of an assignment.
+    > چرا؟ خط‌شکن‌های اطراف `=` می‌توانند مقدار یک انتساب را مبهم کنند.
 
     ```javascript
-    // bad
+    // بد
     const foo =
       superLongLongLongLongLongLongLongLongFunctionName();
 
-    // bad
+    // بد
     const foo
       = 'superLongLongLongLongLongLongLongLongString';
 
-    // good
+    // خوب
     const foo = (
       superLongLongLongLongLongLongLongLongFunctionName()
     );
 
-    // good
+    // خوب
     const foo = 'superLongLongLongLongLongLongLongLongString';
     ```
 
-<a name="variables--no-unused-vars"></a>
-  - [13.8](#variables--no-unused-vars) Disallow unused variables. eslint: [`no-unused-vars`](https://eslint.org/docs/rules/no-unused-vars)
+  <a name="variables--no-unused-vars"></a>
+  - [13.8](#variables--no-unused-vars) متغیرهای استفاده‌نشده را ممنوع کنید. eslint: [`no-unused-vars`](https://eslint.org/docs/rules/no-unused-vars)
 
-    > Why? Variables that are declared and not used anywhere in the code are most likely an error due to incomplete refactoring. Such variables take up space in the code and can lead to confusion by readers.
+    > چرا؟ متغیرهایی که اعلان می‌شوند و هیچ‌جایی در کد استفاده نمی‌شوند، احتمالاً به دلیل بازنویسی ناقص (refactoring) یک خطا هستند. چنین متغیرهایی فضا اشغال می‌کنند و می‌توانند باعث سردرگمی خوانندگان شوند.
 
     ```javascript
-    // bad
+    // بد
 
     const some_unused_var = 42;
 
-    // Write-only variables are not considered as used.
+    // متغیرهای فقط-نوشتنی (write-only) به عنوان استفاده‌شده در نظر گرفته نمی‌شوند.
     let y = 10;
     y = 5;
 
-    // A read for a modification of itself is not considered as used.
+    // خواندن برای اصلاح خودش، به عنوان استفاده‌شده در نظر گرفته نمی‌شود.
     let z = 0;
     z = z + 1;
 
-    // Unused function arguments.
+    // آرگومان‌های استفاده نشده تابع.
     function getX(x, y) {
         return x;
     }
 
-    // good
+    // خوب
 
     function getXPlusY(x, y) {
       return x + y;
@@ -1863,60 +1863,60 @@
 
     alert(getXPlusY(x, y));
 
-    // 'type' is ignored even if unused because it has a rest property sibling.
-    // This is a form of extracting an object that omits the specified keys.
+    // 'type' حتی اگر استفاده نشود نادیده گرفته می‌شود چون یک ویژگی خواهری (sibling) از نوع rest دارد.
+    // این شکلی از استخراج یک شئ است که کلیدهای مشخص شده را حذف می‌کند.
     const { type, ...coords } = data;
-    // 'coords' is now the 'data' object without its 'type' property.
+    // 'coords' اکنون شئ 'data' بدون ویژگی 'type' آن است.
     ```
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Hoisting
+## بالا آوردن (Hoisting)
 
   <a name="hoisting--about"></a><a name="14.1"></a>
-  - [14.1](#hoisting--about) `var` declarations get hoisted to the top of their closest enclosing function scope, their assignment does not. `const` and `let` declarations are blessed with a new concept called [Temporal Dead Zones (TDZ)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#temporal_dead_zone_tdz). It’s important to know why [typeof is no longer safe](https://web.archive.org/web/20200121061528/http://es-discourse.com/t/why-typeof-is-no-longer-safe/15).
+  - [14.1](#hoisting--about) اعلان‌های `var` به بالاترین حد دامنه تابعی احاطه‌کنندهٔ خود بالا آورده می‌شوند (hoisted)، اما انتساب آن‌ها بالا آورده نمی‌شود. اعلان‌های `const` و `let` دارای یک مفهوم جدید به نام [منطقه مرده زمانی (Temporal Dead Zones - TDZ)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#temporal_dead_zone_tdz) هستند. مهم است بدانید چرا [`typeof` دیگر امن نیست](https://web.archive.org/web/20200121061528/http://es-discourse.com/t/why-typeof-is-no-longer-safe/15).
 
     ```javascript
-    // we know this wouldn’t work (assuming there
-    // is no notDefined global variable)
+    // می‌دانیم که این کار نمی‌کند (با فرض اینکه
+    // متغیر سراسری notDefined وجود ندارد)
     function example() {
-      console.log(notDefined); // => throws a ReferenceError
+      console.log(notDefined); // => یک خطای ReferenceError پرتاب می‌کند
     }
 
-    // creating a variable declaration after you
-    // reference the variable will work due to
-    // variable hoisting. Note: the assignment
-    // value of `true` is not hoisted.
+    // ایجاد یک اعلان متغیر پس از اینکه
+    // به متغیر ارجاع داده‌اید، به دلیل بالا آوردن
+    // متغیر کار خواهد کرد. نکته: مقدار
+    // انتسابیِ `true` بالا آورده نمی‌شود.
     function example() {
       console.log(declaredButNotAssigned); // => undefined
       var declaredButNotAssigned = true;
     }
 
-    // the interpreter is hoisting the variable
-    // declaration to the top of the scope,
-    // which means our example could be rewritten as:
+    // مفسر اعلان متغیر را به بالای دامنه
+    // بالا می‌آورد، به این معنی که مثال ما
+    // می‌تواند به این شکل بازنویسی شود:
     function example() {
       let declaredButNotAssigned;
       console.log(declaredButNotAssigned); // => undefined
       declaredButNotAssigned = true;
     }
 
-    // using const and let
+    // استفاده از const و let
     function example() {
-      console.log(declaredButNotAssigned); // => throws a ReferenceError
-      console.log(typeof declaredButNotAssigned); // => throws a ReferenceError
+      console.log(declaredButNotAssigned); // => یک خطای ReferenceError پرتاب می‌کند
+      console.log(typeof declaredButNotAssigned); // => یک خطای ReferenceError پرتاب می‌کند
       const declaredButNotAssigned = true;
     }
     ```
 
   <a name="hoisting--anon-expressions"></a><a name="14.2"></a>
-  - [14.2](#hoisting--anon-expressions) Anonymous function expressions hoist their variable name, but not the function assignment.
+  - [14.2](#hoisting--anon-expressions) عبارات توابع ناشناس (Anonymous function expressions)، نام متغیر خود را بالا می‌آورند، اما انتساب تابع بالا آورده نمی‌شود.
 
     ```javascript
     function example() {
       console.log(anonymous); // => undefined
 
-      anonymous(); // => TypeError anonymous is not a function
+      anonymous(); // => TypeError: anonymous تابع نیست
 
       var anonymous = function () {
         console.log('anonymous function expression');
@@ -1925,27 +1925,27 @@
     ```
 
   <a name="hoisting--named-expresions"></a><a name="hoisting--named-expressions"></a><a name="14.3"></a>
-  - [14.3](#hoisting--named-expressions) Named function expressions hoist the variable name, not the function name or the function body.
+  - [14.3](#hoisting--named-expressions) عبارات توابع نام‌گذاری‌شده (Named function expressions)، نام متغیر را بالا می‌آورند، نه نام تابع یا بدنه تابع را.
 
     ```javascript
     function example() {
       console.log(named); // => undefined
 
-      named(); // => TypeError named is not a function
+      named(); // => TypeError: named تابع نیست
 
-      superPower(); // => ReferenceError superPower is not defined
+      superPower(); // => ReferenceError: superPower تعریف نشده است
 
       var named = function superPower() {
         console.log('Flying');
       };
     }
 
-    // the same is true when the function name
-    // is the same as the variable name.
+    // همین امر زمانی صادق است که نام تابع
+    // با نام متغیر یکسان باشد.
     function example() {
       console.log(named); // => undefined
 
-      named(); // => TypeError named is not a function
+      named(); // => TypeError: named تابع نیست
 
       var named = function named() {
         console.log('named');
@@ -1954,7 +1954,7 @@
     ```
 
   <a name="hoisting--declarations"></a><a name="14.4"></a>
-  - [14.4](#hoisting--declarations) Function declarations hoist their name and the function body.
+  - [14.4](#hoisting--declarations) اعلان توابع (Function declarations)، نام و بدنه تابع را بالا می‌آورند.
 
     ```javascript
     function example() {
@@ -1967,30 +1967,31 @@
     ```
 
   <a name="no-use-before-define"></a>
-  - [14.5](#no-use-before-define) Variables, classes, and functions should be defined before they can be used. eslint: [`no-use-before-define`](https://eslint.org/docs/latest/rules/no-use-before-define)
+  - [14.5](#no-use-before-define) متغیرها، کلاس‌ها و توابع باید قبل از استفاده شدن تعریف شوند. eslint: [`no-use-before-define`](https://eslint.org/docs/latest/rules/no-use-before-define)
 
-    > Why? When variables, classes, or functions are declared after being used, it can harm readability since a reader won't know what a thing that's referenced is. It's much clearer for a reader to first encounter the source of a thing (whether imported from another module, or defined in the file) before encountering a use of the thing.
+    > چرا؟ زمانی که متغیرها، کلاس‌ها یا توابع پس از استفاده شدن اعلان می‌شوند، می‌تواند به خوانایی آسیب برساند، زیرا خواننده نمی‌داند آن چیزی که به آن ارجاع داده شده چیست. برای یک خواننده بسیار واضح‌تر است که ابتدا با منبع یک چیز (چه وارد شده از ماژول دیگر، چه تعریف شده در فایل) مواجه شود و سپس با استفاده از آن چیز روبرو شود.
 
     ```javascript
-    // bad
+    // بد
 
-    // Variable a is being used before it is being defined.
-    console.log(a); // this will be undefined, since while the declaration is hoisted, the initialization is not
+    // متغیر a قبل از تعریف شدنش استفاده می‌شود.
+    console.log(a);
+    // این undefined خواهد بود، زیرا در حالی که اعلان بالا آورده می‌شود، مقداردهی اولیه (initialization) بالا آورده نمی‌شود
     var a = 10;
 
-    // Function fun is being called before being defined.
+    // تابع fun قبل از تعریف شدن فراخوانی می‌شود.
     fun();
     function fun() {}
 
-    // Class A is being used before being defined.
+    // کلاس A قبل از تعریف شدن استفاده می‌شود.
     new A(); // ReferenceError: Cannot access 'A' before initialization
     class A {
     }
 
-    // `let` and `const` are hoisted, but they don't have a default initialization.
-    // The variables 'a' and 'b' are in a Temporal Dead Zone where JavaScript
-    // knows they exist (declaration is hoisted) but they are not accessible
-    // (as they are not yet initialized).
+    // `let` و `const` بالا آورده می‌شوند، اما مقداردهی اولیه پیش‌فرض ندارند.
+    // متغیرهای 'a' و 'b' در یک منطقه مرده زمانی (Temporal Dead Zone) هستند
+    // که جاوااسکریپت می‌داند آن‌ها وجود دارند (اعلان بالا آورده شده است)
+    // اما قابل دسترسی نیستند (چون هنوز مقداردهی اولیه نشده‌اند).
 
     console.log(a); // ReferenceError: Cannot access 'a' before initialization
     console.log(b); // ReferenceError: Cannot access 'b' before initialization
@@ -1998,7 +1999,7 @@
     const b = 5;
 
 
-    // good
+    // خوب
 
     var a = 10;
     console.log(a); // 10
@@ -2016,7 +2017,7 @@
     console.log(b); // 5
     ```
 
-  - For more information refer to [JavaScript Scoping & Hoisting](https://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting/) by [Ben Cherry](https://www.adequatelygood.com/).
+  - برای اطلاعات بیشتر به [محدوده‌سازی و بالا آوردن در جاوااسکریپت (JavaScript Scoping & Hoisting)](https://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting/) اثر [بن چری (Ben Cherry)](https://www.adequatelygood.com/) مراجعه کنید.
 
 **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
