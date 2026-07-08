@@ -115,11 +115,11 @@
     > چرا؟ این کار باعث می‌شود نتوانید ارجاع‌های خود را دوباره انتساب دهید، و همین می‌تواند از ایجاد باگ‌ها و کدهایی که فهم آن‌ها دشوار است جلوگیری کند.
 
     ```javascript
-    // بد
+    // bad
     var a = 1;
     var b = 2;
 
-    // خوب
+    // good
     const a = 1;
     const b = 2;
     ```
@@ -130,7 +130,7 @@
     > چرا؟ `let` دامنهٔ بلوکی دارد، نه دامنهٔ تابعی مثل `var`.
 
     ```javascript
-    // بد
+    // bad
     var count = 1;
     if (true) {
       count += 1;
@@ -168,10 +168,10 @@
   - [3.1](#objects--no-new) برای ساخت شئ‌ها از ساختار دقیق (literal syntax) استفاده کنید. eslint: [`no-new-object`](https://eslint.org/docs/rules/no-new-object)
 
     ```javascript
-    // بد
+    // bad
     const item = new Object();
 
-    // خوب
+    // good
     const item = {};
     ```
 
@@ -205,7 +205,7 @@
   - [3.3](#es6-object-shorthand) از مخفف‌نویسی متدهای شئ (object method shorthand) استفاده کنید. eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand)
 
     ```javascript
-    // بد
+    // bad
     const atom = {
       value: 1,
 
@@ -214,7 +214,7 @@
       },
     };
 
-    // خوب
+    // good
     const atom = {
       value: 1,
 
@@ -279,14 +279,14 @@
     > چرا؟ به طور کلی، خواندن آن را راحت‌تر می‌دانیم. هایلایت کردن سینتکس را بهبود می‌بخشد و توسط بسیاری از موتورهای JS راحت‌تر بهینه‌سازی می‌شود.
 
     ```javascript
-    // بد
+    // bad
     const bad = {
       'foo': 3,
       'bar': 4,
       'data-blah': 5,
     };
 
-    // خوب
+    // good
     const good = {
       foo: 3,
       bar: 4,
@@ -300,23 +300,23 @@
     > چرا؟ این متدها ممکن است توسط ویژگی‌های روی شئ مورد نظر پنهان شوند (shadowed) - برای مثال `{ hasOwnProperty: false }` را در نظر بگیرید - و یا ممکن است شئ، یک شئ تهی (null object) باشد (`Object.create(null)`). در مرورگرهای مدرنی که از ES2022 پشتیبانی می‌کنند، یا با یک پُلی‌فیل مانند <https://npmjs.com/object.hasown>، می‌توان از `Object.hasOwn` به عنوان جایگزینی برای `Object.prototype.hasOwnProperty.call` استفاده کرد.
 
     ```javascript
-    // بد
+    // bad
     console.log(object.hasOwnProperty(key));
 
-    // خوب
+    // good
     console.log(Object.prototype.hasOwnProperty.call(object, key));
 
-    // بهتر
+    // better
     const has = Object.prototype.hasOwnProperty; // جستجو را یک بار، در دامنه ماژول کش کنید.
     console.log(has.call(object, key));
 
-    // بهترین
+    // best
     console.log(Object.hasOwn(object, key)); // فقط در مرورگرهایی که از ES2022 پشتیبانی می‌کنند، پشتیبانی می‌شود
 
-    /* یا */
+    /* or */
     import has from 'has'; // https://www.npmjs.com/package/has
     console.log(has(object, key));
-    /* یا */
+    /* or */
     console.log(Object.hasOwn(object, key)); // https://www.npmjs.com/package/object.hasown
     ```
 
@@ -324,16 +324,16 @@
   - [3.8](#objects--rest-spread) برای کپی سطحی (shallow-copy) کردن شئ‌ها، به جای [`Object.assign`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) از سینتکس spread شئ‌ها استفاده کنید. برای به دست آوردن یک شئ جدید با حذف شدن برخی ویژگی‌ها، از سینتکس پارامتر rest شئ‌ها استفاده کنید. eslint: [`prefer-object-spread`](https://eslint.org/docs/rules/prefer-object-spread)
 
     ```javascript
-    // خیلی بد
+    // very bad
     const original = { a: 1, b: 2 };
     const copy = Object.assign(original, { c: 3 }); // این کار `original` را تغییر می‌دهد ಠ_ಠ
     delete copy.a; // این هم همینطور
 
-    // بد
+    // bad
     const original = { a: 1, b: 2 };
     const copy = Object.assign({}, original, { c: 3 }); // copy => { a: 1, b: 2, c: 3 }
 
-    // خوب
+    // good
     const original = { a: 1, b: 2 };
     const copy = { ...original, c: 3 }; // copy => { a: 1, b: 2, c: 3 }
 
@@ -348,10 +348,10 @@
   - [4.1](#arrays--literals) برای ساخت آرایه‌ها از ساختار دقیق (literal syntax) استفاده کنید. eslint: [`no-array-constructor`](https://eslint.org/docs/rules/no-array-constructor)
 
     ```javascript
-    // بد
+    // bad
     const items = new Array();
 
-    // خوب
+    // good
     const items = [];
     ```
 
@@ -372,7 +372,7 @@
   - [4.3](#es6-array-spreads) برای کپی کردن آرایه‌ها از عملگر spread یعنی `...` استفاده کنید.
 
     ```javascript
-    // بد
+    // bad
     const len = items.length;
     const itemsCopy = [];
     let i;
@@ -381,7 +381,7 @@
       itemsCopy[i] = items[i];
     }
 
-    // خوب
+    // good
     const itemsCopy = [...items];
     ```
 
@@ -416,10 +416,10 @@
   - [4.6](#arrays--mapping) برای نگاشت (map) روی اشیاء قابل پیمایش (iterable)، به جای spread یعنی `...` از [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) استفاده کنید، زیرا از ایجاد یک آرایه واسطه جلوگیری می‌کند.
 
     ```javascript
-    // بد
+    // bad
     const baz = [...foo].map(bar);
 
-    // خوب
+    // good
     const baz = Array.from(foo, bar);
     ```
 
@@ -427,7 +427,7 @@
   - [4.7](#arrays--callback-return) در توابع کال‌بک (callback) متدهای آرایه، از دستور `return` استفاده کنید. اگر بدنهٔ تابع از یک دستور واحد تشکیل شده باشد که یک عبارت بدون اثرات جانبی را برمی‌گرداند، طبق قانون [8.2](#arrows--implicit-return) حذف کردن `return` مشکلی ندارد. eslint: [`array-callback-return`](https://eslint.org/docs/rules/array-callback-return)
 
     ```javascript
-    // خوب
+    // good - خوب
     [1, 2, 3].map((x) => {
       const y = x + 1;
       return x * y;
@@ -472,7 +472,7 @@
   - [4.8](#arrays--bracket-newline) اگر یک آرایه در چند خط قرار دارد، بعد از براکت بازکننده و قبل از براکت بسته‌کنندهٔ آرایه، خط‌شکن (خط جدید) قرار دهید.
 
     ```javascript
-    // بد
+    // bad
     const arr = [
       [0, 1], [2, 3], [4, 5],
     ];
@@ -487,7 +487,7 @@
       1, 2,
     ];
 
-    // خوب
+    // good
     const arr = [[0, 1], [2, 3], [4, 5]];
 
     const objectInArray = [
@@ -515,7 +515,7 @@
     > چرا؟ ساختارزدایی شما را از ایجاد ارجاعات موقت برای آن ویژگی‌ها و از دسترسی تکراری به شئ بی‌نیاز می‌کند. دسترسی تکراری به شئ باعث ایجاد کدهای تکراری‌تر می‌شود، نیاز به خواندن بیشتری دارد و فرصت‌های بیشتری برای ایجاد اشتباه فراهم می‌کند. علاوه بر این، ساختارزدایی شئ‌ها یک مکان واحد برای تعریف ساختار شئ فراهم می‌کند که در آن بلوک استفاده می‌شود، به جای اینکه نیاز باشد کل بلوک را بخوانید تا بفهمید چه چیزهایی استفاده شده است.
 
     ```javascript
-    // بد
+    // bad
     function getFullName(user) {
       const firstName = user.firstName;
       const lastName = user.lastName;
@@ -523,13 +523,13 @@
       return `${firstName} ${lastName}`;
     }
 
-    // خوب
+    // good
     function getFullName(user) {
       const { firstName, lastName } = user;
       return `${firstName} ${lastName}`;
     }
 
-    // بهترین
+    // best
     function getFullName({ firstName, lastName }) {
       return `${firstName} ${lastName}`;
     }
@@ -555,7 +555,7 @@
     > چرا؟ می‌توانید به مرور زمان ویژگی‌های جدیدی اضافه کنید یا ترتیب چیزها را تغییر دهید بدون اینکه جایگاه‌های فراخوانی (call sites) خراب شوند.
 
     ```javascript
-    // بد
+    // bad - بد
     function processInput(input) {
       // سپس یک معجزه رخ می‌دهد
       return [left, right, top, bottom];
@@ -582,7 +582,7 @@
   - [6.1](#strings--quotes) برای رشته‌ها از کوتیشن تکی `''` استفاده کنید. eslint: [`quotes`](https://eslint.org/docs/rules/quotes)
 
     ```javascript
-    // بد
+    // bad - بد
     const name = "Capt. Janeway";
 
     // بد - رشته‌های قالبی (template literals) باید شامل درج متغیر (interpolation) یا خطوط جدید باشند
@@ -598,18 +598,18 @@
     > چرا؟ کار با رشته‌های شکسته (چند خطی شده با الحاق) دردناک است و کد را کمتر قابل جستجو می‌کند.
 
     ```javascript
-    // بد
+    // bad
     const errorMessage = 'This is a super long error that was thrown because \
     of Batman. When you stop to think about how Batman had anything to do \
     with this, you would get nowhere \
     fast.';
 
-    // بد
+    // bad
     const errorMessage = 'This is a super long error that was thrown because ' +
       'of Batman. When you stop to think about how Batman had anything to do ' +
       'with this, you would get nowhere fast.';
 
-    // خوب
+    // good
     const errorMessage = 'This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.';
     ```
 
@@ -619,22 +619,22 @@
     > چرا؟ رشته‌های قالبی سینتکسی خوانا و مختصر با قابلیت‌های خطوط جدید مناسب و درج متغیر به شما می‌دهند.
 
     ```javascript
-    // بد
+    // bad
     function sayHi(name) {
       return 'How are you, ' + name + '?';
     }
 
-    // بد
+    // bad
     function sayHi(name) {
       return ['How are you, ', name, '?'].join();
     }
 
-    // بد
+    // bad
     function sayHi(name) {
       return `How are you, ${ name }?`;
     }
 
-    // خوب
+    // good
     function sayHi(name) {
       return `How are you, ${name}?`;
     }
@@ -649,10 +649,10 @@
     > چرا؟ بک‌اسلش‌ها خوانایی را کاهش می‌دهند، بنابراین باید تنها در صورت نیاز، وجود داشته باشند.
 
     ```javascript
-    // بد
+    // bad
     const foo = '\'this\' \i\s \"quoted\"';
 
-    // خوب
+    // good
     const foo = '\'this\' is "quoted"';
     const foo = `my name is '${name}'`;
     ```
@@ -667,7 +667,7 @@
     > چرا؟ اعلان توابع بالا آورده می‌شوند (hoisted)، به این معنی که ارجاع به تابع قبل از تعریف آن در فایل، بسیار آسان است - بیش از حد آسان. این کار به خوانایی و قابلیت نگهداری آسیب می‌زند. اگر متوجه شدید که تعریف یک تابع به قدری بزرگ یا پیچیده است که در درک بقیه فایل اختلال ایجاد می‌کند، شاید زمان آن رسیده که آن را در ماژول جداگانه‌ای استخراج کنید! فراموش نکنید که نام عبارت را صریحاً مشخص کنید، صرف نظر از اینکه آیا نام از متغیر نگهدارنده‌اش استخراج می‌شود یا خیر (که اغلب در مرورگرهای مدرن یا هنگام استفاده از کامپایلرهایی مانند Babel اینطور است). این کار هرگونه فرضیاتی را که درباره پشته فراخوانی (call stack) خطا (Error) وجود دارد، از بین می‌برد. ([بحث](https://github.com/airbnb/javascript/issues/794))
 
     ```javascript
-    // بد
+    // bad - بد
     function foo() {
       // ...
     }
@@ -690,7 +690,7 @@
     > چرا؟ یک عبارت تابع بلافاصله فراخوانی‌شده یک واحد واحد است - قرار دادن هم خود آن و هم پرانتزهای فراخوانی‌اش داخل یک پرانتز، این موضوع را به وضوح نشان می‌دهد. توجه داشته باشید که در دنیایی که همه‌جا ماژول وجود دارد، تقریباً هرگز به IIFE نیاز ندارید.
 
     ```javascript
-    // عبارت تابع بلافاصله فراخوانی‌شده (IIFE)
+    // IIFE - عبارت تابع بلافاصله فراخوانی‌شده
     (function () {
       console.log('Welcome to the Internet. Please follow me.');
     }());
@@ -703,14 +703,14 @@
   - [7.4](#functions--note-on-blocks) **نکته:** ECMA-262 یک بلوک را به عنوان فهرستی از دستورات (statements) تعریف می‌کند. اعلان تابع (function declaration) یک دستور نیست.
 
     ```javascript
-    // بد
+    // bad
     if (currentUser) {
       function test() {
         console.log('Nope.');
       }
     }
 
-    // خوب
+    // good
     let test;
     if (currentUser) {
       test = () => {
@@ -723,12 +723,12 @@
   - [7.5](#functions--arguments-shadow) هرگز یک پارامتر را `arguments` نام‌گذاری نکنید. این کار بر شئ `arguments` که به هر دامنه تابعی داده می‌شود، اولویت پیدا می‌کند.
 
     ```javascript
-    // بد
+    // bad
     function foo(name, options, arguments) {
       // ...
     }
 
-    // خوب
+    // good
     function foo(name, options, args) {
       // ...
     }
@@ -740,13 +740,13 @@
     > چرا؟ `...` صریحاً مشخص می‌کند که کدام آرگومان‌ها را می‌خواهید استخراج کنید. علاوه بر این، آرگومان‌های rest یک آرایه واقعی هستند، نه فقط شبیه به آرایه (مانند `arguments`).
 
     ```javascript
-    // بد
+    // bad
     function concatenateAll() {
       const args = Array.prototype.slice.call(arguments);
       return args.join('');
     }
 
-    // خوب
+    // good
     function concatenateAll(...args) {
       return args.join('');
     }
@@ -756,7 +756,7 @@
   - [7.7](#es6-default-parameters) به جای تغییر آرگومان‌های تابع، از سینتکس پارامترهای پیش‌فرض استفاده کنید.
 
     ```javascript
-    // خیلی بد
+    // very bad - خیلی بد
     function handleThings(opts) {
       // خیر! ما نباید آرگومان‌های تابع را تغییر دهیم.
       // دو برابر بد: اگر opts falsy باشد، روی یک شئ تنظیم می‌شود که شاید
@@ -800,12 +800,12 @@
   - [7.9](#functions--defaults-last) همیشه پارامترهای پیش‌فرض را در آخر قرار دهید. eslint: [`default-param-last`](https://eslint.org/docs/rules/default-param-last)
 
     ```javascript
-    // بد
+    // bad
     function handleThings(opts = {}, name) {
       // ...
     }
 
-    // خوب
+    // good
     function handleThings(name, opts = {}) {
       // ...
     }
@@ -817,10 +817,10 @@
     > چرا؟ ایجاد تابع به این روش، رشته‌ای را به شکلی مشابه `eval()` ارزیابی می‌کند که باعث ایجاد آسیب‌پذیری می‌شود.
 
     ```javascript
-    // بد
+    // bad
     const add = new Function('a', 'b', 'return a + b');
 
-    // هنوز هم بد
+    // still bad - هنوز هم بد
     const subtract = Function('a', 'b', 'return a - b');
     ```
 
@@ -830,12 +830,12 @@
     > چرا؟ یکپارچگی خوب است و شما نباید هنگام اضافه یا حذف کردن یک نام، مجبور به اضافه یا حذف کردن فاصله باشید.
 
     ```javascript
-    // بد
+    // bad
     const f = function(){};
     const g = function (){};
     const h = function() {};
 
-    // خوب
+    // good
     const x = function () {};
     const y = function a() {};
     ```
@@ -846,12 +846,12 @@
     > چرا؟ دستکاری اشیایی که به عنوان پارامتر پاس داده شده‌اند، می‌تواند باعث ایجاد اثرات جانبی ناخواسته متغیر در فراخواننده اصلی شود.
 
     ```javascript
-    // بد
+    // bad
     function f1(obj) {
       obj.key = 1;
     }
 
-    // خوب
+    // good
     function f2(obj) {
       const key = Object.prototype.hasOwnProperty.call(obj, 'key') ? obj.key : 1;
     }
@@ -863,7 +863,7 @@
     > چرا؟ انتساب مجدد پارامترها می‌تواند منجر به رفتارهای غیرمنتظره شود، به ویژه هنگام دسترسی به شئ `arguments`. همچنین می‌تواند مشکلاتی در بهینه‌سازی ایجاد کند، به خصوص در V8.
 
     ```javascript
-    // بد
+    // bad
     function f1(a) {
       a = 1;
       // ...
@@ -874,7 +874,7 @@
       // ...
     }
 
-    // خوب
+    // good
     function f3(a) {
       const b = a || 1;
       // ...
@@ -891,18 +891,18 @@
     > چرا؟ تمیزتر است، نیازی به ارائه یک context ندارید، و نمی‌توانید به راحتی `new` را با `apply` ترکیب کنید.
 
     ```javascript
-    // بد
+    // bad
     const x = [1, 2, 3, 4, 5];
     console.log.apply(console, x);
 
-    // خوب
+    // good
     const x = [1, 2, 3, 4, 5];
     console.log(...x);
 
-    // بد
+    // bad
     new (Function.prototype.bind.apply(Date, [null, 2016, 8, 5]));
 
-    // خوب
+    // good
     new Date(...[2016, 8, 5]);
     ```
 
@@ -910,14 +910,14 @@
   - [7.15](#functions--signature-invocation-indentation) توابعی که امضا (signature) یا فراخوانی (invocation) چند خطی دارند، باید دقیقاً مانند هر فهرست چند خطی دیگری در این راهنما تورفتگی (indent) داشته باشند: با قرار گرفتن هر آیتم در یک خط مجزا، همراه با یک ویرگول انتهایی (trailing comma) در آخرین آیتم. eslint: [`function-paren-newline`](https://eslint.org/docs/rules/function-paren-newline)
 
     ```javascript
-    // بد
+    // bad
     function foo(bar,
                  baz,
                  quux) {
       // ...
     }
 
-    // خوب
+    // good
     function foo(
       bar,
       baz,
@@ -926,12 +926,12 @@
       // ...
     }
 
-    // بد
+    // bad
     console.log(foo,
       bar,
       baz);
 
-    // خوب
+    // good
     console.log(
       foo,
       bar,
@@ -951,13 +951,13 @@
     > چرا نه؟ اگر تابع نسبتاً پیچیده‌ای دارید، ممکن است بخواهید آن منطق را به یک عبارت تابعِ نام‌گذاری‌شده و جداگانه منتقل کنید.
 
     ```javascript
-    // بد
+    // bad
     [1, 2, 3].map(function (x) {
       const y = x + 1;
       return x * y;
     });
 
-    // خوب
+    // good
     [1, 2, 3].map((x) => {
       const y = x + 1;
       return x * y;
@@ -970,7 +970,7 @@
     > چرا؟ راه را هموار کردن (Syntactic sugar). هنگامی که چند تابع به هم زنجیر می‌شوند، خوانایی خوبی دارد.
 
     ```javascript
-    // بد
+    // bad - بد
     [1, 2, 3].map((number) => {
       const nextNumber = number + 1;
       `A string containing the ${nextNumber}.`;
@@ -1015,14 +1015,14 @@
     > چرا؟ به وضوح نشان می‌دهد که تابع از کجا شروع و به کجا ختم می‌شود.
 
     ```javascript
-    // بد
+    // bad
     ['get', 'post', 'put'].map((httpMethod) => Object.prototype.hasOwnProperty.call(
         httpMagicObjectWithAVeryLongName,
         httpMethod,
       )
     );
 
-    // خوب
+    // good
     ['get', 'post', 'put'].map((httpMethod) => (
       Object.prototype.hasOwnProperty.call(
         httpMagicObjectWithAVeryLongName,
@@ -1037,29 +1037,29 @@
     > چرا؟ تفاوت ها (diff) هنگام اضافه یا حذف آرگومان‌ها را به حداقل می‌رساند.
 
     ```javascript
-    // بد
+    // bad
     [1, 2, 3].map(x => x * x);
 
-    // خوب
+    // good
     [1, 2, 3].map((x) => x * x);
 
-    // بد
+    // bad
     [1, 2, 3].map(number => (
       `A long string with the ${number}. It’s so long that we don’t want it to take up space on the .map line!`
     ));
 
-    // خوب
+    // good
     [1, 2, 3].map((number) => (
       `A long string with the ${number}. It’s so long that we don’t want it to take up space on the .map line!`
     ));
 
-    // بد
+    // bad
     [1, 2, 3].map(x => {
       const y = x + 1;
       return x * y;
     });
 
-    // خوب
+    // good
     [1, 2, 3].map((x) => {
       const y = x + 1;
       return x * y;
@@ -1070,16 +1070,16 @@
   - [8.5](#arrows--confusing) از اشتباه گرفتن سینتکس تابع پیکانی (`=>`) با عملگرهای مقایسه‌ای (`<=`، `>=`) اجتناب کنید. eslint: [`no-confusing-arrow`](https://eslint.org/docs/rules/no-confusing-arrow)
 
     ```javascript
-    // بد
+    // bad
     const itemHeight = (item) => item.height <= 256 ? item.largeSize : item.smallSize;
 
-    // بد
+    // bad
     const itemHeight = (item) => item.height >= 256 ? item.largeSize : item.smallSize;
 
-    // خوب
+    // good
     const itemHeight = (item) => (item.height <= 256 ? item.largeSize : item.smallSize);
 
-    // خوب
+    // good
     const itemHeight = (item) => {
       const { height, largeSize, smallSize } = item;
       return height <= 256 ? largeSize : smallSize;
@@ -1090,14 +1090,14 @@
   - [8.6](#whitespace--implicit-arrow-linebreak) مکان بدنهٔ توابع پیکانی که دارای بازگشت ضمنی هستند را یکسان نگه دارید. eslint: [`implicit-arrow-linebreak`](https://eslint.org/docs/rules/implicit-arrow-linebreak)
 
     ```javascript
-    // بد
+    // bad
     (foo) =>
       bar;
 
     (foo) =>
       (bar);
 
-    // خوب
+    // good
     (foo) => bar;
     (foo) => (bar);
     (foo) => (
@@ -1115,7 +1115,7 @@
     > چرا؟ سینتکس `class` مختصرتر است و استدلال در مورد آن آسان‌تر است.
 
     ```javascript
-    // بد
+    // bad
     function Queue(contents = []) {
       this.queue = [...contents];
     }
@@ -1125,7 +1125,7 @@
       return value;
     };
 
-    // خوب
+    // good
     class Queue {
       constructor(contents = []) {
         this.queue = [...contents];
@@ -1144,7 +1144,7 @@
     > چرا؟ این یک روش توکار (built-in) برای به ارث بردن قابلیت‌های prototype است بدون اینکه `instanceof` را خراب کند.
 
     ```javascript
-    // بد
+    // bad
     const inherits = require('inherits');
     function PeekableQueue(contents) {
       Queue.apply(this, contents);
@@ -1154,7 +1154,7 @@
       return this.queue[0];
     };
 
-    // خوب
+    // good
     class PeekableQueue extends Queue {
       peek() {
         return this.queue[0];
@@ -1166,7 +1166,7 @@
   - [9.3](#constructors--chaining) متدها می‌توانند `this` را برگردانند تا به زنجیره‌سازی متدها (method chaining) کمک کنند.
 
     ```javascript
-    // بد
+    // bad
     Jedi.prototype.jump = function () {
       this.jumping = true;
       return true;
@@ -1180,7 +1180,7 @@
     luke.jump(); // => true
     luke.setHeight(20); // => undefined
 
-    // خوب
+    // good
     class Jedi {
       jump() {
         this.jumping = true;
@@ -1222,7 +1222,7 @@
   - [9.5](#constructors--no-useless) کلاس‌ها در صورت عدم مشخص شدن، یک سازنده (constructor) پیش‌فرض دارند. یک تابع سازنده خالی یا سازنده‌ای که فقط کارها را به کلاس والد واگذار می‌کند، غیرضروری است. eslint: [`no-useless-constructor`](https://eslint.org/docs/rules/no-useless-constructor)
 
     ```javascript
-    // بد
+    // bad
     class Jedi {
       constructor() {}
 
@@ -1231,14 +1231,14 @@
       }
     }
 
-    // بد
+    // bad
     class Rey extends Jedi {
       constructor(...args) {
         super(...args);
       }
     }
 
-    // خوب
+    // good
     class Rey extends Jedi {
       constructor(...args) {
         super(...args);
@@ -1253,18 +1253,18 @@
     > چرا؟ اعلان اعضای تکراری کلاس، بی سر و صدا، آخرین مورد را ترجیح می‌دهد - داشتن موارد تکراری تقریباً قطعا یک باگ است.
 
     ```javascript
-    // بد
+    // bad
     class Foo {
       bar() { return 1; }
       bar() { return 2; }
     }
 
-    // خوب
+    // good
     class Foo {
       bar() { return 1; }
     }
 
-    // خوب
+    // good
     class Foo {
       bar() { return 2; }
     }
@@ -1274,7 +1274,7 @@
   - [9.7](#classes--methods-use-this) متدهای کلاس باید از `this` استفاده کنند یا به یک متد استاتیک (static) تبدیل شوند، مگر اینکه یک کتابخانه یا فریم‌ورک خارجی، استفاده از متدهای خاصِ غیراستاتیک را ایجاب کند. بودنِ یک متدِ نمونه (instance method) باید نشان‌دهنده این باشد که رفتار آن بر اساس ویژگی‌های گیرنده (receiver) متفاوت است. eslint: [`class-methods-use-this`](https://eslint.org/docs/rules/class-methods-use-this)
 
     ```javascript
-    // بد
+    // bad - بد
     class Foo {
       bar() {
         console.log('bar');
@@ -1313,7 +1313,7 @@
     > چرا؟ ماژول‌ها آینده هستند، بیایید از همین الان از آینده استفاده کنیم.
 
     ```javascript
-    // بد
+    // bad - بد
     const AirbnbStyleGuide = require('./AirbnbStyleGuide');
     module.exports = AirbnbStyleGuide.es6;
 
@@ -1332,10 +1332,10 @@
     > چرا؟ این کار تضمین می‌کند که شما یک خروجی پیش‌فرض (default export) واحد داشته باشید.
 
     ```javascript
-    // بد
+    // bad
     import * as AirbnbStyleGuide from './AirbnbStyleGuide';
 
-    // خوب
+    // good
     import AirbnbStyleGuide from './AirbnbStyleGuide';
     ```
 
@@ -1345,11 +1345,11 @@
     > چرا؟ هرچند نوشتن آن در یک خط مختصر است، اما داشتن یک راه مشخص برای وارد کردن و یک راه مشخص برای صادر کردن، باعث یکپارچگی می‌شود.
 
     ```javascript
-    // بد
+    // bad
     // filename es6.js
     export { es6 as default } from './AirbnbStyleGuide';
 
-    // خوب
+    // good
     // filename es6.js
     import { es6 } from './AirbnbStyleGuide';
     export default es6;
@@ -1361,15 +1361,15 @@
     > چرا؟ داشتن چندین خط که از یک مسیر یکسان وارد می‌کنند، می‌تواند حفظ و نگهداری کد را سخت‌تر کند.
 
     ```javascript
-    // بد
+    // bad
     import foo from 'foo';
     // … some other imports … //
     import { named1, named2 } from 'foo';
 
-    // خوب
+    // good
     import foo, { named1, named2 } from 'foo';
 
-    // خوب
+    // good
     import foo, {
       named1,
       named2,
@@ -1382,11 +1382,11 @@
     > چرا؟ به طور کلی باید از تغییر (mutation) اجتناب کرد، اما به ویژه هنگام صادر کردن اتصالات قابل تغییر. در حالی که این تکنیک ممکن است برای برخی موارد خاص نیاز باشد، به طور کلی فقط باید ارجاعات ثابت (const) صادر شوند.
 
     ```javascript
-    // بد
+    // bad
     let foo = 3;
     export { foo };
 
-    // خوب
+    // good
     const foo = 3;
     export { foo };
     ```
@@ -1397,10 +1397,10 @@
     > چرا؟ برای تشویق فایل‌های بیشتری که فقط یک چیز را صادر می‌کنند، که برای خوانایی و قابلیت نگهداری بهتر است.
 
     ```javascript
-    // بد
+    // bad
     export function foo() {}
 
-    // خوب
+    // good
     export default function foo() {}
     ```
 
@@ -1410,13 +1410,13 @@
     > چرا؟ از آنجایی که `import`ها بالا آورده می‌شوند (hoisted)، نگه داشتن همه آن‌ها در بالا از رفتارهای غیرمنتظره جلوگیری می‌کند.
 
     ```javascript
-    // بد
+    // bad
     import foo from 'foo';
     foo.init();
 
     import bar from 'bar';
 
-    // خوب
+    // good
     import foo from 'foo';
     import bar from 'bar';
 
@@ -1430,10 +1430,10 @@
     > چرا؟ آکولادها از همان قوانین فاصله گذاری پیروی می‌کنند که هر بلوک آکولاد دیگری در این راهنما دارد، و ویرگول‌های انتهایی (trailing commas) نیز همینطور.
 
     ```javascript
-    // بد
+    // bad
     import {longNameA, longNameB, longNameC, longNameD, longNameE} from 'path';
 
-    // خوب
+    // good
     import {
       longNameA,
       longNameB,
@@ -1449,11 +1449,11 @@
     > چرا؟ از آنجایی که استفاده از سینتکس Webpack در واردات، کد را به یک باندلر ماژول وابسته می‌کند. استفاده از سینتکس لودر در `webpack.config.js` ترجیح داده می‌شود.
 
     ```javascript
-    // بد
+    // bad
     import fooSass from 'css!sass!foo.scss';
     import barCss from 'style!css!bar.css';
 
-    // خوب
+    // good
     import fooSass from 'foo.scss';
     import barCss from 'bar.css';
     ```
@@ -1464,12 +1464,12 @@
     > چرا؟ لحاظ کردن پسوندها، بازنویسی کد (refactoring) را محدود می‌کند و جزئیات پیاده‌سازی ماژولی که در حال وارد کردن آن هستید را به صورت نامناسبی در هر مصرف‌کننده، هاردکد (سخت‌کد) می‌کند.
 
     ```javascript
-    // بد
+    // bad
     import foo from './foo.js';
     import bar from './bar.jsx';
     import baz from './baz/index.jsx';
 
-    // خوب
+    // good
     import foo from './foo';
     import bar from './bar';
     import baz from './baz';
@@ -1534,7 +1534,7 @@
     > چرا؟ `function` و `*` بخشی از یک کلمه کلیدی مفهومی یکسان هستند - `*` یک اصلاح‌کننده برای `function` نیست، `function*` یک ساختار منحصر‌به‌فرد است که با `function` متفاوت است.
 
     ```javascript
-    // بد
+    // bad - بد
     function * foo() {
       // ...
     }
@@ -1629,10 +1629,10 @@
   - [12.3](#es2016-properties--exponentiation-operator) هنگام محاسبه توان، از عملگر توان `**` استفاده کنید. eslint: [`prefer-exponentiation-operator`](https://eslint.org/docs/rules/prefer-exponentiation-operator).
 
     ```javascript
-    // بد
+    // bad
     const binary = Math.pow(2, 10);
 
-    // خوب
+    // good
     const binary = 2 ** 10;
     ```
 
@@ -1644,10 +1644,10 @@
   - [13.1](#variables--const) همیشه برای اعلان متغیرها از `const` یا `let` استفاده کنید. عدم انجام این کار منجر به ایجاد متغیرهای سراسری (global) می‌شود. ما می‌خواهیم از آلوده کردن فضای نام سراسری جلوگیری کنیم. کاپیتان پلنت به ما در این باره هشدار داده بود. eslint: [`no-undef`](https://eslint.org/docs/rules/no-undef) [`prefer-const`](https://eslint.org/docs/rules/prefer-const)
 
     ```javascript
-    // بد
+    // bad
     superPower = new SuperPower();
 
-    // خوب
+    // good
     const superPower = new SuperPower();
     ```
 
@@ -1657,7 +1657,7 @@
     > چرا؟ این روش اضافه کردن اعلان‌های متغیر جدید را آسان‌تر می‌کند، و دیگر نیازی نیست نگران جایگزینی `;` با `,` یا ایجاد تفاوت ها (diff) فقط نقطه‌گذاری باشید. همچنین می‌توانید با دیباگر (debugger) هر اعلان را مرحله به مرحله پیش بروید، به جای اینکه همه را به یکباره رد شوید.
 
     ```javascript
-    // بد
+    // bad - بد
     const items = getItems(),
         goSportsTeam = true,
         dragonball = 'z';
@@ -1680,19 +1680,19 @@
     > چرا؟ این کار زمانی مفید است که بعداً ممکن است نیاز داشته باشید متغیری را بر اساس یکی از متغیرهای از پیش اختصاص داده شده، مقداردهی کنید.
 
     ```javascript
-    // بد
+    // bad
     let i, len, dragonball,
         items = getItems(),
         goSportsTeam = true;
 
-    // بد
+    // bad
     let i;
     const items = getItems();
     let dragonball;
     const goSportsTeam = true;
     let len;
 
-    // خوب
+    // good
     const goSportsTeam = true;
     const items = getItems();
     let dragonball;
@@ -1706,7 +1706,7 @@
     > چرا؟ `let` و `const` دامنه بلوکی دارند، نه دامنه تابعی.
 
     ```javascript
-    // بد - فراخوانی تابع غیرضروری
+    // bad - بد - فراخوانی تابع غیرضروری
     function checkName(hasName) {
       const name = getName();
 
@@ -1745,7 +1745,7 @@
     > چرا؟ انتساب زنجیره‌ای متغیرها، متغیرهای سراسری ضمنی ایجاد می‌کند.
 
     ```javascript
-    // بد
+    // bad - بد
     (function example() {
       // جاوااسکریپت این را به این شکل تفسیر می‌کند
       // let a = ( b = ( c = 1 ) );
@@ -1778,7 +1778,7 @@
     > چرا؟ بر اساس مستندات eslint، دستورات افزایش و کاهش یگانه مستعد درج خودکار سمی‌کالن (automatic semicolon insertion) هستند و می‌توانند باعث خطاهای خاموش در افزایش یا کاهش مقادیر درون یک برنامه شوند. همچنین تغییر مقادیر با دستوراتی مانند `num += 1` به جای `num++` یا `num ++` گویاتر است. ممنوع کردن دستورات افزایش و کاهش یگانه همچنین شما را از افزایش/کاهش پیشین (pre-incrementing/pre-decrementing) مقادیر به صورت ناخواسته باز می‌دارد که می‌تواند باعث رفتارهای غیرمنتظره در برنامه‌های شما شود.
 
     ```javascript
-    // بد
+    // bad
 
     const array = [1, 2, 3];
     let num = 1;
@@ -1795,7 +1795,7 @@
       }
     }
 
-    // خوب
+    // good
 
     const array = [1, 2, 3];
     let num = 1;
@@ -1812,20 +1812,20 @@
     > چرا؟ خط‌شکن‌های اطراف `=` می‌توانند مقدار یک انتساب را مبهم کنند.
 
     ```javascript
-    // بد
+    // bad
     const foo =
       superLongLongLongLongLongLongLongLongFunctionName();
 
-    // بد
+    // bad
     const foo
       = 'superLongLongLongLongLongLongLongLongString';
 
-    // خوب
+    // good
     const foo = (
       superLongLongLongLongLongLongLongLongFunctionName()
     );
 
-    // خوب
+    // good
     const foo = 'superLongLongLongLongLongLongLongLongString';
     ```
 
@@ -1835,7 +1835,7 @@
     > چرا؟ متغیرهایی که اعلان می‌شوند و هیچ‌جایی در کد استفاده نمی‌شوند، احتمالاً به دلیل بازنویسی ناقص (refactoring) یک خطا هستند. چنین متغیرهایی فضا اشغال می‌کنند و می‌توانند باعث سردرگمی خوانندگان شوند.
 
     ```javascript
-    // بد
+    // bad - بد
 
     const some_unused_var = 42;
 
@@ -1877,8 +1877,8 @@
   - [14.1](#hoisting--about) اعلان‌های `var` به بالاترین حد دامنه تابعی احاطه‌کنندهٔ خود بالا آورده می‌شوند (hoisted)، اما انتساب آن‌ها بالا آورده نمی‌شود. اعلان‌های `const` و `let` دارای یک مفهوم جدید به نام [منطقه مرده زمانی (Temporal Dead Zones - TDZ)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#temporal_dead_zone_tdz) هستند. مهم است بدانید چرا [`typeof` دیگر امن نیست](https://web.archive.org/web/20200121061528/http://es-discourse.com/t/why-typeof-is-no-longer-safe/15).
 
     ```javascript
-    // می‌دانیم که این کار نمی‌کند (با فرض اینکه
-    // متغیر سراسری notDefined وجود ندارد)
+    // this won't work - می‌دانیم که این کار نمی‌کند
+    // (با فرض اینکه متغیر سراسری notDefined وجود ندارد)
     function example() {
       console.log(notDefined); // => یک خطای ReferenceError پرتاب می‌کند
     }
@@ -1972,7 +1972,7 @@
     > چرا؟ زمانی که متغیرها، کلاس‌ها یا توابع پس از استفاده شدن اعلان می‌شوند، می‌تواند به خوانایی آسیب برساند، زیرا خواننده نمی‌داند آن چیزی که به آن ارجاع داده شده چیست. برای یک خواننده بسیار واضح‌تر است که ابتدا با منبع یک چیز (چه وارد شده از ماژول دیگر، چه تعریف شده در فایل) مواجه شود و سپس با استفاده از آن چیز روبرو شود.
 
     ```javascript
-    // بد
+    // bad - بد
 
     // متغیر a قبل از تعریف شدنش استفاده می‌شود.
     console.log(a);
@@ -2047,32 +2047,32 @@
   - [15.3](#comparison--shortcuts) برای بولین‌ها از میان‌برها، اما برای رشته‌ها و اعداد از مقایسه‌های صریح استفاده کنید.
 
     ```javascript
-    // بد
+    // bad
     if (isValid === true) {
       // ...
     }
 
-    // خوب
+    // good
     if (isValid) {
       // ...
     }
 
-    // بد
+    // bad
     if (name) {
       // ...
     }
 
-    // خوب
+    // good
     if (name !== '') {
       // ...
     }
 
-    // بد
+    // bad
     if (collection.length) {
       // ...
     }
 
-    // خوب
+    // good
     if (collection.length > 0) {
       // ...
     }
@@ -2087,7 +2087,7 @@
     > چرا؟ اعلان‌های لغوی در کل بلوک `switch` قابل مشاهده هستند اما تنها زمانی مقداردهی اولیه می‌شوند که انتساب داده شوند، که این اتفاق فقط زمانی می‌افتد که به `case` مربوطه برسید. این موضوع زمانی که چندین بند `case` سعی می‌کنند یک چیز واحد را تعریف کنند، باعث ایجاد مشکل می‌شود.
 
     ```javascript
-    // بد
+    // bad
     switch (foo) {
       case 1:
         let x = 1;
@@ -2104,7 +2104,7 @@
         class C {}
     }
 
-    // خوب
+    // good
     switch (foo) {
       case 1: {
         let x = 1;
@@ -2133,7 +2133,7 @@
   - [15.6](#comparison--nested-ternaries) سه‌تایی‌ها (Ternaries) نباید تودرتو باشند و به طور کلی باید عبارات تک‌خطی باشند. eslint: [`no-nested-ternary`](https://eslint.org/docs/rules/no-nested-ternary)
 
     ```javascript
-    // بد
+    // bad - بد
     const foo = maybe1 > maybe2
       ? 'bar'
       : value1 > value2 ? 'baz' : null;
@@ -2154,13 +2154,13 @@
   - [15.7](#comparison--unneeded-ternary) از دستورات سه‌تایی غیرضروری اجتناب کنید. eslint: [`no-unneeded-ternary`](https://eslint.org/docs/rules/no-unneeded-ternary)
 
     ```javascript
-    // بد
+    // bad
     const foo = a ? a : b;
     const bar = c ? true : false;
     const baz = c ? false : true;
     const quux = a != null ? a : b;
 
-    // خوب
+    // good
     const foo = a || b;
     const bar = !!c;
     const baz = !c;
@@ -2174,7 +2174,7 @@
     > چرا؟ این کار خوانایی را بهبود می‌بخشد و قصد توسعه‌دهنده را روشن می‌کند.
 
     ```javascript
-    // بد
+    // bad - بد
     const foo = a && b < 0 || c > 0 || d + 1 === 0;
 
     // بد
@@ -2210,7 +2210,7 @@
     > چرا؟ با متمایز کردن null/undefined از سایر مقادیر falsy، دقت را فراهم می‌کند و وضوح و پیش‌بینی‌پذیری کد را افزایش می‌دهد.
 
     ```javascript
-    // بد
+    // bad - بد
     const value = 0 ?? 'default';
     // 0 را برمی‌گرداند، نه 'default'
 
@@ -2239,22 +2239,22 @@
   - [16.1](#blocks--braces) در تمام بلوک‌های چندخطی از آکولاد استفاده کنید. eslint: [`nonblock-statement-body-position`](https://eslint.org/docs/rules/nonblock-statement-body-position)
 
     ```javascript
-    // بد
+    // bad
     if (test)
       return false;
 
-    // خوب
+    // good
     if (test) return false;
 
-    // خوب
+    // good
     if (test) {
       return false;
     }
 
-    // بد
+    // bad
     function foo() { return false; }
 
-    // خوب
+    // good
     function bar() {
       return false;
     }
@@ -2264,7 +2264,7 @@
   - [16.2](#blocks--cuddled-elses) اگر از بلوک‌های چندخطی با `if` و `else` استفاده می‌کنید، `else` را در همان خطی قرار دهید که آکولاد بسته‌شده‌ی بلوک `if` قرار دارد. eslint: [`brace-style`](https://eslint.org/docs/rules/brace-style)
 
     ```javascript
-    // بد
+    // bad
     if (test) {
       thing1();
       thing2();
@@ -2273,7 +2273,7 @@
       thing3();
     }
 
-    // خوب
+    // good
     if (test) {
       thing1();
       thing2();
@@ -2286,7 +2286,7 @@
   - [16.3](#blocks--no-else-return) اگر یک بلوک `if` همیشه یک دستور `return` را اجرا می‌کند، بلوک `else` بعدی غیرضروری است. یک `return` در یک بلوک `else if` که بعد از یک بلوک `if` حاوی `return` می‌آید، می‌تواند به چندین بلوک `if` جداگانه تقسیم شود. eslint: [`no-else-return`](https://eslint.org/docs/rules/no-else-return)
 
     ```javascript
-    // بد
+    // bad
     function foo() {
       if (x) {
         return x;
@@ -2295,7 +2295,7 @@
       }
     }
 
-    // بد
+    // bad
     function cats() {
       if (x) {
         return x;
@@ -2304,7 +2304,7 @@
       }
     }
 
-    // بد
+    // bad
     function dogs() {
       if (x) {
         return x;
@@ -2315,7 +2315,7 @@
       }
     }
 
-    // خوب
+    // good
     function foo() {
       if (x) {
         return x;
@@ -2324,7 +2324,7 @@
       return y;
     }
 
-    // خوب
+    // good
     function cats() {
       if (x) {
         return x;
@@ -2335,7 +2335,7 @@
       }
     }
 
-    // خوب
+    // good
     function dogs(x) {
       if (x) {
         if (z) {
@@ -2357,24 +2357,24 @@
     > چرا؟ الزام به قرار دادن عملگرها در ابتدای خط، باعث می‌شود عملگرها تراز شده باقی بمانند و از الگویی مشابه زنجیره‌سازی متدها پیروی کند. این کار همچنین با راحت‌تر کردن پیگیری بصری منطق پیچیده، خوانایی را بهبود می‌بخشد.
 
     ```javascript
-    // بد
+    // bad
     if ((foo === 123 || bar === 'abc') && doesItLookGoodWhenItBecomesThatLong() && isThisReallyHappening()) {
       thing1();
     }
 
-    // بد
+    // bad
     if (foo === 123 &&
       bar === 'abc') {
       thing1();
     }
 
-    // بد
+    // bad
     if (foo === 123
       && bar === 'abc') {
       thing1();
     }
 
-    // بد
+    // bad
     if (
       foo === 123 &&
       bar === 'abc'
@@ -2382,7 +2382,7 @@
       thing1();
     }
 
-    // خوب
+    // good
     if (
       foo === 123
       && bar === 'abc'
@@ -2390,7 +2390,7 @@
       thing1();
     }
 
-    // خوب
+    // good
     if (
       (foo === 123 || bar === 'abc')
       && doesItLookGoodWhenItBecomesThatLong()
@@ -2399,7 +2399,7 @@
       thing1();
     }
 
-    // خوب
+    // good
     if (foo === 123 && bar === 'abc') {
       thing1();
     }
@@ -2409,10 +2409,10 @@
   - [17.2](#control-statements--value-selection) از عملگرهای انتخابی (selection operators) به جای دستورهای کنترلی استفاده نکنید.
 
     ```javascript
-    // بد
+    // bad
     !isRunning && startRunning();
 
-    // خوب
+    // good
     if (!isRunning) {
       startRunning();
     }
@@ -2426,7 +2426,7 @@
   - [18.1](#comments--multiline) برای توضیحات چندخطی از `/** ... */` استفاده کنید.
 
     ```javascript
-    // بد
+    // bad - بد
     // make() یک المان جدید بر اساس
     // نام تگ پاس داده شده برمی‌گرداند
     //
@@ -2456,7 +2456,7 @@
   - [18.2](#comments--singleline) برای توضیحات تک‌خطی از `//` استفاده کنید. توضیحات تک‌خطی را در یک خط جدید، بالای موضوعِ توضیح قرار دهید. مگر اینکه توضیح در خط اول یک بلوک باشد، یک خط خالی قبل از آن قرار دهید.
 
     ```javascript
-    // بد
+    // bad - بد
     const active = true;  // تب جاری است
 
     // خوب
@@ -2495,7 +2495,7 @@
   - [18.3](#comments--spaces) برای خوانایی بهتر، تمام توضیحات را با یک فاصله شروع کنید. eslint: [`spaced-comment`](https://eslint.org/docs/rules/spaced-comment)
 
     ```javascript
-    // بد
+    // bad - بد
     //تب جاری است
     const active = true;
 
@@ -2567,17 +2567,17 @@
   - [19.1](#whitespace--spaces) از تب‌های نرم (کاراکتر فاصله) تنظیم‌شده روی ۲ فاصله استفاده کنید. eslint: [`indent`](https://eslint.org/docs/rules/indent)
 
     ```javascript
-    // بد
+    // bad
     function foo() {
     ∙∙∙∙let name;
     }
 
-    // بد
+    // bad
     function bar() {
     ∙let name;
     }
 
-    // خوب
+    // good
     function baz() {
     ∙∙let name;
     }
@@ -2587,23 +2587,23 @@
   - [19.2](#whitespace--before-blocks) قبل از آکولادِ شروع، ۱ فاصله قرار دهید. eslint: [`space-before-blocks`](https://eslint.org/docs/rules/space-before-blocks)
 
     ```javascript
-    // بد
+    // bad
     function test(){
       console.log('test');
     }
 
-    // خوب
+    // good
     function test() {
       console.log('test');
     }
 
-    // بد
+    // bad
     dog.set('attr',{
       age: '1 year',
       breed: 'Bernese Mountain Dog',
     });
 
-    // خوب
+    // good
     dog.set('attr', {
       age: '1 year',
       breed: 'Bernese Mountain Dog',
@@ -2614,22 +2614,22 @@
   - [19.3](#whitespace--around-keywords) قبل از پرانتز بازِ دستورهای کنترلی (`if`، `while` و غیره) ۱ فاصله قرار دهید. بین لیست آرگومان‌ها و نام تابع در فراخوانی‌ها و اعلان‌های توابع، فاصله‌ای قرار ندهید. eslint: [`keyword-spacing`](https://eslint.org/docs/rules/keyword-spacing)
 
     ```javascript
-    // بد
+    // bad
     if(isJedi) {
       fight ();
     }
 
-    // خوب
+    // good
     if (isJedi) {
       fight();
     }
 
-    // بد
+    // bad
     function fight () {
       console.log ('Swooosh!');
     }
 
-    // خوب
+    // good
     function fight() {
       console.log('Swooosh!');
     }
@@ -2639,10 +2639,10 @@
   - [19.4](#whitespace--infix-ops) اطراف عملگرها فاصله قرار دهید. eslint: [`space-infix-ops`](https://eslint.org/docs/rules/space-infix-ops)
 
     ```javascript
-    // بد
+    // bad
     const x=y+5;
 
-    // خوب
+    // good
     const x = y + 5;
     ```
 
@@ -2650,14 +2650,14 @@
   - [19.5](#whitespace--newline-at-end) فایل‌ها را با یک کاراکتر خط جدید (newline) به پایان برسانید. eslint: [`eol-last`](https://eslint.org/docs/rules/eol-last)
 
     ```javascript
-    // بد
+    // bad
     import { es6 } from './AirbnbStyleGuide';
       // ...
     export default es6;
     ```
 
     ```javascript
-    // بد
+    // bad
     import { es6 } from './AirbnbStyleGuide';
       // ...
     export default es6;↵
@@ -2665,7 +2665,7 @@
     ```
 
     ```javascript
-    // خوب
+    // good
     import { es6 } from './AirbnbStyleGuide';
       // ...
     export default es6;↵
@@ -2675,10 +2675,10 @@
   - [19.6](#whitespace--chains) هنگام ایجاد زنجیره‌های طولانیِ متد (بیش از ۲ زنجیره متد)، از فاصله گذاری (indent) استفاده کنید. از نقطه ابتدایی (leading dot) استفاده کنید، که تأکید می‌کند این خط یک فراخوانی متد است، نه یک دستور جدید. eslint: [`newline-per-chained-call`](https://eslint.org/docs/rules/newline-per-chained-call) [`no-whitespace-before-property`](https://eslint.org/docs/rules/no-whitespace-before-property)
 
     ```javascript
-    // بد
+    // bad
     $('#items').find('.selected').highlight().end().find('.open').updateCount();
 
-    // بد
+    // bad
     $('#items').
       find('.selected').
         highlight().
@@ -2686,7 +2686,7 @@
       find('.open').
         updateCount();
 
-    // خوب
+    // good
     $('#items')
       .find('.selected')
         .highlight()
@@ -2694,13 +2694,13 @@
       .find('.open')
         .updateCount();
 
-    // بد
+    // bad
     const leds = stage.selectAll('.led').data(data).enter().append('svg:svg').classed('led', true)
         .attr('width', (radius + margin) * 2).append('svg:g')
         .attr('transform', `translate(${radius + margin}, ${radius + margin})`)
         .call(tron.led);
 
-    // خوب
+    // good
     const leds = stage.selectAll('.led')
         .data(data)
       .enter().append('svg:svg')
@@ -2710,7 +2710,7 @@
         .attr('transform', `translate(${radius + margin}, ${radius + margin})`)
         .call(tron.led);
 
-    // خوب
+    // good
     const leds = stage.selectAll('.led').data(data);
     const svg = leds.enter().append('svg:svg');
     svg.classed('led', true).attr('width', (radius + margin) * 2);
@@ -2722,20 +2722,20 @@
   - [19.7](#whitespace--after-blocks) بعد از بلوک‌ها و قبل از دستور بعدی، یک خط خالی بگذارید.
 
     ```javascript
-    // بد
+    // bad
     if (foo) {
       return bar;
     }
     return baz;
 
-    // خوب
+    // good
     if (foo) {
       return bar;
     }
 
     return baz;
 
-    // بد
+    // bad
     const obj = {
       foo() {
       },
@@ -2744,7 +2744,7 @@
     };
     return obj;
 
-    // خوب
+    // good
     const obj = {
       foo() {
       },
@@ -2755,7 +2755,7 @@
 
     return obj;
 
-    // بد
+    // bad
     const arr = [
       function foo() {
       },
@@ -2764,7 +2764,7 @@
     ];
     return arr;
 
-    // خوب
+    // good
     const arr = [
       function foo() {
       },
@@ -2780,14 +2780,14 @@
   - [19.8](#whitespace--padded-blocks) بلوک‌های خود را با خطوط خالی پد (pad - پُر) نکنید. eslint: [`padded-blocks`](https://eslint.org/docs/rules/padded-blocks)
 
     ```javascript
-    // بد
+    // bad
     function bar() {
 
       console.log(foo);
 
     }
 
-    // بد
+    // bad
     if (baz) {
 
       console.log(quux);
@@ -2796,7 +2796,7 @@
 
     }
 
-    // بد
+    // bad
     class Foo {
 
       constructor(bar) {
@@ -2804,12 +2804,12 @@
       }
     }
 
-    // خوب
+    // good
     function bar() {
       console.log(foo);
     }
 
-    // خوب
+    // good
     if (baz) {
       console.log(quux);
     } else {
@@ -2822,7 +2822,7 @@
 
     <!-- markdownlint-disable MD012 -->
     ```javascript
-    // بد
+    // bad
     class Person {
       constructor(fullName, email, birthday) {
         this.fullName = fullName;
@@ -2851,7 +2851,7 @@
       }
     }
 
-    // خوب
+    // good
     class Person {
       constructor(fullName, email, birthday) {
         this.fullName = fullName;
@@ -2875,22 +2875,22 @@
   - [19.10](#whitespace--in-parens) داخل پرانتزها فاصله اضافه نکنید. eslint: [`space-in-parens`](https://eslint.org/docs/rules/space-in-parens)
 
     ```javascript
-    // بد
+    // bad
     function bar( foo ) {
       return foo;
     }
 
-    // خوب
+    // good
     function bar(foo) {
       return foo;
     }
 
-    // بد
+    // bad
     if ( foo ) {
       console.log(foo);
     }
 
-    // خوب
+    // good
     if (foo) {
       console.log(foo);
     }
@@ -2900,11 +2900,11 @@
   - [19.11](#whitespace--in-brackets) داخل براکت‌ها فاصله اضافه نکنید. eslint: [`array-bracket-spacing`](https://eslint.org/docs/rules/array-bracket-spacing)
 
     ```javascript
-    // بد
+    // bad
     const foo = [ 1, 2, 3 ];
     console.log(foo[ 0 ]);
 
-    // خوب
+    // good
     const foo = [1, 2, 3];
     console.log(foo[0]);
     ```
@@ -2913,10 +2913,10 @@
   - [19.12](#whitespace--in-braces) داخل آکولادها فاصله اضافه کنید. eslint: [`object-curly-spacing`](https://eslint.org/docs/rules/object-curly-spacing)
 
     ```javascript
-    // بد
+    // bad
     const foo = {clark: 'kent'};
 
-    // خوب
+    // good
     const foo = { clark: 'kent' };
     ```
 
@@ -2926,13 +2926,13 @@
     > چرا؟ این کار خوانایی و قابلیت نگهداری را تضمین می‌کند.
 
     ```javascript
-    // بد
+    // bad
     const foo = jsonData && jsonData.foo && jsonData.foo.bar && jsonData.foo.bar.baz && jsonData.foo.bar.baz.quux && jsonData.foo.bar.baz.quux.xyzzy;
 
-    // بد
+    // bad
     $.ajax({ method: 'POST', url: 'https://airbnb.com/', data: { name: 'John' } }).done(() => console.log('Congratulations!')).fail(() => console.log('You have failed this city.'));
 
-    // خوب
+    // good
     const foo = jsonData
       && jsonData.foo
       && jsonData.foo.bar
@@ -2940,7 +2940,7 @@
       && jsonData.foo.bar.baz.quux
       && jsonData.foo.bar.baz.quux.xyzzy;
 
-    // بهتر
+    // better
     const foo = jsonData
       ?.foo
       ?.bar
@@ -2948,7 +2948,7 @@
       ?.quux
       ?.xyzzy;
 
-    // خوب
+    // good
     $.ajax({
       method: 'POST',
       url: 'https://airbnb.com/',
@@ -2962,11 +2962,11 @@
   - [19.14](#whitespace--block-spacing) فاصله‌گذاری یکپارچه را داخل توکنِ بلوکِ باز و توکن بعدی در همان خط الزامی کنید. این قانون همچنین فاصله‌گذاری یکپارچه را داخل توکنِ بلوکِ بسته و توکن قبلی در همان خط اعمال می‌کند. eslint: [`block-spacing`](https://eslint.org/docs/rules/block-spacing)
 
     ```javascript
-    // بد
+    // bad
     function foo() {return true;}
     if (foo) { bar = 0;}
 
-    // خوب
+    // good
     function foo() { return true; }
     if (foo) { bar = 0; }
     ```
@@ -2975,11 +2975,11 @@
   - [19.15](#whitespace--comma-spacing) از فاصله قبل از ویرگول‌ها خودداری کنید و یک فاصله بعد از ویرگول‌ها الزامی کنید. eslint: [`comma-spacing`](https://eslint.org/docs/rules/comma-spacing)
 
     ```javascript
-    // بد
+    // bad
     const foo = 1,bar = 2;
     const arr = [1 , 2];
 
-    // خوب
+    // good
     const foo = 1, bar = 2;
     const arr = [1, 2];
     ```
@@ -2988,13 +2988,13 @@
   - [19.16](#whitespace--computed-property-spacing) فاصله‌گذاری داخل براکت‌های ویژگی محاسبه‌شده (computed property) را اعمال کنید. eslint: [`computed-property-spacing`](https://eslint.org/docs/rules/computed-property-spacing)
 
     ```javascript
-    // بد
+    // bad
     obj[foo ]
     obj[ 'foo']
     const x = {[ b ]: a}
     obj[foo[ bar ]]
 
-    // خوب
+    // good
     obj[foo]
     obj['foo']
     const x = { [b]: a }
@@ -3005,13 +3005,13 @@
   - [19.17](#whitespace--func-call-spacing) بین توابع و فراخوانی‌های آن‌ها فاصله‌ای قرار ندهید. eslint: [`func-call-spacing`](https://eslint.org/docs/rules/func-call-spacing)
 
     ```javascript
-    // بد
+    // bad
     func ();
 
     func
     ();
 
-    // خوب
+    // good
     func();
     ```
 
@@ -3019,11 +3019,11 @@
   - [19.18](#whitespace--key-spacing) فاصله‌گذاری بین کلیدها و مقادیر در ویژگی‌های لیترالِ شئ را اعمال کنید. eslint: [`key-spacing`](https://eslint.org/docs/rules/key-spacing)
 
     ```javascript
-    // بد
+    // bad
     const obj = { foo : 42 };
     const obj2 = { foo:42 };
 
-    // خوب
+    // good
     const obj = { foo: 42 };
     ```
 
@@ -3035,7 +3035,7 @@
 
     <!-- markdownlint-disable MD012 -->
     ```javascript
-    // بد - چندین خط خالی
+    // bad - بد - چندین خط خالی
     const x = 1;
 
 
@@ -3066,21 +3066,21 @@
   - [20.1](#commas--leading-trailing) ویرگول‌های ابتدایی: **نخیر.** eslint: [`comma-style`](https://eslint.org/docs/rules/comma-style)
 
     ```javascript
-    // بد
+    // bad
     const story = [
         once
       , upon
       , aTime
     ];
 
-    // خوب
+    // good
     const story = [
       once,
       upon,
       aTime,
     ];
 
-    // بد
+    // bad
     const hero = {
         firstName: 'Ada'
       , lastName: 'Lovelace'
@@ -3088,7 +3088,7 @@
       , superPower: 'computers'
     };
 
-    // خوب
+    // good
     const hero = {
       firstName: 'Ada',
       lastName: 'Lovelace',
@@ -3120,7 +3120,7 @@
     ```
 
     ```javascript
-    // بد
+    // bad - بد
     const hero = {
       firstName: 'Dana',
       lastName: 'Scully'
@@ -3203,7 +3203,7 @@
     > چرا؟ وقتی جاوااسکریپت با یک خط شکسته بدون نقطه ویرگول مواجه می‌شود، از مجموعه‌ای از قوانین به نام [درج خودکار نقطه‌ویرگول (Automatic Semicolon Insertion)](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion) استفاده می‌کند تا تعیین کند آیا باید آن خط شکسته را به عنوان پایان یک دستور در نظر بگیرد یا خیر و (همان‌طور که از نامش پیداست) اگر چنین تصور کند، یک نقطه‌ویرگول قبل از خط شکسته در کد شما قرار دهد. با این حال، ASI شامل چندین رفتار عجیب و غریب است و اگر جاوااسکریپت خط شکسته شما را اشتباه تفسیر کند، کد شما خراب می‌شود. این قوانین با اضافه شدن ویژگی‌های جدید به جاوااسکریپت پیچیده‌تر خواهند شد. پایان دادن صریح به دستورات خود و پیکربندی لینتر برای گرفتن نقطه‌ویرگول‌های جاودان شده به شما کمک می‌کند تا از مواجهه با مشکلات جلوگیری کنید.
 
     ```javascript
-    // بد - خطا پرتاب می‌کند
+    // bad - بد - خطا پرتاب می‌کند
     const luke = {}
     const leia = {}
     [luke, leia].forEach((jedi) => jedi.father = 'vader')
@@ -3300,7 +3300,7 @@
   - [22.4](#coercion--comment-deviations) اگر به هر دلیلی کاری عجیب و غریب انجام می‌دهید و `parseInt` گلوگاه (bottleneck) شماست و به دلیل [مسائل مربوط به کارایی](https://web.archive.org/web/20200414205431/https://jsperf.com/coercion-vs-casting/3) مجبور به استفاده از عملیات شیفت بیتی (Bitshift) هستید، توضیحی گذاشته و دلیل کارتان و آنچه انجام می‌دهید را شرح دهید.
 
     ```javascript
-    // خوب
+    // good
     /**
      * parseInt دلیل کندی کد من بود.
      * شیفت بیتیِ رشته برای واداشتن آن به یک عدد
@@ -3342,12 +3342,12 @@
   - [23.1](#naming--descriptive) از نام‌های تک‌حرفی اجتناب کنید. نام‌گذاری‌هایتان باید توصیفی باشند. eslint: [`id-length`](https://eslint.org/docs/rules/id-length)
 
     ```javascript
-    // بد
+    // bad
     function q() {
       // ...
     }
 
-    // خوب
+    // good
     function query() {
       // ...
     }
@@ -3357,12 +3357,12 @@
   - [23.2](#naming--camelCase) هنگام نام‌گذاری اشیاء، توابع و نمونه‌ها (instances) از `camelCase` استفاده کنید. eslint: [`camelcase`](https://eslint.org/docs/rules/camelcase)
 
     ```javascript
-    // بد
+    // bad
     const OBJEcttsssss = {};
     const this_is_my_object = {};
     function c() {}
 
-    // خوب
+    // good
     const thisIsMyObject = {};
     function thisIsMyFunction() {}
     ```
@@ -3371,7 +3371,7 @@
   - [23.3](#naming--PascalCase) از `PascalCase` فقط هنگام نام‌گذاری سازنده‌ها (constructors) یا کلاس‌ها استفاده کنید. eslint: [`new-cap`](https://eslint.org/docs/rules/new-cap)
 
     ```javascript
-    // بد
+    // bad
     function user(options) {
       this.name = options.name;
     }
@@ -3380,7 +3380,7 @@
       name: 'nope',
     });
 
-    // خوب
+    // good
     class User {
       constructor(options) {
         this.name = options.name;
@@ -3398,7 +3398,7 @@
     > چرا؟ جاوااسکریپت از نظر ویژگی‌ها یا متدها، مفهوم خصوصی‌سازی (privacy) ندارد. اگرچه خط زیر ابتدایی یک قرارداد رایج برای به معنای "خصوصی" است، اما در واقع این ویژگی‌ها کاملاً عمومی هستند و در نتیجه، بخشی از قرارداد API عمومی شما محسوب می‌شوند. این قرارداد ممکن است باعث شود توسعه‌دهندگان به اشتباه فکر کنند که یک تغییر، فوری (تکان دهنده - breaking) محسوب نمی‌شود، یا نیازی به تست ندارد. خلاصه: اگر می‌خواهید چیزی "خصوصی" باشد، نباید به صورت مشهود حضور داشته باشد.
 
     ```javascript
-    // بد
+    // bad - بد
     this.__firstName__ = 'Panda';
     this.firstName_ = 'Panda';
     this._firstName = 'Panda';
@@ -3416,7 +3416,7 @@
   - [23.5](#naming--self-this) ارجاعات `this` را ذخیره نکنید. از توابع پیکانی یا [Function#bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) استفاده کنید.
 
     ```javascript
-    // بد
+    // bad
     function foo() {
       const self = this;
       return function () {
@@ -3424,7 +3424,7 @@
       };
     }
 
-    // بد
+    // bad
     function foo() {
       const that = this;
       return function () {
@@ -3432,7 +3432,7 @@
       };
     }
 
-    // خوب
+    // good
     function foo() {
       return () => {
         console.log(this);
@@ -3444,7 +3444,7 @@
   - [23.6](#naming--filename-matches-export) نام فایلِ پایه باید دقیقاً با نام خروجی پیش‌فرض (default export) آن مطابقت داشته باشد.
 
     ```javascript
-    // محتوای فایل 1
+    // file 1 contents - محتوای فایل 1
     class CheckBox {
       // ...
     }
@@ -3505,7 +3505,7 @@
     > چرا؟ نام‌ها برای خوانایی هستند، نه برای ارضای یک الگوریتم کامپیوتری.
 
     ```javascript
-    // بد
+    // bad - بد
     import SmsContainer from './containers/SmsContainer';
 
     // بد
@@ -3543,7 +3543,7 @@
     - در مورد اشیاء صادر شده چه؟ - در سطح بالای صادرات بزرگ‌نویسی کنید (مثلاً `EXPORTED_OBJECT.key`) و تضمین کنید که تمام ویژگی‌های تودرتو تغییر نمی‌کنند.
 
     ```javascript
-    // بد
+    // bad - بد
     const PRIVATE_VARIABLE = 'نباید درون یک فایل به طور غیرضروری بزرگ‌نویسی شود';
 
     // بد
@@ -3584,7 +3584,7 @@
   - [24.2](#accessors--no-getters-setters) از گِتِرها/سِتِرهای جاوااسکریپت (getters/setters) استفاده نکنید زیرا آن‌ها باعث ایجاد اثرات جانبی غیرمنتظره می‌شوند و تست، نگهداری و استدلال در مورد آن‌ها دشوارتر است. در عوض، اگر توابع اکسسور می‌سازید، از `getVal()` و `setVal('hello')` استفاده کنید.
 
     ```javascript
-    // بد
+    // bad
     class Dragon {
       get age() {
         // ...
@@ -3595,7 +3595,7 @@
       }
     }
 
-    // خوب
+    // good
     class Dragon {
       getAge() {
         // ...
@@ -3611,12 +3611,12 @@
   - [24.3](#accessors--boolean-prefix) اگر ویژگی/متد از نوع `boolean` است، از `isVal()` یا `hasVal()` استفاده کنید.
 
     ```javascript
-    // بد
+    // bad
     if (!dragon.age()) {
       return false;
     }
 
-    // خوب
+    // good
     if (!dragon.hasAge()) {
       return false;
     }
@@ -3650,7 +3650,7 @@
   - [25.1](#events--hash) هنگام پیوست کردن داده‌های محموله (data payloads) به رویدادها (چه رویدادهای DOM و چه چیزهای اختصاصی‌تر مانند رویدادهای Backbone)، به جای یک مقدار خام، یک لیترال شئ (که به عنوان "هش" نیز شناخته می‌شود) را پاس دهید. این امر به مشارکت‌کننده‌afterی اجازه می‌دهد تا بدون نیاز به پیدا کردن و به‌روزرسانی هر هندلر (handler) برای آن رویداد، داده‌های بیشتری به محموله رویداد اضافه کند. برای مثال، به جای:
 
     ```javascript
-    // بد
+    // bad
     $(this).trigger('listingUpdated', listing.id);
 
     // ...
@@ -3663,7 +3663,7 @@
     این مورد ترجیح داده می‌شود:
 
     ```javascript
-    // خوب
+    // good
     $(this).trigger('listingUpdated', { listingID: listing.id });
 
     // ...
@@ -3681,13 +3681,13 @@
   - [26.1](#jquery--dollar-prefix) به متغیرهای شئ jQuery پیشوند `$` اضافه کنید.
 
     ```javascript
-    // بد
+    // bad
     const sidebar = $('.sidebar');
 
-    // خوب
+    // good
     const $sidebar = $('.sidebar');
 
-    // خوب
+    // good
     const $sidebarBtn = $('.sidebar-btn');
     ```
 
@@ -3695,7 +3695,7 @@
   - [26.2](#jquery--cache) جستجوهای jQuery را کَش (Cache) کنید.
 
     ```javascript
-    // بد
+    // bad
     function setSidebar() {
       $('.sidebar').hide();
 
@@ -3706,7 +3706,7 @@
       });
     }
 
-    // خوب
+    // good
     function setSidebar() {
       const $sidebar = $('.sidebar');
       $sidebar.hide();
@@ -3726,19 +3726,19 @@
   - [26.4](#jquery--find) از `find` به همراه جستجوهای شئ jQuery دارای دامنه (scoped) استفاده کنید.
 
     ```javascript
-    // بد
+    // bad
     $('ul', '.sidebar').hide();
 
-    // بد
+    // bad
     $('.sidebar').find('ul').hide();
 
-    // خوب
+    // good
     $('.sidebar ul').hide();
 
-    // خوب
+    // good
     $('.sidebar > ul').hide();
 
-    // خوب
+    // good
     $sidebar.find('ul').hide();
     ```
 
@@ -3792,11 +3792,11 @@
     > اگر این رفتار مورد نظر است، آن را به صراحت انجام دهید.
 
     ```javascript
-    // بد
+    // bad
     isNaN('1.2'); // false
     isNaN('1.2.3'); // true
 
-    // خوب
+    // good
     Number.isNaN('1.2.3'); // false
     Number.isNaN(Number('1.2.3')); // true
     ```
@@ -3809,10 +3809,10 @@
     > اگر این رفتار مورد نظر است، آن را به صراحت انجام دهید.
 
     ```javascript
-    // بد
+    // bad
     isFinite('2e3'); // true
 
-    // خوب
+    // good
     Number.isFinite('2e3'); // false
     Number.isFinite(parseInt('2e3', 10)); // true
     ```
