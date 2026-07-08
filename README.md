@@ -1,16 +1,16 @@
-# Airbnb JavaScript Style Guide() {
+# راهنمای نوشتاری جاوااسکریپتِ Airbnb() {
 
-*A mostly reasonable approach to JavaScript*
+*رویکردی، تا حد زیاد معقول به جاوااسکریپت*
 
-> **Note**: this guide assumes you are using [Babel](https://babeljs.io), and requires that you use [babel-preset-airbnb](https://npmjs.com/babel-preset-airbnb) or the equivalent. It also assumes you are installing shims/polyfills in your app, with [airbnb-browser-shims](https://npmjs.com/airbnb-browser-shims) or the equivalent.
+> **نکته**: این راهنما فرض می‌کند از [Babel](https://babeljs.io) استفاده می‌کنید و نیاز دارد از [babel-preset-airbnb](https://npmjs.com/babel-preset-airbnb) یا معادل آن استفاده کنید. همچنین فرض می‌کند شیم/پُلی‌فیل‌ها را در نرم افزار خود نصب می‌کنید، با [airbnb-browser-shims](https://npmjs.com/airbnb-browser-shims) یا معادل آن.
 
 [![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb.svg)](https://www.npmjs.com/package/eslint-config-airbnb)
 [![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb-base.svg)](https://www.npmjs.com/package/eslint-config-airbnb-base)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-This guide is available in other languages too. See [Translation](#translation)
+این راهنما به زبان‌های دیگری هم در دسترس است. [ترجمه](#translation) را ببینید
 
-Other Style Guides
+راهنماهای سبک دیگر
 
   - [ES5 (Deprecated)](https://github.com/airbnb/javascript/tree/es5-deprecated/es5)
   - [React](react/)
@@ -18,52 +18,53 @@ Other Style Guides
   - [CSS & Sass](https://github.com/airbnb/css)
   - [Ruby](https://github.com/airbnb/ruby)
 
-## Table of Contents
+## فهرست مطالب
 
-  1. [Types](#types)
-  1. [References](#references)
-  1. [Objects](#objects)
-  1. [Arrays](#arrays)
-  1. [Destructuring](#destructuring)
-  1. [Strings](#strings)
-  1. [Functions](#functions)
-  1. [Arrow Functions](#arrow-functions)
-  1. [Classes & Constructors](#classes--constructors)
-  1. [Modules](#modules)
-  1. [Iterators and Generators](#iterators-and-generators)
-  1. [Properties](#properties)
-  1. [Variables](#variables)
-  1. [Hoisting](#hoisting)
-  1. [Comparison Operators & Equality](#comparison-operators--equality)
-  1. [Blocks](#blocks)
-  1. [Control Statements](#control-statements)
-  1. [Comments](#comments)
-  1. [Whitespace](#whitespace)
-  1. [Commas](#commas)
-  1. [Semicolons](#semicolons)
-  1. [Type Casting & Coercion](#type-casting--coercion)
-  1. [Naming Conventions](#naming-conventions)
-  1. [Accessors](#accessors)
-  1. [Events](#events)
-  1. [jQuery](#jquery)
-  1. [ECMAScript 5 Compatibility](#ecmascript-5-compatibility)
-  1. [ECMAScript 6+ (ES 2015+) Styles](#ecmascript-6-es-2015-styles)
-  1. [Standard Library](#standard-library)
-  1. [Testing](#testing)
-  1. [Performance](#performance)
-  1. [Resources](#resources)
-  1. [In the Wild](#in-the-wild)
-  1. [Translation](#translation)
-  1. [The JavaScript Style Guide Guide](#the-javascript-style-guide-guide)
-  1. [Chat With Us About JavaScript](#chat-with-us-about-javascript)
-  1. [Contributors](#contributors)
-  1. [License](#license)
-  1. [Amendments](#amendments)
+1. [انواع (types)](#انواع-types)
+1. [ارجاعات (references)](#ارجاعات-references)
+1. [شئ ها](#شئ-ها)
+1. [آرایه ها](#آرایه-ها)
+1. [ساختارزدایی (destructuring)](#ساختارزدایی-Destructuring)
+1. [رشته ها (strings)](#رشته-ها-strings)
+1. [توابع](#توابع)
+1. [توابع پیکانی](#توابع-پیکانی)
+1. [کلاس ها و سازنده ها](#کلاس-ها-و-سازنده-ها)
+1. [ماژول ها (modules)](#ماژول-ها-modules)
+1. [تکرارکننده ها و مولد ها (Iterators and Generators)](#تکرارکننده-ها-و-مولد-ها-Iterators-and-Generators)
+1. [ویژگی ها (properties)](#ویژگی-ها-properties)
+1. [متغیر ها](#متغیر-ها)
+1. [بالا آوردن (Hoisting)](#بالا-آوردن-Hoisting)
+1. [عملگرهای مقایسه و برابری](#عملگرهای-مقایسه-و-برابری)
+1. [بلوک ها](#بلوک-ها)
+1. [دستورهای کنترلی](#دستورهای-کنترلی)
+1. [توضیحات (comments)](#توضیحات-Comments)
+1. [فاصله گذاری](#فاصله-گذاری)
+1. [ویرگول ها](#ویرگول-ها)
+1. [نقطه ویرگول ها](#نقطه-ویرگول-ها)
+1. [تبدیل نوع و واداشتن به تبدیل (Coercion)](#تبدیل-نوع-و-واداشتن-به-تبدیل-Coercion)
+1. [مقررات نام گذاری](#مقررات-نام-گذاری)
+1. [اکسسورها (Accessors)](#اکسسورها-Accessors)
+1. [رویدادها (events)](#رویدادها-Events)
+1. [jQuery](#jquery)
+1. [سازگاری با ECMAScript 5](#سازگاری-با-ECMAScript-5)
+1. [سبک‌های ECMAScript 6+ (ES 2015+)](#ecmascript-6-es-2015-styles)
+1. [کتابخانه استاندارد](#کتابخانه-استاندارد)
+1. [آزمایش کردن (testing)](#آزمایش-کردن-Testing)
+1. [کارایی (performance)](#کارایی-Performance)
+1. [منابع](#منابع)
+1. [در دنیای واقعی](#در-دنیای-واقعی)
+1. [ترجمه](#ترجمه)
+1. [راهنمای راهنمای سبک جاوااسکریپت](#راهنمای-راهنمای-سبک-جاوااسکریپت)
+1. [با ما درباره جاوااسکریپت گپ بزنید](#با-ما-درباره-جاوااسکریپت-گپ-بزنید)
+1. [همکاران (contributors)](#همکاران-Contributors)
+1. [مجوز](#مجوز)
+1. [اصلاحیه ها](#اصلاحیه-ها)
 
-## Types
+
+## انواع (Types)
 
   <a name="types--primitives"></a><a name="1.1"></a>
-  - [1.1](#types--primitives) **Primitives**: When you access a primitive type you work directly on its value.
+  - [1.1](#types--primitives) **بدویات (Primitives)**: وقتی به یک نوع بدوی دسترسی پیدا می‌کنید، مستقیماً با مقدار آن نوع کار می‌کنید.
 
     - `string`
     - `number`
@@ -84,10 +85,10 @@ Other Style Guides
     console.log(foo, bar); // => 1, 9
     ```
 
-    - Symbols and BigInts cannot be faithfully polyfilled, so they should not be used when targeting browsers/environments that don’t support them natively.
+    - سمبل‌ها (Symbols) و BigIntها را نمی‌توان به‌طور قطع پُلی‌فیل کرد، بنابراین وقتی برای مرورگرها/محیط‌هایی هدف‌گیری می‌کنید که از آن‌ها به‌صورت بومی پشتیبانی نمی‌کنند، نباید از آن‌ها استفاده کنید.
 
   <a name="types--complex"></a><a name="1.2"></a>
-  - [1.2](#types--complex)  **Complex**: When you access a complex type you work on a reference to its value.
+  - [1.2](#types--complex)  **پیچیده (Complex)**: وقتی به یک نوع پیچیده دسترسی پیدا می‌کنید، با یک ارجاع به مقدار آن نوع کار می‌کنید.
 
     - `object`
     - `array`
@@ -104,14 +105,14 @@ Other Style Guides
     console.log(foo[0], bar[0]); // => 9, 9
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## References
+## ارجاعات (References)
 
   <a name="references--prefer-const"></a><a name="2.1"></a>
-  - [2.1](#references--prefer-const) Use `const` for all of your references; avoid using `var`. eslint: [`prefer-const`](https://eslint.org/docs/rules/prefer-const), [`no-const-assign`](https://eslint.org/docs/rules/no-const-assign)
+  - [2.1](#references--prefer-const) برای همهٔ ارجاع‌های خود از `const` استفاده کنید؛ از `var` استفاده نکنید. eslint: [`prefer-const`](https://eslint.org/docs/rules/prefer-const)، [`no-const-assign`](https://eslint.org/docs/rules/no-const-assign)
 
-    > Why? This ensures that you can’t reassign your references, which can lead to bugs and difficult to comprehend code.
+    > چرا؟ این کار باعث می‌شود نتوانید ارجاع‌های خود را دوباره انتساب دهید، و همین می‌تواند از ایجاد باگ‌ها و کدهایی که فهم آن‌ها دشوار است جلوگیری کند.
 
     ```javascript
     // bad
@@ -124,9 +125,9 @@ Other Style Guides
     ```
 
   <a name="references--disallow-var"></a><a name="2.2"></a>
-  - [2.2](#references--disallow-var) If you must reassign references, use `let` instead of `var`. eslint: [`no-var`](https://eslint.org/docs/rules/no-var)
+  - [2.2](#references--disallow-var) اگر مجبورید ارجاع‌ها را دوباره انتساب دهید، به‌جای `var` از `let` استفاده کنید. eslint: [`no-var`](https://eslint.org/docs/rules/no-var)
 
-    > Why? `let` is block-scoped rather than function-scoped like `var`.
+    > چرا؟ `let` دامنهٔ بلوکی دارد، نه دامنهٔ تابعی مثل `var`.
 
     ```javascript
     // bad
@@ -135,7 +136,7 @@ Other Style Guides
       count += 1;
     }
 
-    // good, use the let.
+    // خوب، از let استفاده کنید
     let count = 1;
     if (true) {
       count += 1;
@@ -143,10 +144,10 @@ Other Style Guides
     ```
 
   <a name="references--block-scope"></a><a name="2.3"></a>
-  - [2.3](#references--block-scope) Note that both `let` and `const` are block-scoped, whereas `var` is function-scoped.
+  - [2.3](#references--block-scope) توجه کنید که هم `let` و هم `const` دامنهٔ بلوکی دارند، در حالی که `var` دامنهٔ تابعی دارد.
 
     ```javascript
-    // const and let only exist in the blocks they are defined in.
+    // `const` و `let` فقط در همان بلوک‌هایی وجود دارند که در آن‌ها تعریف شده‌اند.
     {
       let a = 1;
       const b = 1;
@@ -154,17 +155,17 @@ Other Style Guides
     }
     console.log(a); // ReferenceError
     console.log(b); // ReferenceError
-    console.log(c); // Prints 1
+    console.log(c); // چاپ می شود 1
     ```
 
-    In the above code, you can see that referencing `a` and `b` will produce a ReferenceError, while `c` contains the number. This is because `a` and `b` are block scoped, while `c` is scoped to the containing function.
+    در کد بالا می‌بینید که ارجاع به `a` و `b` باعث ایجاد ReferenceError می‌شود، در حالی که `c` عدد را در خود نگه می‌دارد. این به این دلیل است که `a` و `b` دامنهٔ بلوکی دارند، در حالی که `c` به تابعِ دربرگیرنده محدود است.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Objects
+## شئ ها
 
   <a name="objects--no-new"></a><a name="3.1"></a>
-  - [3.1](#objects--no-new) Use the literal syntax for object creation. eslint: [`no-new-object`](https://eslint.org/docs/rules/no-new-object)
+  - [3.1](#objects--no-new) برای ساخت شئ‌ها از ساختار دقیق (literal syntax) استفاده کنید. eslint: [`no-new-object`](https://eslint.org/docs/rules/no-new-object)
 
     ```javascript
     // bad
@@ -175,9 +176,9 @@ Other Style Guides
     ```
 
   <a name="es6-computed-properties"></a><a name="3.4"></a>
-  - [3.2](#es6-computed-properties) Use computed property names when creating objects with dynamic property names.
+  - [3.2](#es6-computed-properties) هنگام ساخت شئ‌هایی با نام ویژگی های پویا، از نام ویژگی‌های محاسبه‌شده (computed property names) استفاده کنید.
 
-    > Why? They allow you to define all the properties of an object in one place.
+    > چرا؟ این کار به شما اجازه می‌دهد تمام ویژگی‌های یک شئ را در یک مکان تعریف کنید.
 
     ```javascript
 
@@ -185,14 +186,14 @@ Other Style Guides
       return `a key named ${k}`;
     }
 
-    // bad
+    // بد
     const obj = {
       id: 5,
       name: 'San Francisco',
     };
     obj[getKey('enabled')] = true;
 
-    // good
+    // خوب
     const obj = {
       id: 5,
       name: 'San Francisco',
@@ -201,7 +202,7 @@ Other Style Guides
     ```
 
   <a name="es6-object-shorthand"></a><a name="3.5"></a>
-  - [3.3](#es6-object-shorthand) Use object method shorthand. eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand)
+  - [3.3](#es6-object-shorthand) از مخفف‌نویسی متدهای شئ (object method shorthand) استفاده کنید. eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand)
 
     ```javascript
     // bad
@@ -224,34 +225,34 @@ Other Style Guides
     ```
 
   <a name="es6-object-concise"></a><a name="3.6"></a>
-  - [3.4](#es6-object-concise) Use property value shorthand. eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand)
+  - [3.4](#es6-object-concise) از مخفف‌نویسی مقدار ویژگی (property value shorthand) استفاده کنید. eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand)
 
-    > Why? It is shorter and descriptive.
+    > چرا؟ کوتاه‌تر و گویاتر است.
 
     ```javascript
     const lukeSkywalker = 'Luke Skywalker';
 
-    // bad
+    // بد
     const obj = {
       lukeSkywalker: lukeSkywalker,
     };
 
-    // good
+    // خوب
     const obj = {
       lukeSkywalker,
     };
     ```
 
   <a name="objects--grouped-shorthand"></a><a name="3.7"></a>
-  - [3.5](#objects--grouped-shorthand) Group your shorthand properties at the beginning of your object declaration.
+  - [3.5](#objects--grouped-shorthand) ویژگی‌های مخفف‌نویسی‌شده را در ابتدای تعریف شئ خود گروه‌بندی کنید.
 
-    > Why? It’s easier to tell which properties are using the shorthand.
+    > چرا؟ تشخیص اینکه کدام ویژگی‌ها از مخفف‌نویسی استفاده می‌کنند، راحت‌تر است.
 
     ```javascript
     const anakinSkywalker = 'Anakin Skywalker';
     const lukeSkywalker = 'Luke Skywalker';
 
-    // bad
+    // بد
     const obj = {
       episodeOne: 1,
       twoJediWalkIntoACantina: 2,
@@ -261,7 +262,7 @@ Other Style Guides
       anakinSkywalker,
     };
 
-    // good
+    // خوب
     const obj = {
       lukeSkywalker,
       anakinSkywalker,
@@ -273,9 +274,9 @@ Other Style Guides
     ```
 
   <a name="objects--quoted-props"></a><a name="3.8"></a>
-  - [3.6](#objects--quoted-props) Only quote properties that are invalid identifiers. eslint: [`quote-props`](https://eslint.org/docs/rules/quote-props)
+  - [3.6](#objects--quoted-props) فقط ویژگی‌هایی که شناسه (identifier) نامعتبری هستند را داخل کوتیشن قرار دهید. eslint: [`quote-props`](https://eslint.org/docs/rules/quote-props)
 
-    > Why? In general we consider it subjectively easier to read. It improves syntax highlighting, and is also more easily optimized by many JS engines.
+    > چرا؟ به طور کلی، خواندن آن را راحت‌تر می‌دانیم. هایلایت کردن سینتکس را بهبود می‌بخشد و توسط بسیاری از موتورهای JS راحت‌تر بهینه‌سازی می‌شود.
 
     ```javascript
     // bad
@@ -294,9 +295,9 @@ Other Style Guides
     ```
 
   <a name="objects--prototype-builtins"></a>
-  - [3.7](#objects--prototype-builtins) Do not call `Object.prototype` methods directly, such as `hasOwnProperty`, `propertyIsEnumerable`, and `isPrototypeOf`. eslint: [`no-prototype-builtins`](https://eslint.org/docs/rules/no-prototype-builtins)
+  - [3.7](#objects--prototype-builtins) متدهای `Object.prototype` مانند `hasOwnProperty`، `propertyIsEnumerable` و `isPrototypeOf` را مستقیماً فراخوانی نکنید. eslint: [`no-prototype-builtins`](https://eslint.org/docs/rules/no-prototype-builtins)
 
-    > Why? These methods may be shadowed by properties on the object in question - consider `{ hasOwnProperty: false }` - or, the object may be a null object (`Object.create(null)`). In modern browsers that support ES2022, or with a polyfill such as <https://npmjs.com/object.hasown>, `Object.hasOwn` can also be used as an alternative to `Object.prototype.hasOwnProperty.call`.
+    > چرا؟ این متدها ممکن است توسط ویژگی‌های روی شئ مورد نظر پنهان شوند (shadowed) - برای مثال `{ hasOwnProperty: false }` را در نظر بگیرید - و یا ممکن است شئ، یک شئ تهی (null object) باشد (`Object.create(null)`). در مرورگرهای مدرنی که از ES2022 پشتیبانی می‌کنند، یا با یک پُلی‌فیل مانند <https://npmjs.com/object.hasown>، می‌توان از `Object.hasOwn` به عنوان جایگزینی برای `Object.prototype.hasOwnProperty.call` استفاده کرد.
 
     ```javascript
     // bad
@@ -306,11 +307,11 @@ Other Style Guides
     console.log(Object.prototype.hasOwnProperty.call(object, key));
 
     // better
-    const has = Object.prototype.hasOwnProperty; // cache the lookup once, in module scope.
+    const has = Object.prototype.hasOwnProperty; // جستجو را یک بار، در دامنه ماژول کش کنید.
     console.log(has.call(object, key));
 
     // best
-    console.log(Object.hasOwn(object, key)); // only supported in browsers that support ES2022
+    console.log(Object.hasOwn(object, key)); // فقط در مرورگرهایی که از ES2022 پشتیبانی می‌کنند، پشتیبانی می‌شود
 
     /* or */
     import has from 'has'; // https://www.npmjs.com/package/has
@@ -320,13 +321,13 @@ Other Style Guides
     ```
 
   <a name="objects--rest-spread"></a>
-  - [3.8](#objects--rest-spread) Prefer the object spread syntax over [`Object.assign`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) to shallow-copy objects. Use the object rest parameter syntax to get a new object with certain properties omitted. eslint: [`prefer-object-spread`](https://eslint.org/docs/rules/prefer-object-spread)
+  - [3.8](#objects--rest-spread) برای کپی سطحی (shallow-copy) کردن شئ‌ها، به جای [`Object.assign`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) از سینتکس spread شئ‌ها استفاده کنید. برای به دست آوردن یک شئ جدید با حذف شدن برخی ویژگی‌ها، از سینتکس پارامتر rest شئ‌ها استفاده کنید. eslint: [`prefer-object-spread`](https://eslint.org/docs/rules/prefer-object-spread)
 
     ```javascript
     // very bad
     const original = { a: 1, b: 2 };
-    const copy = Object.assign(original, { c: 3 }); // this mutates `original` ಠ_ಠ
-    delete copy.a; // so does this
+    const copy = Object.assign(original, { c: 3 }); // این کار `original` را تغییر می‌دهد ಠ_ಠ
+    delete copy.a; // این هم همینطور
 
     // bad
     const original = { a: 1, b: 2 };
@@ -339,12 +340,12 @@ Other Style Guides
     const { a, ...noA } = copy; // noA => { b: 2, c: 3 }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Arrays
+## آرایه ها
 
   <a name="arrays--literals"></a><a name="4.1"></a>
-  - [4.1](#arrays--literals) Use the literal syntax for array creation. eslint: [`no-array-constructor`](https://eslint.org/docs/rules/no-array-constructor)
+  - [4.1](#arrays--literals) برای ساخت آرایه‌ها از ساختار دقیق (literal syntax) استفاده کنید. eslint: [`no-array-constructor`](https://eslint.org/docs/rules/no-array-constructor)
 
     ```javascript
     // bad
@@ -355,20 +356,20 @@ Other Style Guides
     ```
 
   <a name="arrays--push"></a><a name="4.2"></a>
-  - [4.2](#arrays--push) Use [Array#push](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/push) instead of direct assignment to add items to an array.
+  - [4.2](#arrays--push) برای اضافه کردن آیتم‌ها به یک آرایه، به جای انتساب مستقیم از [Array#push](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/push) استفاده کنید.
 
     ```javascript
     const someStack = [];
 
-    // bad
+    // بد
     someStack[someStack.length] = 'abracadabra';
 
-    // good
+    // خوب
     someStack.push('abracadabra');
     ```
 
   <a name="es6-array-spreads"></a><a name="4.3"></a>
-  - [4.3](#es6-array-spreads) Use array spreads `...` to copy arrays.
+  - [4.3](#es6-array-spreads) برای کپی کردن آرایه‌ها از عملگر spread یعنی `...` استفاده کنید.
 
     ```javascript
     // bad
@@ -386,33 +387,33 @@ Other Style Guides
 
   <a name="arrays--from"></a>
   <a name="arrays--from-iterable"></a><a name="4.4"></a>
-  - [4.4](#arrays--from-iterable) To convert an iterable object to an array, use spreads `...` instead of [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from)
+  - [4.4](#arrays--from-iterable) برای تبدیل یک شئ قابل پیمایش (iterable) به آرایه، به جای [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) از عملگر spread یعنی `...` استفاده کنید.
 
     ```javascript
     const foo = document.querySelectorAll('.foo');
 
-    // good
+    // خوب
     const nodes = Array.from(foo);
 
-    // best
+    // بهترین
     const nodes = [...foo];
     ```
 
   <a name="arrays--from-array-like"></a>
-  - [4.5](#arrays--from-array-like) Use [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) for converting an array-like object to an array.
+  - [4.5](#arrays--from-array-like) برای تبدیل یک شئ شبیه به آرایه (array-like) به آرایه، از [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) استفاده کنید.
 
     ```javascript
     const arrLike = { 0: 'foo', 1: 'bar', 2: 'baz', length: 3 };
 
-    // bad
+    // بد
     const arr = Array.prototype.slice.call(arrLike);
 
-    // good
+    // خوب
     const arr = Array.from(arrLike);
     ```
 
   <a name="arrays--mapping"></a>
-  - [4.6](#arrays--mapping) Use [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) instead of spread `...` for mapping over iterables, because it avoids creating an intermediate array.
+  - [4.6](#arrays--mapping) برای نگاشت (map) روی اشیاء قابل پیمایش (iterable)، به جای spread یعنی `...` از [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) استفاده کنید، زیرا از ایجاد یک آرایه واسطه جلوگیری می‌کند.
 
     ```javascript
     // bad
@@ -423,30 +424,30 @@ Other Style Guides
     ```
 
   <a name="arrays--callback-return"></a><a name="4.5"></a>
-  - [4.7](#arrays--callback-return) Use return statements in array method callbacks. It’s ok to omit the return if the function body consists of a single statement returning an expression without side effects, following [8.2](#arrows--implicit-return). eslint: [`array-callback-return`](https://eslint.org/docs/rules/array-callback-return)
+  - [4.7](#arrays--callback-return) در توابع کال‌بک (callback) متدهای آرایه، از دستور `return` استفاده کنید. اگر بدنهٔ تابع از یک دستور واحد تشکیل شده باشد که یک عبارت بدون اثرات جانبی را برمی‌گرداند، طبق قانون [8.2](#arrows--implicit-return) حذف کردن `return` مشکلی ندارد. eslint: [`array-callback-return`](https://eslint.org/docs/rules/array-callback-return)
 
     ```javascript
-    // good
+    // good - خوب
     [1, 2, 3].map((x) => {
       const y = x + 1;
       return x * y;
     });
 
-    // good
+    // خوب
     [1, 2, 3].map((x) => x + 1);
 
-    // bad - no returned value means `acc` becomes undefined after the first iteration
+    // بد - عدم برگرداندن مقدار به این معنی است که `acc` پس از اولین تکرار تبدیل به undefined می‌شود
     [[0, 1], [2, 3], [4, 5]].reduce((acc, item, index) => {
       const flatten = acc.concat(item);
     });
 
-    // good
+    // خوب
     [[0, 1], [2, 3], [4, 5]].reduce((acc, item, index) => {
       const flatten = acc.concat(item);
       return flatten;
     });
 
-    // bad
+    // بد
     inbox.filter((msg) => {
       const { subject, author } = msg;
       if (subject === 'Mockingbird') {
@@ -456,7 +457,7 @@ Other Style Guides
       }
     });
 
-    // good
+    // خوب
     inbox.filter((msg) => {
       const { subject, author } = msg;
       if (subject === 'Mockingbird') {
@@ -468,7 +469,7 @@ Other Style Guides
     ```
 
   <a name="arrays--bracket-newline"></a>
-  - [4.8](#arrays--bracket-newline) Use line breaks after opening array brackets and before closing array brackets, if an array has multiple lines
+  - [4.8](#arrays--bracket-newline) اگر یک آرایه در چند خط قرار دارد، بعد از براکت بازکننده و قبل از براکت بسته‌کنندهٔ آرایه، خط‌شکن (خط جدید) قرار دهید.
 
     ```javascript
     // bad
@@ -504,14 +505,14 @@ Other Style Guides
     ];
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Destructuring
+## ساختارزدایی (Destructuring)
 
   <a name="destructuring--object"></a><a name="5.1"></a>
-  - [5.1](#destructuring--object) Use object destructuring when accessing and using multiple properties of an object. eslint: [`prefer-destructuring`](https://eslint.org/docs/rules/prefer-destructuring)
+  - [5.1](#destructuring--object) هنگام دسترسی و استفاده از چندین ویژگیِ یک شئ، از ساختارزدایی شئ (object destructuring) استفاده کنید. eslint: [`prefer-destructuring`](https://eslint.org/docs/rules/prefer-destructuring)
 
-    > Why? Destructuring saves you from creating temporary references for those properties, and from repetitive access of the object. Repeating object access creates more repetitive code, requires more reading, and creates more opportunities for mistakes. Destructuring objects also provides a single site of definition of the object structure that is used in the block, rather than requiring reading the entire block to determine what is used.
+    > چرا؟ ساختارزدایی شما را از ایجاد ارجاعات موقت برای آن ویژگی‌ها و از دسترسی تکراری به شئ بی‌نیاز می‌کند. دسترسی تکراری به شئ باعث ایجاد کدهای تکراری‌تر می‌شود، نیاز به خواندن بیشتری دارد و فرصت‌های بیشتری برای ایجاد اشتباه فراهم می‌کند. علاوه بر این، ساختارزدایی شئ‌ها یک مکان واحد برای تعریف ساختار شئ فراهم می‌کند که در آن بلوک استفاده می‌شود، به جای اینکه نیاز باشد کل بلوک را بخوانید تا بفهمید چه چیزهایی استفاده شده است.
 
     ```javascript
     // bad
@@ -535,66 +536,66 @@ Other Style Guides
     ```
 
   <a name="destructuring--array"></a><a name="5.2"></a>
-  - [5.2](#destructuring--array) Use array destructuring. eslint: [`prefer-destructuring`](https://eslint.org/docs/rules/prefer-destructuring)
+  - [5.2](#destructuring--array) از ساختارزدایی آرایه (array destructuring) استفاده کنید. eslint: [`prefer-destructuring`](https://eslint.org/docs/rules/prefer-destructuring)
 
     ```javascript
     const arr = [1, 2, 3, 4];
 
-    // bad
+    // بد
     const first = arr[0];
     const second = arr[1];
 
-    // good
+    // خوب
     const [first, second] = arr;
     ```
 
   <a name="destructuring--object-over-array"></a><a name="5.3"></a>
-  - [5.3](#destructuring--object-over-array) Use object destructuring for multiple return values, not array destructuring.
+  - [5.3](#destructuring--object-over-array) برای مقادیر بازگشتی متعدد، از ساختارزدایی شئ استفاده کنید، نه از ساختارزدایی آرایه.
 
-    > Why? You can add new properties over time or change the order of things without breaking call sites.
+    > چرا؟ می‌توانید به مرور زمان ویژگی‌های جدیدی اضافه کنید یا ترتیب چیزها را تغییر دهید بدون اینکه جایگاه‌های فراخوانی (call sites) خراب شوند.
 
     ```javascript
-    // bad
+    // bad - بد
     function processInput(input) {
-      // then a miracle occurs
+      // سپس یک معجزه رخ می‌دهد
       return [left, right, top, bottom];
     }
 
-    // the caller needs to think about the order of return data
+    // فراخواننده باید به ترتیب داده‌های بازگشتی فکر کند
     const [left, __, top] = processInput(input);
 
-    // good
+    // خوب
     function processInput(input) {
-      // then a miracle occurs
+      // سپس یک معجزه رخ می‌دهد
       return { left, right, top, bottom };
     }
 
-    // the caller selects only the data they need
+    // فراخواننده فقط داده‌هایی که نیاز دارد را انتخاب می‌کند
     const { left, top } = processInput(input);
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Strings
+## رشته ها (Strings)
 
   <a name="strings--quotes"></a><a name="6.1"></a>
-  - [6.1](#strings--quotes) Use single quotes `''` for strings. eslint: [`quotes`](https://eslint.org/docs/rules/quotes)
+  - [6.1](#strings--quotes) برای رشته‌ها از کوتیشن تکی `''` استفاده کنید. eslint: [`quotes`](https://eslint.org/docs/rules/quotes)
 
     ```javascript
-    // bad
+    // bad - بد
     const name = "Capt. Janeway";
 
-    // bad - template literals should contain interpolation or newlines
+    // بد - رشته‌های قالبی (template literals) باید شامل درج متغیر (interpolation) یا خطوط جدید باشند
     const name = `Capt. Janeway`;
 
-    // good
+    // خوب
     const name = 'Capt. Janeway';
     ```
 
   <a name="strings--line-length"></a><a name="6.2"></a>
-  - [6.2](#strings--line-length) Strings that cause the line to go over 100 characters should not be written across multiple lines using string concatenation.
+  - [6.2](#strings--line-length) رشته‌هایی که باعث می‌شوند طول خط از ۱۰۰ کاراکتر بیشتر شود، نباید با استفاده از الحاق رشته‌ها (string concatenation) در چند خط نوشته شوند.
 
-    > Why? Broken strings are painful to work with and make code less searchable.
+    > چرا؟ کار با رشته‌های شکسته (چند خطی شده با الحاق) دردناک است و کد را کمتر قابل جستجو می‌کند.
 
     ```javascript
     // bad
@@ -613,9 +614,9 @@ Other Style Guides
     ```
 
   <a name="es6-template-literals"></a><a name="6.4"></a>
-  - [6.3](#es6-template-literals) When programmatically building up strings, use template strings instead of concatenation. eslint: [`prefer-template`](https://eslint.org/docs/rules/prefer-template) [`template-curly-spacing`](https://eslint.org/docs/rules/template-curly-spacing)
+  - [6.3](#es6-template-literals) هنگام ساخت رشته‌ها به صورت برنامه‌نویسی‌شده، به جای الحاق از رشته‌های قالبی (template strings) استفاده کنید. eslint: [`prefer-template`](https://eslint.org/docs/rules/prefer-template) [`template-curly-spacing`](https://eslint.org/docs/rules/template-curly-spacing)
 
-    > Why? Template strings give you a readable, concise syntax with proper newlines and string interpolation features.
+    > چرا؟ رشته‌های قالبی سینتکسی خوانا و مختصر با قابلیت‌های خطوط جدید مناسب و درج متغیر به شما می‌دهند.
 
     ```javascript
     // bad
@@ -640,12 +641,12 @@ Other Style Guides
     ```
 
   <a name="strings--eval"></a><a name="6.5"></a>
-  - [6.4](#strings--eval) Never use `eval()` on a string; it opens too many vulnerabilities. eslint: [`no-eval`](https://eslint.org/docs/rules/no-eval)
+  - [6.4](#strings--eval) هرگز روی یک رشته از `eval()` استفاده نکنید؛ این کار آسیب‌پذیری‌های زیادی ایجاد می‌کند. eslint: [`no-eval`](https://eslint.org/docs/rules/no-eval)
 
   <a name="strings--escaping"></a>
-  - [6.5](#strings--escaping) Do not unnecessarily escape characters in strings. eslint: [`no-useless-escape`](https://eslint.org/docs/rules/no-useless-escape)
+  - [6.5](#strings--escaping) کاراکترها را در رشته‌ها بدون دلیل escape نکنید. eslint: [`no-useless-escape`](https://eslint.org/docs/rules/no-useless-escape)
 
-    > Why? Backslashes harm readability, thus they should only be present when necessary.
+    > چرا؟ بک‌اسلش‌ها خوانایی را کاهش می‌دهند، بنابراین باید تنها در صورت نیاز، وجود داشته باشند.
 
     ```javascript
     // bad
@@ -656,50 +657,50 @@ Other Style Guides
     const foo = `my name is '${name}'`;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Functions
+## توابع
 
   <a name="functions--declarations"></a><a name="7.1"></a>
-  - [7.1](#functions--declarations) Use named function expressions instead of function declarations. eslint: [`func-style`](https://eslint.org/docs/rules/func-style), [`func-names`](https://eslint.org/docs/latest/rules/func-names)
+  - [7.1](#functions--declarations) به جای اعلان توابع (function declarations)، از عبارات توابعِ نام‌گذاری‌شده (named function expressions) استفاده کنید. eslint: [`func-style`](https://eslint.org/docs/rules/func-style), [`func-names`](https://eslint.org/docs/latest/rules/func-names)
 
-    > Why? Function declarations are hoisted, which means that it’s easy - too easy - to reference the function before it is defined in the file. This harms readability and maintainability. If you find that a function’s definition is large or complex enough that it is interfering with understanding the rest of the file, then perhaps it’s time to extract it to its own module! Don’t forget to explicitly name the expression, regardless of whether or not the name is inferred from the containing variable (which is often the case in modern browsers or when using compilers such as Babel). This eliminates any assumptions made about the Error’s call stack. ([Discussion](https://github.com/airbnb/javascript/issues/794))
+    > چرا؟ اعلان توابع بالا آورده می‌شوند (hoisted)، به این معنی که ارجاع به تابع قبل از تعریف آن در فایل، بسیار آسان است - بیش از حد آسان. این کار به خوانایی و قابلیت نگهداری آسیب می‌زند. اگر متوجه شدید که تعریف یک تابع به قدری بزرگ یا پیچیده است که در درک بقیه فایل اختلال ایجاد می‌کند، شاید زمان آن رسیده که آن را در ماژول جداگانه‌ای استخراج کنید! فراموش نکنید که نام عبارت را صریحاً مشخص کنید، صرف نظر از اینکه آیا نام از متغیر نگهدارنده‌اش استخراج می‌شود یا خیر (که اغلب در مرورگرهای مدرن یا هنگام استفاده از کامپایلرهایی مانند Babel اینطور است). این کار هرگونه فرضیاتی را که درباره پشته فراخوانی (call stack) خطا (Error) وجود دارد، از بین می‌برد. ([بحث](https://github.com/airbnb/javascript/issues/794))
 
     ```javascript
-    // bad
+    // bad - بد
     function foo() {
       // ...
     }
 
-    // bad
+    // بد
     const foo = function () {
       // ...
     };
 
-    // good
-    // lexical name distinguished from the variable-referenced invocation(s)
+    // خوب
+    // نام لغوی (lexical name) متمایز از فراخوانی‌هایی که با متغیر ارجاع داده شده‌اند
     const short = function longUniqueMoreDescriptiveLexicalFoo() {
       // ...
     };
     ```
 
   <a name="functions--iife"></a><a name="7.2"></a>
-  - [7.2](#functions--iife) Wrap immediately invoked function expressions in parentheses. eslint: [`wrap-iife`](https://eslint.org/docs/rules/wrap-iife)
+  - [7.2](#functions--iife) عبارات توابعِ بلافاصله فراخوانی‌شده (IIFE) را داخل پرانتز قرار دهید. eslint: [`wrap-iife`](https://eslint.org/docs/rules/wrap-iife)
 
-    > Why? An immediately invoked function expression is a single unit - wrapping both it, and its invocation parens, in parens, cleanly expresses this. Note that in a world with modules everywhere, you almost never need an IIFE.
+    > چرا؟ یک عبارت تابع بلافاصله فراخوانی‌شده یک واحد واحد است - قرار دادن هم خود آن و هم پرانتزهای فراخوانی‌اش داخل یک پرانتز، این موضوع را به وضوح نشان می‌دهد. توجه داشته باشید که در دنیایی که همه‌جا ماژول وجود دارد، تقریباً هرگز به IIFE نیاز ندارید.
 
     ```javascript
-    // immediately-invoked function expression (IIFE)
+    // IIFE - عبارت تابع بلافاصله فراخوانی‌شده
     (function () {
       console.log('Welcome to the Internet. Please follow me.');
     }());
     ```
 
   <a name="functions--in-blocks"></a><a name="7.3"></a>
-  - [7.3](#functions--in-blocks) Never declare a function in a non-function block (`if`, `while`, etc). Assign the function to a variable instead. Browsers will allow you to do it, but they all interpret it differently, which is bad news bears. eslint: [`no-loop-func`](https://eslint.org/docs/rules/no-loop-func)
+  - [7.3](#functions--in-blocks) هرگز تابعی را در یک بلوک غیرتابعی (مثل `if`، `while` و غیره) اعلان نکنید. در عوض، تابع را به یک متغیر انتساب دهید. مرورگرها به شما اجازه می‌دهند این کار را انجام دهید، اما همگی آن را به شکل متفاوتی تفسیر می‌کنند که خبر بدی است. eslint: [`no-loop-func`](https://eslint.org/docs/rules/no-loop-func)
 
   <a name="functions--note-on-blocks"></a><a name="7.4"></a>
-  - [7.4](#functions--note-on-blocks) **Note:** ECMA-262 defines a `block` as a list of statements. A function declaration is not a statement.
+  - [7.4](#functions--note-on-blocks) **نکته:** ECMA-262 یک بلوک را به عنوان فهرستی از دستورات (statements) تعریف می‌کند. اعلان تابع (function declaration) یک دستور نیست.
 
     ```javascript
     // bad
@@ -719,7 +720,7 @@ Other Style Guides
     ```
 
   <a name="functions--arguments-shadow"></a><a name="7.5"></a>
-  - [7.5](#functions--arguments-shadow) Never name a parameter `arguments`. This will take precedence over the `arguments` object that is given to every function scope.
+  - [7.5](#functions--arguments-shadow) هرگز یک پارامتر را `arguments` نام‌گذاری نکنید. این کار بر شئ `arguments` که به هر دامنه تابعی داده می‌شود، اولویت پیدا می‌کند.
 
     ```javascript
     // bad
@@ -734,9 +735,9 @@ Other Style Guides
     ```
 
   <a name="es6-rest"></a><a name="7.6"></a>
-  - [7.6](#es6-rest) Never use `arguments`, opt to use rest syntax `...` instead. eslint: [`prefer-rest-params`](https://eslint.org/docs/rules/prefer-rest-params)
+  - [7.6](#es6-rest) هرگز از `arguments` استفاده نکنید، در عوض از سینتکس rest یعنی `...` استفاده کنید. eslint: [`prefer-rest-params`](https://eslint.org/docs/rules/prefer-rest-params)
 
-    > Why? `...` is explicit about which arguments you want pulled. Plus, rest arguments are a real Array, and not merely Array-like like `arguments`.
+    > چرا؟ `...` صریحاً مشخص می‌کند که کدام آرگومان‌ها را می‌خواهید استخراج کنید. علاوه بر این، آرگومان‌های rest یک آرایه واقعی هستند، نه فقط شبیه به آرایه (مانند `arguments`).
 
     ```javascript
     // bad
@@ -752,19 +753,19 @@ Other Style Guides
     ```
 
   <a name="es6-default-parameters"></a><a name="7.7"></a>
-  - [7.7](#es6-default-parameters) Use default parameter syntax rather than mutating function arguments.
+  - [7.7](#es6-default-parameters) به جای تغییر آرگومان‌های تابع، از سینتکس پارامترهای پیش‌فرض استفاده کنید.
 
     ```javascript
-    // really bad
+    // very bad - خیلی بد
     function handleThings(opts) {
-      // No! We shouldn’t mutate function arguments.
-      // Double bad: if opts is falsy it'll be set to an object which may
-      // be what you want but it can introduce subtle bugs.
+      // خیر! ما نباید آرگومان‌های تابع را تغییر دهیم.
+      // دو برابر بد: اگر opts falsy باشد، روی یک شئ تنظیم می‌شود که شاید
+      // همان چیزی باشد که می‌خواهید، اما می‌تواند باگ‌های ظریفی ایجاد کند.
       opts = opts || {};
       // ...
     }
 
-    // still bad
+    // هنوز هم بد
     function handleThings(opts) {
       if (opts === void 0) {
         opts = {};
@@ -772,20 +773,20 @@ Other Style Guides
       // ...
     }
 
-    // good
+    // خوب
     function handleThings(opts = {}) {
       // ...
     }
     ```
 
   <a name="functions--default-side-effects"></a><a name="7.8"></a>
-  - [7.8](#functions--default-side-effects) Avoid side effects with default parameters.
+  - [7.8](#functions--default-side-effects) از اثرات جانبی با پارامترهای پیش‌فرض اجتناب کنید.
 
-    > Why? They are confusing to reason about.
+    > چرا؟ استدلال در مورد آن‌ها گیج‌کننده است.
 
     ```javascript
     let b = 1;
-    // bad
+    // بد
     function count(a = b++) {
       console.log(a);
     }
@@ -796,7 +797,7 @@ Other Style Guides
     ```
 
   <a name="functions--defaults-last"></a><a name="7.9"></a>
-  - [7.9](#functions--defaults-last) Always put default parameters last. eslint: [`default-param-last`](https://eslint.org/docs/rules/default-param-last)
+  - [7.9](#functions--defaults-last) همیشه پارامترهای پیش‌فرض را در آخر قرار دهید. eslint: [`default-param-last`](https://eslint.org/docs/rules/default-param-last)
 
     ```javascript
     // bad
@@ -811,22 +812,22 @@ Other Style Guides
     ```
 
   <a name="functions--constructor"></a><a name="7.10"></a>
-  - [7.10](#functions--constructor) Never use the Function constructor to create a new function. eslint: [`no-new-func`](https://eslint.org/docs/rules/no-new-func)
+  - [7.10](#functions--constructor) برای ساخت یک تابع جدید، هرگز از سازنده Function استفاده نکنید. eslint: [`no-new-func`](https://eslint.org/docs/rules/no-new-func)
 
-    > Why? Creating a function in this way evaluates a string similarly to `eval()`, which opens vulnerabilities.
+    > چرا؟ ایجاد تابع به این روش، رشته‌ای را به شکلی مشابه `eval()` ارزیابی می‌کند که باعث ایجاد آسیب‌پذیری می‌شود.
 
     ```javascript
     // bad
     const add = new Function('a', 'b', 'return a + b');
 
-    // still bad
+    // still bad - هنوز هم بد
     const subtract = Function('a', 'b', 'return a - b');
     ```
 
   <a name="functions--signature-spacing"></a><a name="7.11"></a>
-  - [7.11](#functions--signature-spacing) Spacing in a function signature. eslint: [`space-before-function-paren`](https://eslint.org/docs/rules/space-before-function-paren) [`space-before-blocks`](https://eslint.org/docs/rules/space-before-blocks)
+  - [7.11](#functions--signature-spacing) فاصله‌گذاری در امضای یک تابع. eslint: [`space-before-function-paren`](https://eslint.org/docs/rules/space-before-function-paren) [`space-before-blocks`](https://eslint.org/docs/rules/space-before-blocks)
 
-    > Why? Consistency is good, and you shouldn’t have to add or remove a space when adding or removing a name.
+    > چرا؟ یکپارچگی خوب است و شما نباید هنگام اضافه یا حذف کردن یک نام، مجبور به اضافه یا حذف کردن فاصله باشید.
 
     ```javascript
     // bad
@@ -840,9 +841,9 @@ Other Style Guides
     ```
 
   <a name="functions--mutate-params"></a><a name="7.12"></a>
-  - [7.12](#functions--mutate-params) Never mutate parameters. eslint: [`no-param-reassign`](https://eslint.org/docs/rules/no-param-reassign)
+  - [7.12](#functions--mutate-params) هرگز پارامترها را دستخوش تغییر (mutate) نکنید. eslint: [`no-param-reassign`](https://eslint.org/docs/rules/no-param-reassign)
 
-    > Why? Manipulating objects passed in as parameters can cause unwanted variable side effects in the original caller.
+    > چرا؟ دستکاری اشیایی که به عنوان پارامتر پاس داده شده‌اند، می‌تواند باعث ایجاد اثرات جانبی ناخواسته متغیر در فراخواننده اصلی شود.
 
     ```javascript
     // bad
@@ -857,9 +858,9 @@ Other Style Guides
     ```
 
   <a name="functions--reassign-params"></a><a name="7.13"></a>
-  - [7.13](#functions--reassign-params) Never reassign parameters. eslint: [`no-param-reassign`](https://eslint.org/docs/rules/no-param-reassign)
+  - [7.13](#functions--reassign-params) هرگز پارامترها را مجدداً انتساب ندهید. eslint: [`no-param-reassign`](https://eslint.org/docs/rules/no-param-reassign)
 
-    > Why? Reassigning parameters can lead to unexpected behavior, especially when accessing the `arguments` object. It can also cause optimization issues, especially in V8.
+    > چرا؟ انتساب مجدد پارامترها می‌تواند منجر به رفتارهای غیرمنتظره شود، به ویژه هنگام دسترسی به شئ `arguments`. همچنین می‌تواند مشکلاتی در بهینه‌سازی ایجاد کند، به خصوص در V8.
 
     ```javascript
     // bad
@@ -885,9 +886,9 @@ Other Style Guides
     ```
 
   <a name="functions--spread-vs-apply"></a><a name="7.14"></a>
-  - [7.14](#functions--spread-vs-apply) Prefer the use of the spread syntax `...` to call variadic functions. eslint: [`prefer-spread`](https://eslint.org/docs/rules/prefer-spread)
+  - [7.14](#functions--spread-vs-apply) برای فراخوانی توابع با تعداد آرگومان متغیر (variadic functions)، استفاده از سینتکس spread یعنی `...` را ترجیح دهید. eslint: [`prefer-spread`](https://eslint.org/docs/rules/prefer-spread)
 
-    > Why? It’s cleaner, you don’t need to supply a context, and you can not easily compose `new` with `apply`.
+    > چرا؟ تمیزتر است، نیازی به ارائه یک context ندارید، و نمی‌توانید به راحتی `new` را با `apply` ترکیب کنید.
 
     ```javascript
     // bad
@@ -906,7 +907,7 @@ Other Style Guides
     ```
 
   <a name="functions--signature-invocation-indentation"></a>
-  - [7.15](#functions--signature-invocation-indentation) Functions with multiline signatures, or invocations, should be indented just like every other multiline list in this guide: with each item on a line by itself, with a trailing comma on the last item. eslint: [`function-paren-newline`](https://eslint.org/docs/rules/function-paren-newline)
+  - [7.15](#functions--signature-invocation-indentation) توابعی که امضا (signature) یا فراخوانی (invocation) چند خطی دارند، باید دقیقاً مانند هر فهرست چند خطی دیگری در این راهنما تورفتگی (indent) داشته باشند: با قرار گرفتن هر آیتم در یک خط مجزا، همراه با یک ویرگول انتهایی (trailing comma) در آخرین آیتم. eslint: [`function-paren-newline`](https://eslint.org/docs/rules/function-paren-newline)
 
     ```javascript
     // bad
@@ -938,16 +939,16 @@ Other Style Guides
     );
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Arrow Functions
+## توابع پیکانی
 
   <a name="arrows--use-them"></a><a name="8.1"></a>
-  - [8.1](#arrows--use-them) When you must use an anonymous function (as when passing an inline callback), use arrow function notation. eslint: [`prefer-arrow-callback`](https://eslint.org/docs/rules/prefer-arrow-callback), [`arrow-spacing`](https://eslint.org/docs/rules/arrow-spacing)
+  - [8.1](#arrows--use-them) زمانی که مجبور به استفاده از یک تابع ناشناس هستید (مانند زمانی که یک کال‌بک درون‌خطی پاس می‌دهید)، از نمادنگاری تابع پیکانی استفاده کنید. eslint: [`prefer-arrow-callback`](https://eslint.org/docs/rules/prefer-arrow-callback), [`arrow-spacing`](https://eslint.org/docs/rules/arrow-spacing)
 
-    > Why? It creates a version of the function that executes in the context of `this`, which is usually what you want, and is a more concise syntax.
+    > چرا؟ این کار نسخه‌ای از تابع را ایجاد می‌کند که در بافت (context) `this` اجرا می‌شود، که معمولاً همان چیزی است که می‌خواهید، و سینتکسی مختصرتر است.
 
-    > Why not? If you have a fairly complicated function, you might move that logic out into its own named function expression.
+    > چرا نه؟ اگر تابع نسبتاً پیچیده‌ای دارید، ممکن است بخواهید آن منطق را به یک عبارت تابعِ نام‌گذاری‌شده و جداگانه منتقل کنید.
 
     ```javascript
     // bad
@@ -964,54 +965,54 @@ Other Style Guides
     ```
 
   <a name="arrows--implicit-return"></a><a name="8.2"></a>
-  - [8.2](#arrows--implicit-return) If the function body consists of a single statement returning an [expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) without side effects, omit the braces and use the implicit return. Otherwise, keep the braces and use a `return` statement. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens), [`arrow-body-style`](https://eslint.org/docs/rules/arrow-body-style)
+  - [8.2](#arrows--implicit-return) اگر بدنهٔ تابع از یک دستور واحد تشکیل شده باشد که یک [عبارت](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) بدون اثرات جانبی را برمی‌گرداند، آکولادها را حذف کرده و از بازگشت ضمنی (implicit return) استفاده کنید. در غیر این صورت، آکولادها را نگه دارید و از دستور `return` استفاده کنید. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens), [`arrow-body-style`](https://eslint.org/docs/rules/arrow-body-style)
 
-    > Why? Syntactic sugar. It reads well when multiple functions are chained together.
+    > چرا؟ راه را هموار کردن (Syntactic sugar). هنگامی که چند تابع به هم زنجیر می‌شوند، خوانایی خوبی دارد.
 
     ```javascript
-    // bad
+    // bad - بد
     [1, 2, 3].map((number) => {
       const nextNumber = number + 1;
       `A string containing the ${nextNumber}.`;
     });
 
-    // good
+    // خوب
     [1, 2, 3].map((number) => `A string containing the ${number + 1}.`);
 
-    // good
+    // خوب
     [1, 2, 3].map((number) => {
       const nextNumber = number + 1;
       return `A string containing the ${nextNumber}.`;
     });
 
-    // good
+    // خوب
     [1, 2, 3].map((number, index) => ({
       [index]: number,
     }));
 
-    // No implicit return with side effects
+    // بدون بازگشت ضمنی در صورت وجود اثرات جانبی
     function foo(callback) {
       const val = callback();
       if (val === true) {
-        // Do something if callback returns true
+        // اگر کال‌بک true برمی‌گرداند کاری انجام دهید
       }
     }
 
     let bool = false;
 
-    // bad
+    // بد
     foo(() => bool = true);
 
-    // good
+    // خوب
     foo(() => {
       bool = true;
     });
     ```
 
   <a name="arrows--paren-wrap"></a><a name="8.3"></a>
-  - [8.3](#arrows--paren-wrap) In case the expression spans over multiple lines, wrap it in parentheses for better readability.
+  - [8.3](#arrows--paren-wrap) در صورتی که عبارت در چند خط پهن می‌شود، برای خوانایی بهتر آن را داخل پرانتز قرار دهید.
 
-    > Why? It shows clearly where the function starts and ends.
+    > چرا؟ به وضوح نشان می‌دهد که تابع از کجا شروع و به کجا ختم می‌شود.
 
     ```javascript
     // bad
@@ -1031,9 +1032,9 @@ Other Style Guides
     ```
 
   <a name="arrows--one-arg-parens"></a><a name="8.4"></a>
-  - [8.4](#arrows--one-arg-parens) Always include parentheses around arguments for clarity and consistency. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens)
+  - [8.4](#arrows--one-arg-parens) همیشه برای شفافیت و یکپارچگی، پرانتزها را دور آرگومان‌ها قرار دهید. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens)
 
-    > Why? Minimizes diff churn when adding or removing arguments.
+    > چرا؟ تفاوت ها (diff) هنگام اضافه یا حذف آرگومان‌ها را به حداقل می‌رساند.
 
     ```javascript
     // bad
@@ -1066,7 +1067,7 @@ Other Style Guides
     ```
 
   <a name="arrows--confusing"></a><a name="8.5"></a>
-  - [8.5](#arrows--confusing) Avoid confusing arrow function syntax (`=>`) with comparison operators (`<=`, `>=`). eslint: [`no-confusing-arrow`](https://eslint.org/docs/rules/no-confusing-arrow)
+  - [8.5](#arrows--confusing) از اشتباه گرفتن سینتکس تابع پیکانی (`=>`) با عملگرهای مقایسه‌ای (`<=`، `>=`) اجتناب کنید. eslint: [`no-confusing-arrow`](https://eslint.org/docs/rules/no-confusing-arrow)
 
     ```javascript
     // bad
@@ -1086,7 +1087,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--implicit-arrow-linebreak"></a>
-  - [8.6](#whitespace--implicit-arrow-linebreak) Enforce the location of arrow function bodies with implicit returns. eslint: [`implicit-arrow-linebreak`](https://eslint.org/docs/rules/implicit-arrow-linebreak)
+  - [8.6](#whitespace--implicit-arrow-linebreak) مکان بدنهٔ توابع پیکانی که دارای بازگشت ضمنی هستند را یکسان نگه دارید. eslint: [`implicit-arrow-linebreak`](https://eslint.org/docs/rules/implicit-arrow-linebreak)
 
     ```javascript
     // bad
@@ -1104,14 +1105,14 @@ Other Style Guides
     )
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Classes & Constructors
+## کلاس ها و سازنده ها
 
   <a name="constructors--use-class"></a><a name="9.1"></a>
-  - [9.1](#constructors--use-class) Always use `class`. Avoid manipulating `prototype` directly.
+  - [9.1](#constructors--use-class) همیشه از `class` استفاده کنید. از دستکاری مستقیم `prototype` خودداری کنید.
 
-    > Why? `class` syntax is more concise and easier to reason about.
+    > چرا؟ سینتکس `class` مختصرتر است و استدلال در مورد آن آسان‌تر است.
 
     ```javascript
     // bad
@@ -1138,9 +1139,9 @@ Other Style Guides
     ```
 
   <a name="constructors--extends"></a><a name="9.2"></a>
-  - [9.2](#constructors--extends) Use `extends` for inheritance.
+  - [9.2](#constructors--extends) برای وراثت از `extends` استفاده کنید.
 
-    > Why? It is a built-in way to inherit prototype functionality without breaking `instanceof`.
+    > چرا؟ این یک روش توکار (built-in) برای به ارث بردن قابلیت‌های prototype است بدون اینکه `instanceof` را خراب کند.
 
     ```javascript
     // bad
@@ -1162,7 +1163,7 @@ Other Style Guides
     ```
 
   <a name="constructors--chaining"></a><a name="9.3"></a>
-  - [9.3](#constructors--chaining) Methods can return `this` to help with method chaining.
+  - [9.3](#constructors--chaining) متدها می‌توانند `this` را برگردانند تا به زنجیره‌سازی متدها (method chaining) کمک کنند.
 
     ```javascript
     // bad
@@ -1199,7 +1200,7 @@ Other Style Guides
     ```
 
   <a name="constructors--tostring"></a><a name="9.4"></a>
-  - [9.4](#constructors--tostring) It’s okay to write a custom `toString()` method, just make sure it works successfully and causes no side effects.
+  - [9.4](#constructors--tostring) نوشتن یک متد سفارشی `toString()` اشکالی ندارد، فقط مطمئن شوید که با موفقیت کار می‌کند و هیچ اثر جانبی ایجاد نمی‌کند.
 
     ```javascript
     class Jedi {
@@ -1218,7 +1219,7 @@ Other Style Guides
     ```
 
   <a name="constructors--no-useless"></a><a name="9.5"></a>
-  - [9.5](#constructors--no-useless) Classes have a default constructor if one is not specified. An empty constructor function or one that just delegates to a parent class is unnecessary. eslint: [`no-useless-constructor`](https://eslint.org/docs/rules/no-useless-constructor)
+  - [9.5](#constructors--no-useless) کلاس‌ها در صورت عدم مشخص شدن، یک سازنده (constructor) پیش‌فرض دارند. یک تابع سازنده خالی یا سازنده‌ای که فقط کارها را به کلاس والد واگذار می‌کند، غیرضروری است. eslint: [`no-useless-constructor`](https://eslint.org/docs/rules/no-useless-constructor)
 
     ```javascript
     // bad
@@ -1247,9 +1248,9 @@ Other Style Guides
     ```
 
   <a name="classes--no-duplicate-members"></a>
-  - [9.6](#classes--no-duplicate-members) Avoid duplicate class members. eslint: [`no-dupe-class-members`](https://eslint.org/docs/rules/no-dupe-class-members)
+  - [9.6](#classes--no-duplicate-members) از اعضای تکراری در کلاس خودداری کنید. eslint: [`no-dupe-class-members`](https://eslint.org/docs/rules/no-dupe-class-members)
 
-    > Why? Duplicate class member declarations will silently prefer the last one - having duplicates is almost certainly a bug.
+    > چرا؟ اعلان اعضای تکراری کلاس، بی سر و صدا، آخرین مورد را ترجیح می‌دهد - داشتن موارد تکراری تقریباً قطعا یک باگ است.
 
     ```javascript
     // bad
@@ -1270,31 +1271,31 @@ Other Style Guides
     ```
 
   <a name="classes--methods-use-this"></a>
-  - [9.7](#classes--methods-use-this) Class methods should use `this` or be made into a static method unless an external library or framework requires using specific non-static methods. Being an instance method should indicate that it behaves differently based on properties of the receiver. eslint: [`class-methods-use-this`](https://eslint.org/docs/rules/class-methods-use-this)
+  - [9.7](#classes--methods-use-this) متدهای کلاس باید از `this` استفاده کنند یا به یک متد استاتیک (static) تبدیل شوند، مگر اینکه یک کتابخانه یا فریم‌ورک خارجی، استفاده از متدهای خاصِ غیراستاتیک را ایجاب کند. بودنِ یک متدِ نمونه (instance method) باید نشان‌دهنده این باشد که رفتار آن بر اساس ویژگی‌های گیرنده (receiver) متفاوت است. eslint: [`class-methods-use-this`](https://eslint.org/docs/rules/class-methods-use-this)
 
     ```javascript
-    // bad
+    // bad - بد
     class Foo {
       bar() {
         console.log('bar');
       }
     }
 
-    // good - this is used
+    // خوب - از this استفاده شده است
     class Foo {
       bar() {
         console.log(this.bar);
       }
     }
 
-    // good - constructor is exempt
+    // خوب - constructor مستثنی است
     class Foo {
       constructor() {
         // ...
       }
     }
 
-    // good - static methods aren't expected to use this
+    // خوب - از متدهای استاتیک انتظار نمی‌رود که از this استفاده کنند
     class Foo {
       static bar() {
         console.log('bar');
@@ -1302,33 +1303,33 @@ Other Style Guides
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Modules
+## ماژول ها (modules)
 
   <a name="modules--use-them"></a><a name="10.1"></a>
-  - [10.1](#modules--use-them) Always use modules (`import`/`export`) over a non-standard module system. You can always transpile to your preferred module system.
+  - [10.1](#modules--use-them) همیشه به جای سیستم‌های ماژول غیراستاندارد، از ماژول‌ها (`import`/`export`) استفاده کنید. شما همیشه می‌توانید کد را به سیستم ماژول دلخواه خود transpile (تبدیل) کنید.
 
-    > Why? Modules are the future, let’s start using the future now.
+    > چرا؟ ماژول‌ها آینده هستند، بیایید از همین الان از آینده استفاده کنیم.
 
     ```javascript
-    // bad
+    // bad - بد
     const AirbnbStyleGuide = require('./AirbnbStyleGuide');
     module.exports = AirbnbStyleGuide.es6;
 
-    // ok
+    // قابل قبول
     import AirbnbStyleGuide from './AirbnbStyleGuide';
     export default AirbnbStyleGuide.es6;
 
-    // best
+    // بهترین
     import { es6 } from './AirbnbStyleGuide';
     export default es6;
     ```
 
   <a name="modules--no-wildcard"></a><a name="10.2"></a>
-  - [10.2](#modules--no-wildcard) Do not use wildcard imports.
+  - [10.2](#modules--no-wildcard) از واردات شَخلِه (wildcard imports) استفاده نکنید.
 
-    > Why? This makes sure you have a single default export.
+    > چرا؟ این کار تضمین می‌کند که شما یک خروجی پیش‌فرض (default export) واحد داشته باشید.
 
     ```javascript
     // bad
@@ -1339,9 +1340,9 @@ Other Style Guides
     ```
 
   <a name="modules--no-export-from-import"></a><a name="10.3"></a>
-  - [10.3](#modules--no-export-from-import) And do not export directly from an import.
+  - [10.3](#modules--no-export-from-import) و مستقیماً از یک import، export نگیرید.
 
-    > Why? Although the one-liner is concise, having one clear way to import and one clear way to export makes things consistent.
+    > چرا؟ هرچند نوشتن آن در یک خط مختصر است، اما داشتن یک راه مشخص برای وارد کردن و یک راه مشخص برای صادر کردن، باعث یکپارچگی می‌شود.
 
     ```javascript
     // bad
@@ -1355,9 +1356,9 @@ Other Style Guides
     ```
 
   <a name="modules--no-duplicate-imports"></a>
-  - [10.4](#modules--no-duplicate-imports) Only import from a path in one place.
- eslint: [`no-duplicate-imports`](https://eslint.org/docs/rules/no-duplicate-imports)
-    > Why? Having multiple lines that import from the same path can make code harder to maintain.
+  - [10.4](#modules--no-duplicate-imports) فقط از یک مسیر را در یک مکان وارد کنید.
+  eslint: [`no-duplicate-imports`](https://eslint.org/docs/rules/no-duplicate-imports)
+    > چرا؟ داشتن چندین خط که از یک مسیر یکسان وارد می‌کنند، می‌تواند حفظ و نگهداری کد را سخت‌تر کند.
 
     ```javascript
     // bad
@@ -1376,9 +1377,9 @@ Other Style Guides
     ```
 
   <a name="modules--no-mutable-exports"></a>
-  - [10.5](#modules--no-mutable-exports) Do not export mutable bindings.
- eslint: [`import/no-mutable-exports`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/no-mutable-exports.md)
-    > Why? Mutation should be avoided in general, but in particular when exporting mutable bindings. While this technique may be needed for some special cases, in general, only constant references should be exported.
+  - [10.5](#modules--no-mutable-exports) اتصالات (bindings) قابل تغییر (mutable) را صادر نکنید.
+  eslint: [`import/no-mutable-exports`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/no-mutable-exports.md)
+    > چرا؟ به طور کلی باید از تغییر (mutation) اجتناب کرد، اما به ویژه هنگام صادر کردن اتصالات قابل تغییر. در حالی که این تکنیک ممکن است برای برخی موارد خاص نیاز باشد، به طور کلی فقط باید ارجاعات ثابت (const) صادر شوند.
 
     ```javascript
     // bad
@@ -1391,9 +1392,9 @@ Other Style Guides
     ```
 
   <a name="modules--prefer-default-export"></a>
-  - [10.6](#modules--prefer-default-export) In modules with a single export, prefer default export over named export.
- eslint: [`import/prefer-default-export`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/prefer-default-export.md)
-    > Why? To encourage more files that only ever export one thing, which is better for readability and maintainability.
+  - [10.6](#modules--prefer-default-export) در ماژول‌هایی با تنها یک خروجی، خروجی پیش‌فرض (default export) را به خروجی نام‌گذاری‌شده (named export) ترجیح دهید.
+  eslint: [`import/prefer-default-export`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/prefer-default-export.md)
+    > چرا؟ برای تشویق فایل‌های بیشتری که فقط یک چیز را صادر می‌کنند، که برای خوانایی و قابلیت نگهداری بهتر است.
 
     ```javascript
     // bad
@@ -1404,9 +1405,9 @@ Other Style Guides
     ```
 
   <a name="modules--imports-first"></a>
-  - [10.7](#modules--imports-first) Put all `import`s above non-import statements.
- eslint: [`import/first`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/first.md)
-    > Why? Since `import`s are hoisted, keeping them all at the top prevents surprising behavior.
+  - [10.7](#modules--imports-first) تمام `import`ها را بالاتر از دستورات غیرِ وارداتی قرار دهید.
+  eslint: [`import/first`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/first.md)
+    > چرا؟ از آنجایی که `import`ها بالا آورده می‌شوند (hoisted)، نگه داشتن همه آن‌ها در بالا از رفتارهای غیرمنتظره جلوگیری می‌کند.
 
     ```javascript
     // bad
@@ -1423,10 +1424,10 @@ Other Style Guides
     ```
 
   <a name="modules--multiline-imports-over-newlines"></a>
-  - [10.8](#modules--multiline-imports-over-newlines) Multiline imports should be indented just like multiline array and object literals.
- eslint: [`object-curly-newline`](https://eslint.org/docs/rules/object-curly-newline)
+  - [10.8](#modules--multiline-imports-over-newlines) واردات چندخطی باید دقیقاً مانند لیترال‌های چندخطی آرایه و شئ، فاصله گذاری (indent) داشته باشند.
+  eslint: [`object-curly-newline`](https://eslint.org/docs/rules/object-curly-newline)
 
-    > Why? The curly braces follow the same indentation rules as every other curly brace block in the style guide, as do the trailing commas.
+    > چرا؟ آکولادها از همان قوانین فاصله گذاری پیروی می‌کنند که هر بلوک آکولاد دیگری در این راهنما دارد، و ویرگول‌های انتهایی (trailing commas) نیز همینطور.
 
     ```javascript
     // bad
@@ -1443,9 +1444,9 @@ Other Style Guides
     ```
 
   <a name="modules--no-webpack-loader-syntax"></a>
-  - [10.9](#modules--no-webpack-loader-syntax) Disallow Webpack loader syntax in module import statements.
- eslint: [`import/no-webpack-loader-syntax`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/no-webpack-loader-syntax.md)
-    > Why? Since using Webpack syntax in the imports couples the code to a module bundler. Prefer using the loader syntax in `webpack.config.js`.
+  - [10.9](#modules--no-webpack-loader-syntax) استفاده از سینتکس لودرهای Webpack در دستورات واردات ماژول ممنوع است.
+  eslint: [`import/no-webpack-loader-syntax`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/no-webpack-loader-syntax.md)
+    > چرا؟ از آنجایی که استفاده از سینتکس Webpack در واردات، کد را به یک باندلر ماژول وابسته می‌کند. استفاده از سینتکس لودر در `webpack.config.js` ترجیح داده می‌شود.
 
     ```javascript
     // bad
@@ -1458,9 +1459,9 @@ Other Style Guides
     ```
 
   <a name="modules--import-extensions"></a>
-  - [10.10](#modules--import-extensions) Do not include JavaScript filename extensions
- eslint: [`import/extensions`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/extensions.md)
-    > Why? Including extensions inhibits refactoring, and inappropriately hardcodes implementation details of the module you're importing in every consumer.
+  - [10.10](#modules--import-extensions) پسوندهای نام فایل جاوااسکریپت را لحاظ نکنید.
+  eslint: [`import/extensions`](https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/extensions.md)
+    > چرا؟ لحاظ کردن پسوندها، بازنویسی کد (refactoring) را محدود می‌کند و جزئیات پیاده‌سازی ماژولی که در حال وارد کردن آن هستید را به صورت نامناسبی در هر مصرف‌کننده، هاردکد (سخت‌کد) می‌کند.
 
     ```javascript
     // bad
@@ -1474,126 +1475,126 @@ Other Style Guides
     import baz from './baz';
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Iterators and Generators
+## تکرارکننده ها و مولد ها (Iterators and Generators)
 
   <a name="iterators--nope"></a><a name="11.1"></a>
-  - [11.1](#iterators--nope) Don’t use iterators. Prefer JavaScript’s higher-order functions instead of loops like `for-in` or `for-of`. eslint: [`no-iterator`](https://eslint.org/docs/rules/no-iterator) [`no-restricted-syntax`](https://eslint.org/docs/rules/no-restricted-syntax)
+  - [11.1](#iterators--nope) از تکرارکننده‌ها (iterators) استفاده نکنید. به جای حلقه‌هایی مانند `for-in` یا `for-of`، توابع مرتبه بالای جاوااسکریپت را ترجیح دهید. eslint: [`no-iterator`](https://eslint.org/docs/rules/no-iterator) [`no-restricted-syntax`](https://eslint.org/docs/rules/no-restricted-syntax)
 
-    > Why? This enforces our immutable rule. Dealing with pure functions that return values is easier to reason about than side effects.
+    > چرا؟ این کار قانون تغییرناپذیری (immutable) ما را اعمال می‌کند. کار با توابع خالصی که مقادیری را برمی‌گردانند، در مقایسه با اثرات جانبی، استدلال در موردشان آسان‌تر است.
 
-    > Use `map()` / `every()` / `filter()` / `find()` / `findIndex()` / `reduce()` / `some()` / ... to iterate over arrays, and `Object.keys()` / `Object.values()` / `Object.entries()` to produce arrays so you can iterate over objects.
+    > برای پیمایش آرایه‌ها از `map()` / `every()` / `filter()` / `find()` / `findIndex()` / `reduce()` / `some()` / ... استفاده کنید و برای تولید آرایه‌هایی که بتوانید اشیاء را پیمایش کنید، از `Object.keys()` / `Object.values()` / `Object.entries()` استفاده کنید.
 
     ```javascript
     const numbers = [1, 2, 3, 4, 5];
 
-    // bad
+    // بد
     let sum = 0;
     for (let num of numbers) {
       sum += num;
     }
     sum === 15;
 
-    // good
+    // خوب
     let sum = 0;
     numbers.forEach((num) => {
       sum += num;
     });
     sum === 15;
 
-    // best (use the functional force)
+    // بهترین (از نیروی تابعی استفاده کنید)
     const sum = numbers.reduce((total, num) => total + num, 0);
     sum === 15;
 
-    // bad
+    // بد
     const increasedByOne = [];
     for (let i = 0; i < numbers.length; i++) {
       increasedByOne.push(numbers[i] + 1);
     }
 
-    // good
+    // خوب
     const increasedByOne = [];
     numbers.forEach((num) => {
       increasedByOne.push(num + 1);
     });
 
-    // best (keeping it functional)
+    // بهترین (نگه داشتن حالت تابعی)
     const increasedByOne = numbers.map((num) => num + 1);
     ```
 
   <a name="generators--nope"></a><a name="11.2"></a>
-  - [11.2](#generators--nope) Don’t use generators for now.
+  - [11.2](#generators--nope) فعلاً از مولدها (Generators) استفاده نکنید.
 
-    > Why? They don’t transpile well to ES5.
+    > چرا؟ آن‌ها به خوبی به ES5 ترنسپایل نمی‌شوند.
 
   <a name="generators--spacing"></a>
-  - [11.3](#generators--spacing) If you must use generators, or if you disregard [our advice](#generators--nope), make sure their function signature is spaced properly. eslint: [`generator-star-spacing`](https://eslint.org/docs/rules/generator-star-spacing)
+  - [11.3](#generators--spacing) اگر مجبور به استفاده از مولدها هستید، یا اگر [توصیه ما](#generators--nope) را نادیده می‌گیرید، مطمئن شوید که امضای تابع آن‌ها به درستی فاصله‌گذاری شده است. eslint: [`generator-star-spacing`](https://eslint.org/docs/rules/generator-star-spacing)
 
-    > Why? `function` and `*` are part of the same conceptual keyword - `*` is not a modifier for `function`, `function*` is a unique construct, different from `function`.
+    > چرا؟ `function` و `*` بخشی از یک کلمه کلیدی مفهومی یکسان هستند - `*` یک اصلاح‌کننده برای `function` نیست، `function*` یک ساختار منحصر‌به‌فرد است که با `function` متفاوت است.
 
     ```javascript
-    // bad
+    // bad - بد
     function * foo() {
       // ...
     }
 
-    // bad
+    // بد
     const bar = function * () {
       // ...
     };
 
-    // bad
+    // بد
     const baz = function *() {
       // ...
     };
 
-    // bad
+    // بد
     const quux = function*() {
       // ...
     };
 
-    // bad
+    // بد
     function*foo() {
       // ...
     }
 
-    // bad
+    // بد
     function *foo() {
       // ...
     }
 
-    // very bad
+    // خیلی بد
     function
     *
     foo() {
       // ...
     }
 
-    // very bad
+    // خیلی بد
     const wat = function
     *
     () {
       // ...
     };
 
-    // good
+    // خوب
     function* foo() {
       // ...
     }
 
-    // good
+    // خوب
     const foo = function* () {
       // ...
     };
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Properties
+## ویژگی ها (properties)
 
   <a name="properties--dot"></a><a name="12.1"></a>
-  - [12.1](#properties--dot) Use dot notation when accessing properties. eslint: [`dot-notation`](https://eslint.org/docs/rules/dot-notation)
+  - [12.1](#properties--dot) هنگام دسترسی به ویژگی‌ها از نمادگذاری نقطه‌ای (dot notation) استفاده کنید. eslint: [`dot-notation`](https://eslint.org/docs/rules/dot-notation)
 
     ```javascript
     const luke = {
@@ -1601,15 +1602,15 @@ Other Style Guides
       age: 28,
     };
 
-    // bad
+    // بد
     const isJedi = luke['jedi'];
 
-    // good
+    // خوب
     const isJedi = luke.jedi;
     ```
 
   <a name="properties--bracket"></a><a name="12.2"></a>
-  - [12.2](#properties--bracket) Use bracket notation `[]` when accessing properties with a variable.
+  - [12.2](#properties--bracket) هنگام دسترسی به ویژگی‌ها با استفاده از یک متغیر، از نمادگذاری براکتی `[]` استفاده کنید.
 
     ```javascript
     const luke = {
@@ -1625,7 +1626,7 @@ Other Style Guides
     ```
 
   <a name="es2016-properties--exponentiation-operator"></a>
-  - [12.3](#es2016-properties--exponentiation-operator) Use exponentiation operator `**` when calculating exponentiations. eslint: [`prefer-exponentiation-operator`](https://eslint.org/docs/rules/prefer-exponentiation-operator).
+  - [12.3](#es2016-properties--exponentiation-operator) هنگام محاسبه توان، از عملگر توان `**` استفاده کنید. eslint: [`prefer-exponentiation-operator`](https://eslint.org/docs/rules/prefer-exponentiation-operator).
 
     ```javascript
     // bad
@@ -1635,12 +1636,12 @@ Other Style Guides
     const binary = 2 ** 10;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Variables
+## متغیر ها
 
   <a name="variables--const"></a><a name="13.1"></a>
-  - [13.1](#variables--const) Always use `const` or `let` to declare variables. Not doing so will result in global variables. We want to avoid polluting the global namespace. Captain Planet warned us of that. eslint: [`no-undef`](https://eslint.org/docs/rules/no-undef) [`prefer-const`](https://eslint.org/docs/rules/prefer-const)
+  - [13.1](#variables--const) همیشه برای اعلان متغیرها از `const` یا `let` استفاده کنید. عدم انجام این کار منجر به ایجاد متغیرهای سراسری (global) می‌شود. ما می‌خواهیم از آلوده کردن فضای نام سراسری جلوگیری کنیم. کاپیتان پلنت به ما در این باره هشدار داده بود. eslint: [`no-undef`](https://eslint.org/docs/rules/no-undef) [`prefer-const`](https://eslint.org/docs/rules/prefer-const)
 
     ```javascript
     // bad
@@ -1651,32 +1652,32 @@ Other Style Guides
     ```
 
   <a name="variables--one-const"></a><a name="13.2"></a>
-  - [13.2](#variables--one-const) Use one `const` or `let` declaration per variable or assignment. eslint: [`one-var`](https://eslint.org/docs/rules/one-var)
+  - [13.2](#variables--one-const) برای هر متغیر یا انتساب، از یک اعلان `const` یا `let` مجزا استفاده کنید. eslint: [`one-var`](https://eslint.org/docs/rules/one-var)
 
-    > Why? It’s easier to add new variable declarations this way, and you never have to worry about swapping out a `;` for a `,` or introducing punctuation-only diffs. You can also step through each declaration with the debugger, instead of jumping through all of them at once.
+    > چرا؟ این روش اضافه کردن اعلان‌های متغیر جدید را آسان‌تر می‌کند، و دیگر نیازی نیست نگران جایگزینی `;` با `,` یا ایجاد تفاوت ها (diff) فقط نقطه‌گذاری باشید. همچنین می‌توانید با دیباگر (debugger) هر اعلان را مرحله به مرحله پیش بروید، به جای اینکه همه را به یکباره رد شوید.
 
     ```javascript
-    // bad
+    // bad - بد
     const items = getItems(),
         goSportsTeam = true,
         dragonball = 'z';
 
-    // bad
-    // (compare to above, and try to spot the mistake)
+    // بد
+    // (با بالا مقایسه کنید و سعی کنید اشتباه را پیدا کنید)
     const items = getItems(),
         goSportsTeam = true;
         dragonball = 'z';
 
-    // good
+    // خوب
     const items = getItems();
     const goSportsTeam = true;
     const dragonball = 'z';
     ```
 
   <a name="variables--const-let-group"></a><a name="13.3"></a>
-  - [13.3](#variables--const-let-group) Group all your `const`s and then group all your `let`s.
+  - [13.3](#variables--const-let-group) ابتدا همهٔ `const`های خود و سپس همهٔ `let`های خود را گروه‌بندی کنید.
 
-    > Why? This is helpful when later on you might need to assign a variable depending on one of the previously assigned variables.
+    > چرا؟ این کار زمانی مفید است که بعداً ممکن است نیاز داشته باشید متغیری را بر اساس یکی از متغیرهای از پیش اختصاص داده شده، مقداردهی کنید.
 
     ```javascript
     // bad
@@ -1700,12 +1701,12 @@ Other Style Guides
     ```
 
   <a name="variables--define-where-used"></a><a name="13.4"></a>
-  - [13.4](#variables--define-where-used) Assign variables where you need them, but place them in a reasonable place.
+  - [13.4](#variables--define-where-used) متغیرها را جایی مقداردهی کنید که به آن‌ها نیاز دارید، اما در یک مکان منطقی قرارشان دهید.
 
-    > Why? `let` and `const` are block scoped and not function scoped.
+    > چرا؟ `let` و `const` دامنه بلوکی دارند، نه دامنه تابعی.
 
     ```javascript
-    // bad - unnecessary function call
+    // bad - بد - فراخوانی تابع غیرضروری
     function checkName(hasName) {
       const name = getName();
 
@@ -1721,7 +1722,7 @@ Other Style Guides
       return name;
     }
 
-    // good
+    // خوب
     function checkName(hasName) {
       if (hasName === 'test') {
         return false;
@@ -1739,42 +1740,42 @@ Other Style Guides
     ```
 
   <a name="variables--no-chain-assignment"></a><a name="13.5"></a>
-  - [13.5](#variables--no-chain-assignment) Don’t chain variable assignments. eslint: [`no-multi-assign`](https://eslint.org/docs/rules/no-multi-assign)
+  - [13.5](#variables--no-chain-assignment) انتساب متغیرها را زنجیره‌ای نکنید. eslint: [`no-multi-assign`](https://eslint.org/docs/rules/no-multi-assign)
 
-    > Why? Chaining variable assignments creates implicit global variables.
+    > چرا؟ انتساب زنجیره‌ای متغیرها، متغیرهای سراسری ضمنی ایجاد می‌کند.
 
     ```javascript
-    // bad
+    // bad - بد
     (function example() {
-      // JavaScript interprets this as
+      // جاوااسکریپت این را به این شکل تفسیر می‌کند
       // let a = ( b = ( c = 1 ) );
-      // The let keyword only applies to variable a; variables b and c become
-      // global variables.
+      // کلمه کلیدی let فقط روی متغیر a اعمال می‌شود؛ متغیرهای b و c به
+      // متغیرهای سراسری تبدیل می‌شوند.
       let a = b = c = 1;
     }());
 
-    console.log(a); // throws ReferenceError
+    console.log(a); // خطای ReferenceError پرتاب می‌کند
     console.log(b); // 1
     console.log(c); // 1
 
-    // good
+    // خوب
     (function example() {
       let a = 1;
       let b = a;
       let c = a;
     }());
 
-    console.log(a); // throws ReferenceError
-    console.log(b); // throws ReferenceError
-    console.log(c); // throws ReferenceError
+    console.log(a); // خطای ReferenceError پرتاب می‌کند
+    console.log(b); // خطای ReferenceError پرتاب می‌کند
+    console.log(c); // خطای ReferenceError پرتاب می‌کند
 
-    // the same applies for `const`
+    // همین امر برای `const` نیز صدق می‌کند
     ```
 
   <a name="variables--unary-increment-decrement"></a><a name="13.6"></a>
-  - [13.6](#variables--unary-increment-decrement) Avoid using unary increments and decrements (`++`, `--`). eslint [`no-plusplus`](https://eslint.org/docs/rules/no-plusplus)
+  - [13.6](#variables--unary-increment-decrement) از افزایش و کاهش یگانه (`++`, `--`) اجتناب کنید. eslint [`no-plusplus`](https://eslint.org/docs/rules/no-plusplus)
 
-    > Why? Per the eslint documentation, unary increment and decrement statements are subject to automatic semicolon insertion and can cause silent errors with incrementing or decrementing values within an application. It is also more expressive to mutate your values with statements like `num += 1` instead of `num++` or `num ++`. Disallowing unary increment and decrement statements also prevents you from pre-incrementing/pre-decrementing values unintentionally which can also cause unexpected behavior in your programs.
+    > چرا؟ بر اساس مستندات eslint، دستورات افزایش و کاهش یگانه مستعد درج خودکار سمی‌کالن (automatic semicolon insertion) هستند و می‌توانند باعث خطاهای خاموش در افزایش یا کاهش مقادیر درون یک برنامه شوند. همچنین تغییر مقادیر با دستوراتی مانند `num += 1` به جای `num++` یا `num ++` گویاتر است. ممنوع کردن دستورات افزایش و کاهش یگانه همچنین شما را از افزایش/کاهش پیشین (pre-incrementing/pre-decrementing) مقادیر به صورت ناخواسته باز می‌دارد که می‌تواند باعث رفتارهای غیرمنتظره در برنامه‌های شما شود.
 
     ```javascript
     // bad
@@ -1805,10 +1806,10 @@ Other Style Guides
     const truthyCount = array.filter(Boolean).length;
     ```
 
-<a name="variables--linebreak"></a>
-  - [13.7](#variables--linebreak) Avoid linebreaks before or after `=` in an assignment. If your assignment violates [`max-len`](https://eslint.org/docs/rules/max-len), surround the value in parens. eslint [`operator-linebreak`](https://eslint.org/docs/rules/operator-linebreak).
+  <a name="variables--linebreak"></a>
+  - [13.7](#variables--linebreak) از خط‌شکن (خط جدید) قبل یا بعد از `=` در یک انتساب اجتناب کنید. اگر انتساب شما [`max-len`](https://eslint.org/docs/rules/max-len) را نقض می‌کند، مقدار را داخل پرانتز قرار دهید. eslint [`operator-linebreak`](https://eslint.org/docs/rules/operator-linebreak).
 
-    > Why? Linebreaks surrounding `=` can obfuscate the value of an assignment.
+    > چرا؟ خط‌شکن‌های اطراف `=` می‌توانند مقدار یک انتساب را مبهم کنند.
 
     ```javascript
     // bad
@@ -1828,30 +1829,30 @@ Other Style Guides
     const foo = 'superLongLongLongLongLongLongLongLongString';
     ```
 
-<a name="variables--no-unused-vars"></a>
-  - [13.8](#variables--no-unused-vars) Disallow unused variables. eslint: [`no-unused-vars`](https://eslint.org/docs/rules/no-unused-vars)
+  <a name="variables--no-unused-vars"></a>
+  - [13.8](#variables--no-unused-vars) متغیرهای استفاده‌نشده را ممنوع کنید. eslint: [`no-unused-vars`](https://eslint.org/docs/rules/no-unused-vars)
 
-    > Why? Variables that are declared and not used anywhere in the code are most likely an error due to incomplete refactoring. Such variables take up space in the code and can lead to confusion by readers.
+    > چرا؟ متغیرهایی که اعلان می‌شوند و هیچ‌جایی در کد استفاده نمی‌شوند، احتمالاً به دلیل بازنویسی ناقص (refactoring) یک خطا هستند. چنین متغیرهایی فضا اشغال می‌کنند و می‌توانند باعث سردرگمی خوانندگان شوند.
 
     ```javascript
-    // bad
+    // bad - بد
 
     const some_unused_var = 42;
 
-    // Write-only variables are not considered as used.
+    // متغیرهای فقط-نوشتنی (write-only) به عنوان استفاده‌شده در نظر گرفته نمی‌شوند.
     let y = 10;
     y = 5;
 
-    // A read for a modification of itself is not considered as used.
+    // خواندن برای اصلاح خودش، به عنوان استفاده‌شده در نظر گرفته نمی‌شود.
     let z = 0;
     z = z + 1;
 
-    // Unused function arguments.
+    // آرگومان‌های استفاده نشده تابع.
     function getX(x, y) {
         return x;
     }
 
-    // good
+    // خوب
 
     function getXPlusY(x, y) {
       return x + y;
@@ -1862,60 +1863,60 @@ Other Style Guides
 
     alert(getXPlusY(x, y));
 
-    // 'type' is ignored even if unused because it has a rest property sibling.
-    // This is a form of extracting an object that omits the specified keys.
+    // 'type' حتی اگر استفاده نشود نادیده گرفته می‌شود چون یک ویژگی خواهری (sibling) از نوع rest دارد.
+    // این شکلی از استخراج یک شئ است که کلیدهای مشخص شده را حذف می‌کند.
     const { type, ...coords } = data;
-    // 'coords' is now the 'data' object without its 'type' property.
+    // 'coords' اکنون شئ 'data' بدون ویژگی 'type' آن است.
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Hoisting
+## بالا آوردن (Hoisting)
 
   <a name="hoisting--about"></a><a name="14.1"></a>
-  - [14.1](#hoisting--about) `var` declarations get hoisted to the top of their closest enclosing function scope, their assignment does not. `const` and `let` declarations are blessed with a new concept called [Temporal Dead Zones (TDZ)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#temporal_dead_zone_tdz). It’s important to know why [typeof is no longer safe](https://web.archive.org/web/20200121061528/http://es-discourse.com/t/why-typeof-is-no-longer-safe/15).
+  - [14.1](#hoisting--about) اعلان‌های `var` به بالاترین حد دامنه تابعی احاطه‌کنندهٔ خود بالا آورده می‌شوند (hoisted)، اما انتساب آن‌ها بالا آورده نمی‌شود. اعلان‌های `const` و `let` دارای یک مفهوم جدید به نام [منطقه مرده زمانی (Temporal Dead Zones - TDZ)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#temporal_dead_zone_tdz) هستند. مهم است بدانید چرا [`typeof` دیگر امن نیست](https://web.archive.org/web/20200121061528/http://es-discourse.com/t/why-typeof-is-no-longer-safe/15).
 
     ```javascript
-    // we know this wouldn’t work (assuming there
-    // is no notDefined global variable)
+    // this won't work - می‌دانیم که این کار نمی‌کند
+    // (با فرض اینکه متغیر سراسری notDefined وجود ندارد)
     function example() {
-      console.log(notDefined); // => throws a ReferenceError
+      console.log(notDefined); // => یک خطای ReferenceError پرتاب می‌کند
     }
 
-    // creating a variable declaration after you
-    // reference the variable will work due to
-    // variable hoisting. Note: the assignment
-    // value of `true` is not hoisted.
+    // ایجاد یک اعلان متغیر پس از اینکه
+    // به متغیر ارجاع داده‌اید، به دلیل بالا آوردن
+    // متغیر کار خواهد کرد. نکته: مقدار
+    // انتسابیِ `true` بالا آورده نمی‌شود.
     function example() {
       console.log(declaredButNotAssigned); // => undefined
       var declaredButNotAssigned = true;
     }
 
-    // the interpreter is hoisting the variable
-    // declaration to the top of the scope,
-    // which means our example could be rewritten as:
+    // مفسر اعلان متغیر را به بالای دامنه
+    // بالا می‌آورد، به این معنی که مثال ما
+    // می‌تواند به این شکل بازنویسی شود:
     function example() {
       let declaredButNotAssigned;
       console.log(declaredButNotAssigned); // => undefined
       declaredButNotAssigned = true;
     }
 
-    // using const and let
+    // استفاده از const و let
     function example() {
-      console.log(declaredButNotAssigned); // => throws a ReferenceError
-      console.log(typeof declaredButNotAssigned); // => throws a ReferenceError
+      console.log(declaredButNotAssigned); // => یک خطای ReferenceError پرتاب می‌کند
+      console.log(typeof declaredButNotAssigned); // => یک خطای ReferenceError پرتاب می‌کند
       const declaredButNotAssigned = true;
     }
     ```
 
   <a name="hoisting--anon-expressions"></a><a name="14.2"></a>
-  - [14.2](#hoisting--anon-expressions) Anonymous function expressions hoist their variable name, but not the function assignment.
+  - [14.2](#hoisting--anon-expressions) عبارات توابع ناشناس (Anonymous function expressions)، نام متغیر خود را بالا می‌آورند، اما انتساب تابع بالا آورده نمی‌شود.
 
     ```javascript
     function example() {
       console.log(anonymous); // => undefined
 
-      anonymous(); // => TypeError anonymous is not a function
+      anonymous(); // => TypeError: anonymous تابع نیست
 
       var anonymous = function () {
         console.log('anonymous function expression');
@@ -1924,27 +1925,27 @@ Other Style Guides
     ```
 
   <a name="hoisting--named-expresions"></a><a name="hoisting--named-expressions"></a><a name="14.3"></a>
-  - [14.3](#hoisting--named-expressions) Named function expressions hoist the variable name, not the function name or the function body.
+  - [14.3](#hoisting--named-expressions) عبارات توابع نام‌گذاری‌شده (Named function expressions)، نام متغیر را بالا می‌آورند، نه نام تابع یا بدنه تابع را.
 
     ```javascript
     function example() {
       console.log(named); // => undefined
 
-      named(); // => TypeError named is not a function
+      named(); // => TypeError: named تابع نیست
 
-      superPower(); // => ReferenceError superPower is not defined
+      superPower(); // => ReferenceError: superPower تعریف نشده است
 
       var named = function superPower() {
         console.log('Flying');
       };
     }
 
-    // the same is true when the function name
-    // is the same as the variable name.
+    // همین امر زمانی صادق است که نام تابع
+    // با نام متغیر یکسان باشد.
     function example() {
       console.log(named); // => undefined
 
-      named(); // => TypeError named is not a function
+      named(); // => TypeError: named تابع نیست
 
       var named = function named() {
         console.log('named');
@@ -1953,7 +1954,7 @@ Other Style Guides
     ```
 
   <a name="hoisting--declarations"></a><a name="14.4"></a>
-  - [14.4](#hoisting--declarations) Function declarations hoist their name and the function body.
+  - [14.4](#hoisting--declarations) اعلان توابع (Function declarations)، نام و بدنه تابع را بالا می‌آورند.
 
     ```javascript
     function example() {
@@ -1966,30 +1967,31 @@ Other Style Guides
     ```
 
   <a name="no-use-before-define"></a>
-  - [14.5](#no-use-before-define) Variables, classes, and functions should be defined before they can be used. eslint: [`no-use-before-define`](https://eslint.org/docs/latest/rules/no-use-before-define)
+  - [14.5](#no-use-before-define) متغیرها، کلاس‌ها و توابع باید قبل از استفاده شدن تعریف شوند. eslint: [`no-use-before-define`](https://eslint.org/docs/latest/rules/no-use-before-define)
 
-    > Why? When variables, classes, or functions are declared after being used, it can harm readability since a reader won't know what a thing that's referenced is. It's much clearer for a reader to first encounter the source of a thing (whether imported from another module, or defined in the file) before encountering a use of the thing.
+    > چرا؟ زمانی که متغیرها، کلاس‌ها یا توابع پس از استفاده شدن اعلان می‌شوند، می‌تواند به خوانایی آسیب برساند، زیرا خواننده نمی‌داند آن چیزی که به آن ارجاع داده شده چیست. برای یک خواننده بسیار واضح‌تر است که ابتدا با منبع یک چیز (چه وارد شده از ماژول دیگر، چه تعریف شده در فایل) مواجه شود و سپس با استفاده از آن چیز روبرو شود.
 
     ```javascript
-    // bad
+    // bad - بد
 
-    // Variable a is being used before it is being defined.
-    console.log(a); // this will be undefined, since while the declaration is hoisted, the initialization is not
+    // متغیر a قبل از تعریف شدنش استفاده می‌شود.
+    console.log(a);
+    // این undefined خواهد بود، زیرا در حالی که اعلان بالا آورده می‌شود، مقداردهی اولیه (initialization) بالا آورده نمی‌شود
     var a = 10;
 
-    // Function fun is being called before being defined.
+    // تابع fun قبل از تعریف شدن فراخوانی می‌شود.
     fun();
     function fun() {}
 
-    // Class A is being used before being defined.
+    // کلاس A قبل از تعریف شدن استفاده می‌شود.
     new A(); // ReferenceError: Cannot access 'A' before initialization
     class A {
     }
 
-    // `let` and `const` are hoisted, but they don't have a default initialization.
-    // The variables 'a' and 'b' are in a Temporal Dead Zone where JavaScript
-    // knows they exist (declaration is hoisted) but they are not accessible
-    // (as they are not yet initialized).
+    // `let` و `const` بالا آورده می‌شوند، اما مقداردهی اولیه پیش‌فرض ندارند.
+    // متغیرهای 'a' و 'b' در یک منطقه مرده زمانی (Temporal Dead Zone) هستند
+    // که جاوااسکریپت می‌داند آن‌ها وجود دارند (اعلان بالا آورده شده است)
+    // اما قابل دسترسی نیستند (چون هنوز مقداردهی اولیه نشده‌اند).
 
     console.log(a); // ReferenceError: Cannot access 'a' before initialization
     console.log(b); // ReferenceError: Cannot access 'b' before initialization
@@ -1997,7 +1999,7 @@ Other Style Guides
     const b = 5;
 
 
-    // good
+    // خوب
 
     var a = 10;
     console.log(a); // 10
@@ -2015,34 +2017,34 @@ Other Style Guides
     console.log(b); // 5
     ```
 
-  - For more information refer to [JavaScript Scoping & Hoisting](https://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting/) by [Ben Cherry](https://www.adequatelygood.com/).
+  - برای اطلاعات بیشتر به [محدوده‌سازی و بالا آوردن در جاوااسکریپت (JavaScript Scoping & Hoisting)](https://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting/) اثر [بن چری (Ben Cherry)](https://www.adequatelygood.com/) مراجعه کنید.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Comparison Operators & Equality
+## عملگرهای مقایسه و برابری
 
   <a name="comparison--eqeqeq"></a><a name="15.1"></a>
-  - [15.1](#comparison--eqeqeq) Use `===` and `!==` over `==` and `!=`. eslint: [`eqeqeq`](https://eslint.org/docs/rules/eqeqeq)
+  - [15.1](#comparison--eqeqeq) به جای `==` و `!=` از `===` و `!==` استفاده کنید. eslint: [`eqeqeq`](https://eslint.org/docs/rules/eqeqeq)
 
   <a name="comparison--if"></a><a name="15.2"></a>
-  - [15.2](#comparison--if) Conditional statements such as the `if` statement evaluate their expression using coercion with the `ToBoolean` abstract method and always follow these simple rules:
+  - [15.2](#comparison--if) دستورهای شرطی مانند دستور `if` عبارت خود را با استفاده از تبدیل (coercion) از طریق متد انتزاعی `ToBoolean` ارزیابی می‌کنند و همیشه این قوانین ساده را دنبال می‌کنند:
 
-    - **Objects** evaluate to **true**
-    - **Undefined** evaluates to **false**
-    - **Null** evaluates to **false**
-    - **Booleans** evaluate to **the value of the boolean**
-    - **Numbers** evaluate to **false** if **+0, -0, or NaN**, otherwise **true**
-    - **Strings** evaluate to **false** if an empty string `''`, otherwise **true**
+    - **اشیاء (Objects)** به **true** ارزیابی می‌شوند
+    - **مقدار Undefined** به **false** ارزیابی می‌شود
+    - **مقدار Null** به **false** ارزیابی می‌شود
+    - **بولین‌ها (Booleans)** به **مقدار خودِ بولین** ارزیابی می‌شوند
+    - **اعداد (Numbers)** در صورتی که **+0، -0 یا NaN** باشند به **false** ارزیابی می‌شوند، در غیر این صورت **true**
+    - **رشته‌ها (Strings)** در صورتی که رشته خالی `''` باشند به **false** ارزیابی می‌شوند، در غیر این صورت **true**
 
     ```javascript
     if ([0] && []) {
       // true
-      // an array (even an empty one) is an object, objects will evaluate to true
+      // یک آرایه (حتی آرایه خالی) یک شئ است، و اشیاء به true ارزیابی می‌شوند
     }
     ```
 
   <a name="comparison--shortcuts"></a><a name="15.3"></a>
-  - [15.3](#comparison--shortcuts) Use shortcuts for booleans, but explicit comparisons for strings and numbers.
+  - [15.3](#comparison--shortcuts) برای بولین‌ها از میان‌برها، اما برای رشته‌ها و اعداد از مقایسه‌های صریح استفاده کنید.
 
     ```javascript
     // bad
@@ -2077,12 +2079,12 @@ Other Style Guides
     ```
 
   <a name="comparison--moreinfo"></a><a name="15.4"></a>
-  - [15.4](#comparison--moreinfo) For more information see [Truth, Equality, and JavaScript](https://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) by Angus Croll.
+  - [15.4](#comparison--moreinfo) برای اطلاعات بیشتر به مرجع [حقیقت، برابری و جاوااسکریپت (Truth, Equality, and JavaScript)](https://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) اثر آنگوس کرول (Angus Croll) مراجعه کنید.
 
   <a name="comparison--switch-blocks"></a><a name="15.5"></a>
-  - [15.5](#comparison--switch-blocks) Use braces to create blocks in `case` and `default` clauses that contain lexical declarations (e.g. `let`, `const`, `function`, and `class`). eslint: [`no-case-declarations`](https://eslint.org/docs/rules/no-case-declarations)
+  - [15.5](#comparison--switch-blocks) برای ایجاد بلوک در بندهای `case` و `default` که حاوی اعلان‌های لغوی (مانند `let`، `const`، `function` و `class`) هستند، از آکولاد استفاده کنید. eslint: [`no-case-declarations`](https://eslint.org/docs/rules/no-case-declarations)
 
-    > Why? Lexical declarations are visible in the entire `switch` block but only get initialized when assigned, which only happens when its `case` is reached. This causes problems when multiple `case` clauses attempt to define the same thing.
+    > چرا؟ اعلان‌های لغوی در کل بلوک `switch` قابل مشاهده هستند اما تنها زمانی مقداردهی اولیه می‌شوند که انتساب داده شوند، که این اتفاق فقط زمانی می‌افتد که به `case` مربوطه برسید. این موضوع زمانی که چندین بند `case` سعی می‌کنند یک چیز واحد را تعریف کنند، باعث ایجاد مشکل می‌شود.
 
     ```javascript
     // bad
@@ -2128,28 +2130,28 @@ Other Style Guides
     ```
 
   <a name="comparison--nested-ternaries"></a><a name="15.6"></a>
-  - [15.6](#comparison--nested-ternaries) Ternaries should not be nested and generally be single line expressions. eslint: [`no-nested-ternary`](https://eslint.org/docs/rules/no-nested-ternary)
+  - [15.6](#comparison--nested-ternaries) سه‌تایی‌ها (Ternaries) نباید تودرتو باشند و به طور کلی باید عبارات تک‌خطی باشند. eslint: [`no-nested-ternary`](https://eslint.org/docs/rules/no-nested-ternary)
 
     ```javascript
-    // bad
+    // bad - بد
     const foo = maybe1 > maybe2
       ? 'bar'
       : value1 > value2 ? 'baz' : null;
 
-    // split into 2 separated ternary expressions
+    // تقسیم به 2 عبارت سه‌تایی مجزا
     const maybeNull = value1 > value2 ? 'baz' : null;
 
-    // better
+    // بهتر
     const foo = maybe1 > maybe2
       ? 'bar'
       : maybeNull;
 
-    // best
+    // بهترین
     const foo = maybe1 > maybe2 ? 'bar' : maybeNull;
     ```
 
   <a name="comparison--unneeded-ternary"></a><a name="15.7"></a>
-  - [15.7](#comparison--unneeded-ternary) Avoid unneeded ternary statements. eslint: [`no-unneeded-ternary`](https://eslint.org/docs/rules/no-unneeded-ternary)
+  - [15.7](#comparison--unneeded-ternary) از دستورات سه‌تایی غیرضروری اجتناب کنید. eslint: [`no-unneeded-ternary`](https://eslint.org/docs/rules/no-unneeded-ternary)
 
     ```javascript
     // bad
@@ -2166,75 +2168,75 @@ Other Style Guides
     ```
 
   <a name="comparison--no-mixed-operators"></a>
-  - [15.8](#comparison--no-mixed-operators) When mixing operators, enclose them in parentheses. The only exception is the standard arithmetic operators: `+`, `-`, and `**` since their precedence is broadly understood. We recommend enclosing `/` and `*` in parentheses because their precedence can be ambiguous when they are mixed.
+  - [15.8](#comparison--no-mixed-operators) هنگام ترکیب عملگرها، آن‌ها را داخل پرانتز قرار دهید. تنها استثنا عملگرهای ریاضی استاندارد: `+`، `-` و `**` هستند، زیرا اولویت آن‌ها به طور گسترده درک شده است. ما توصیه می‌کنیم `/` و `*` را داخل پرانتز قرار دهید زیرا اولویت آن‌ها هنگام ترکیب می‌تواند مبهم باشد.
   eslint: [`no-mixed-operators`](https://eslint.org/docs/rules/no-mixed-operators)
 
-    > Why? This improves readability and clarifies the developer’s intention.
+    > چرا؟ این کار خوانایی را بهبود می‌بخشد و قصد توسعه‌دهنده را روشن می‌کند.
 
     ```javascript
-    // bad
+    // bad - بد
     const foo = a && b < 0 || c > 0 || d + 1 === 0;
 
-    // bad
+    // بد
     const bar = a ** b - 5 % d;
 
-    // bad
-    // one may be confused into thinking (a || b) && c
+    // بد
+    // ممکن است فرد فکر کند (a || b) && c است
     if (a || b && c) {
       return d;
     }
 
-    // bad
+    // بد
     const bar = a + b / c * d;
 
-    // good
+    // خوب
     const foo = (a && b < 0) || c > 0 || (d + 1 === 0);
 
-    // good
+    // خوب
     const bar = a ** b - (5 % d);
 
-    // good
+    // خوب
     if (a || (b && c)) {
       return d;
     }
 
-    // good
+    // خوب
     const bar = a + (b / c) * d;
     ```
 
   <a name="nullish-coalescing-operator"></a>
-  - [15.9](#nullish-coalescing-operator) The nullish coalescing operator (`??`) is a logical operator that returns its right-hand side operand when its left-hand side operand is `null` or `undefined`. Otherwise, it returns the left-hand side operand.
+  - [15.9](#nullish-coalescing-operator) عملگر ادغام تهی (nullish coalescing operator - `??`) یک عملگر منطقی است که در صورتی که عملوند سمت چپ آن `null` یا `undefined` باشد، عملوند سمت راست را برمی‌گرداند. در غیر این صورت، عملوند سمت چپ را برمی‌گرداند.
 
-    > Why? It provides precision by distinguishing null/undefined from other falsy values, enhancing code clarity and predictability.
+    > چرا؟ با متمایز کردن null/undefined از سایر مقادیر falsy، دقت را فراهم می‌کند و وضوح و پیش‌بینی‌پذیری کد را افزایش می‌دهد.
 
     ```javascript
-    // bad
+    // bad - بد
     const value = 0 ?? 'default';
-    // returns 0, not 'default'
+    // 0 را برمی‌گرداند، نه 'default'
 
-    // bad
+    // بد
     const value = '' ?? 'default';
-    // returns '', not 'default'
+    // '' را برمی‌گرداند، نه 'default'
 
-    // good
+    // خوب
     const value = null ?? 'default';
-    // returns 'default'
+    // 'default' را برمی‌گرداند
 
-    // good
+    // خوب
     const user = {
       name: 'John',
       age: null
     };
     const age = user.age ?? 18;
-    // returns 18
+    // 18 را برمی‌گرداند
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Blocks
+## بلوک ها
 
   <a name="blocks--braces"></a><a name="16.1"></a>
-  - [16.1](#blocks--braces) Use braces with all multiline blocks. eslint: [`nonblock-statement-body-position`](https://eslint.org/docs/rules/nonblock-statement-body-position)
+  - [16.1](#blocks--braces) در تمام بلوک‌های چندخطی از آکولاد استفاده کنید. eslint: [`nonblock-statement-body-position`](https://eslint.org/docs/rules/nonblock-statement-body-position)
 
     ```javascript
     // bad
@@ -2259,7 +2261,7 @@ Other Style Guides
     ```
 
   <a name="blocks--cuddled-elses"></a><a name="16.2"></a>
-  - [16.2](#blocks--cuddled-elses) If you’re using multiline blocks with `if` and `else`, put `else` on the same line as your `if` block’s closing brace. eslint: [`brace-style`](https://eslint.org/docs/rules/brace-style)
+  - [16.2](#blocks--cuddled-elses) اگر از بلوک‌های چندخطی با `if` و `else` استفاده می‌کنید، `else` را در همان خطی قرار دهید که آکولاد بسته‌شده‌ی بلوک `if` قرار دارد. eslint: [`brace-style`](https://eslint.org/docs/rules/brace-style)
 
     ```javascript
     // bad
@@ -2281,7 +2283,7 @@ Other Style Guides
     ```
 
   <a name="blocks--no-else-return"></a><a name="16.3"></a>
-  - [16.3](#blocks--no-else-return) If an `if` block always executes a `return` statement, the subsequent `else` block is unnecessary. A `return` in an `else if` block following an `if` block that contains a `return` can be separated into multiple `if` blocks. eslint: [`no-else-return`](https://eslint.org/docs/rules/no-else-return)
+  - [16.3](#blocks--no-else-return) اگر یک بلوک `if` همیشه یک دستور `return` را اجرا می‌کند، بلوک `else` بعدی غیرضروری است. یک `return` در یک بلوک `else if` که بعد از یک بلوک `if` حاوی `return` می‌آید، می‌تواند به چندین بلوک `if` جداگانه تقسیم شود. eslint: [`no-else-return`](https://eslint.org/docs/rules/no-else-return)
 
     ```javascript
     // bad
@@ -2345,14 +2347,14 @@ Other Style Guides
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Control Statements
+## دستورهای کنترلی
 
   <a name="control-statements"></a>
-  - [17.1](#control-statements) In case your control statement (`if`, `while` etc.) gets too long or exceeds the maximum line length, each (grouped) condition could be put into a new line. The logical operator should begin the line.
+  - [17.1](#control-statements) در صورتی که دستور کنترلی شما (`if`، `while` و غیره) بیش از حد طولانی شد یا از حداکثر طول خط فراتر رفت، می‌توان هر شرط (یا گروهی از شروط) را در یک خط جدید قرار داد. عملگر منطقی باید در ابتدای خط قرار گیرد.
 
-    > Why? Requiring operators at the beginning of the line keeps the operators aligned and follows a pattern similar to method chaining. This also improves readability by making it easier to visually follow complex logic.
+    > چرا؟ الزام به قرار دادن عملگرها در ابتدای خط، باعث می‌شود عملگرها تراز شده باقی بمانند و از الگویی مشابه زنجیره‌سازی متدها پیروی کند. این کار همچنین با راحت‌تر کردن پیگیری بصری منطق پیچیده، خوانایی را بهبود می‌بخشد.
 
     ```javascript
     // bad
@@ -2404,7 +2406,7 @@ Other Style Guides
     ```
 
   <a name="control-statement--value-selection"></a><a name="control-statements--value-selection"></a>
-  - [17.2](#control-statements--value-selection) Don't use selection operators in place of control statements.
+  - [17.2](#control-statements--value-selection) از عملگرهای انتخابی (selection operators) به جای دستورهای کنترلی استفاده نکنید.
 
     ```javascript
     // bad
@@ -2416,17 +2418,17 @@ Other Style Guides
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Comments
+## توضیحات (Comments)
 
   <a name="comments--multiline"></a><a name="17.1"></a>
-  - [18.1](#comments--multiline) Use `/** ... */` for multiline comments.
+  - [18.1](#comments--multiline) برای توضیحات چندخطی از `/** ... */` استفاده کنید.
 
     ```javascript
-    // bad
-    // make() returns a new element
-    // based on the passed in tag name
+    // bad - بد
+    // make() یک المان جدید بر اساس
+    // نام تگ پاس داده شده برمی‌گرداند
     //
     // @param {String} tag
     // @return {Element} element
@@ -2437,10 +2439,10 @@ Other Style Guides
       return element;
     }
 
-    // good
+    // خوب
     /**
-     * make() returns a new element
-     * based on the passed-in tag name
+     * make() یک المان جدید بر اساس
+     * نام تگ پاس داده شده برمی‌گرداند
      */
     function make(tag) {
 
@@ -2451,38 +2453,38 @@ Other Style Guides
     ```
 
   <a name="comments--singleline"></a><a name="17.2"></a>
-  - [18.2](#comments--singleline) Use `//` for single line comments. Place single line comments on a newline above the subject of the comment. Put an empty line before the comment unless it’s on the first line of a block.
+  - [18.2](#comments--singleline) برای توضیحات تک‌خطی از `//` استفاده کنید. توضیحات تک‌خطی را در یک خط جدید، بالای موضوعِ توضیح قرار دهید. مگر اینکه توضیح در خط اول یک بلوک باشد، یک خط خالی قبل از آن قرار دهید.
 
     ```javascript
-    // bad
-    const active = true;  // is current tab
+    // bad - بد
+    const active = true;  // تب جاری است
 
-    // good
-    // is current tab
+    // خوب
+    // تب جاری است
     const active = true;
 
-    // bad
+    // بد
     function getType() {
       console.log('fetching type...');
-      // set the default type to 'no type'
+      // نوع پیش‌فرض را روی 'no type' تنظیم کنید
       const type = this.type || 'no type';
 
       return type;
     }
 
-    // good
+    // خوب
     function getType() {
       console.log('fetching type...');
 
-      // set the default type to 'no type'
+      // نوع پیش‌فرض را روی 'no type' تنظیم کنید
       const type = this.type || 'no type';
 
       return type;
     }
 
-    // also good
+    // همچنین خوب است
     function getType() {
-      // set the default type to 'no type'
+      // نوع پیش‌فرض را روی 'no type' تنظیم کنید
       const type = this.type || 'no type';
 
       return type;
@@ -2490,21 +2492,21 @@ Other Style Guides
     ```
 
   <a name="comments--spaces"></a>
-  - [18.3](#comments--spaces) Start all comments with a space to make it easier to read. eslint: [`spaced-comment`](https://eslint.org/docs/rules/spaced-comment)
+  - [18.3](#comments--spaces) برای خوانایی بهتر، تمام توضیحات را با یک فاصله شروع کنید. eslint: [`spaced-comment`](https://eslint.org/docs/rules/spaced-comment)
 
     ```javascript
-    // bad
-    //is current tab
+    // bad - بد
+    //تب جاری است
     const active = true;
 
-    // good
-    // is current tab
+    // خوب
+    // تب جاری است
     const active = true;
 
-    // bad
+    // بد
     /**
-     *make() returns a new element
-     *based on the passed-in tag name
+     *make() یک المان جدید بر اساس
+     *نام تگ پاس داده شده برمی‌گرداند
      */
     function make(tag) {
 
@@ -2513,10 +2515,10 @@ Other Style Guides
       return element;
     }
 
-    // good
+    // خوب
     /**
-     * make() returns a new element
-     * based on the passed-in tag name
+     * make() یک المان جدید بر اساس
+     * نام تگ پاس داده شده برمی‌گرداند
      */
     function make(tag) {
 
@@ -2527,42 +2529,42 @@ Other Style Guides
     ```
 
   <a name="comments--actionitems"></a><a name="17.3"></a>
-  - [18.4](#comments--actionitems) Prefixing your comments with `FIXME` or `TODO` helps other developers quickly understand if you’re pointing out a problem that needs to be revisited, or if you’re suggesting a solution to the problem that needs to be implemented. These are different than regular comments because they are actionable. The actions are `FIXME: -- need to figure this out` or `TODO: -- need to implement`.
+  - [18.4](#comments--actionitems) قرار دادن پیشوند `FIXME` یا `TODO` قبل از توضیحات به توسعه‌دهندگان دیگر کمک می‌کند تا به سرعت بفهمند که آیا شما به مشکلی اشاره می‌کنید که نیاز به بررسی مجدد دارد، یا آیا راه حلی برای مشکلی پیشنهاد می‌دهید که نیاز به پیاده‌سازی دارد. این موارد با توضیحات معمولی متفاوت هستند زیرا قابل اجرا (actionable) هستند. این اقدامات به شکل `FIXME: -- باید این مورد را بررسی کرد` یا `TODO: -- نیاز به پیاده‌سازی دارد` هستند.
 
   <a name="comments--fixme"></a><a name="17.4"></a>
-  - [18.5](#comments--fixme) Use `// FIXME:` to annotate problems.
+  - [18.5](#comments--fixme) برای نشانه‌گذاری مشکلات از `// FIXME:` استفاده کنید.
 
     ```javascript
     class Calculator extends Abacus {
       constructor() {
         super();
 
-        // FIXME: shouldn’t use a global here
+        // FIXME: نباید از یک متغیر سراسری اینجا استفاده شود
         total = 0;
       }
     }
     ```
 
   <a name="comments--todo"></a><a name="17.5"></a>
-  - [18.6](#comments--todo) Use `// TODO:` to annotate solutions to problems.
+  - [18.6](#comments--todo) برای نشانه‌گذاری راه‌حل مشکلات از `// TODO:` استفاده کنید.
 
     ```javascript
     class Calculator extends Abacus {
       constructor() {
         super();
 
-        // TODO: total should be configurable by an options param
+        // TODO: مقدار total باید توسط یک پارامتر options قابل پیکربندی باشد
         this.total = 0;
       }
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Whitespace
+## فاصله گذاری
 
   <a name="whitespace--spaces"></a><a name="18.1"></a>
-  - [19.1](#whitespace--spaces) Use soft tabs (space character) set to 2 spaces. eslint: [`indent`](https://eslint.org/docs/rules/indent)
+  - [19.1](#whitespace--spaces) از تب‌های نرم (کاراکتر فاصله) تنظیم‌شده روی ۲ فاصله استفاده کنید. eslint: [`indent`](https://eslint.org/docs/rules/indent)
 
     ```javascript
     // bad
@@ -2582,7 +2584,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--before-blocks"></a><a name="18.2"></a>
-  - [19.2](#whitespace--before-blocks) Place 1 space before the leading brace. eslint: [`space-before-blocks`](https://eslint.org/docs/rules/space-before-blocks)
+  - [19.2](#whitespace--before-blocks) قبل از آکولادِ شروع، ۱ فاصله قرار دهید. eslint: [`space-before-blocks`](https://eslint.org/docs/rules/space-before-blocks)
 
     ```javascript
     // bad
@@ -2609,7 +2611,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--around-keywords"></a><a name="18.3"></a>
-  - [19.3](#whitespace--around-keywords) Place 1 space before the opening parenthesis in control statements (`if`, `while` etc.). Place no space between the argument list and the function name in function calls and declarations. eslint: [`keyword-spacing`](https://eslint.org/docs/rules/keyword-spacing)
+  - [19.3](#whitespace--around-keywords) قبل از پرانتز بازِ دستورهای کنترلی (`if`، `while` و غیره) ۱ فاصله قرار دهید. بین لیست آرگومان‌ها و نام تابع در فراخوانی‌ها و اعلان‌های توابع، فاصله‌ای قرار ندهید. eslint: [`keyword-spacing`](https://eslint.org/docs/rules/keyword-spacing)
 
     ```javascript
     // bad
@@ -2634,7 +2636,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--infix-ops"></a><a name="18.4"></a>
-  - [19.4](#whitespace--infix-ops) Set off operators with spaces. eslint: [`space-infix-ops`](https://eslint.org/docs/rules/space-infix-ops)
+  - [19.4](#whitespace--infix-ops) اطراف عملگرها فاصله قرار دهید. eslint: [`space-infix-ops`](https://eslint.org/docs/rules/space-infix-ops)
 
     ```javascript
     // bad
@@ -2645,7 +2647,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--newline-at-end"></a><a name="18.5"></a>
-  - [19.5](#whitespace--newline-at-end) End files with a single newline character. eslint: [`eol-last`](https://eslint.org/docs/rules/eol-last)
+  - [19.5](#whitespace--newline-at-end) فایل‌ها را با یک کاراکتر خط جدید (newline) به پایان برسانید. eslint: [`eol-last`](https://eslint.org/docs/rules/eol-last)
 
     ```javascript
     // bad
@@ -2670,8 +2672,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--chains"></a><a name="18.6"></a>
-  - [19.6](#whitespace--chains) Use indentation when making long method chains (more than 2 method chains). Use a leading dot, which
-    emphasizes that the line is a method call, not a new statement. eslint: [`newline-per-chained-call`](https://eslint.org/docs/rules/newline-per-chained-call) [`no-whitespace-before-property`](https://eslint.org/docs/rules/no-whitespace-before-property)
+  - [19.6](#whitespace--chains) هنگام ایجاد زنجیره‌های طولانیِ متد (بیش از ۲ زنجیره متد)، از فاصله گذاری (indent) استفاده کنید. از نقطه ابتدایی (leading dot) استفاده کنید، که تأکید می‌کند این خط یک فراخوانی متد است، نه یک دستور جدید. eslint: [`newline-per-chained-call`](https://eslint.org/docs/rules/newline-per-chained-call) [`no-whitespace-before-property`](https://eslint.org/docs/rules/no-whitespace-before-property)
 
     ```javascript
     // bad
@@ -2718,7 +2719,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--after-blocks"></a><a name="18.7"></a>
-  - [19.7](#whitespace--after-blocks) Leave a blank line after blocks and before the next statement.
+  - [19.7](#whitespace--after-blocks) بعد از بلوک‌ها و قبل از دستور بعدی، یک خط خالی بگذارید.
 
     ```javascript
     // bad
@@ -2776,7 +2777,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--padded-blocks"></a><a name="18.8"></a>
-  - [19.8](#whitespace--padded-blocks) Do not pad your blocks with blank lines. eslint: [`padded-blocks`](https://eslint.org/docs/rules/padded-blocks)
+  - [19.8](#whitespace--padded-blocks) بلوک‌های خود را با خطوط خالی پد (pad - پُر) نکنید. eslint: [`padded-blocks`](https://eslint.org/docs/rules/padded-blocks)
 
     ```javascript
     // bad
@@ -2817,7 +2818,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--no-multiple-blanks"></a>
-  - [19.9](#whitespace--no-multiple-blanks) Do not use multiple blank lines to pad your code. eslint: [`no-multiple-empty-lines`](https://eslint.org/docs/rules/no-multiple-empty-lines)
+  - [19.9](#whitespace--no-multiple-blanks) برای پد (پُر) کردن کد خود از چندین خط خالی استفاده نکنید. eslint: [`no-multiple-empty-lines`](https://eslint.org/docs/rules/no-multiple-empty-lines)
 
     <!-- markdownlint-disable MD012 -->
     ```javascript
@@ -2871,7 +2872,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--in-parens"></a><a name="18.9"></a>
-  - [19.10](#whitespace--in-parens) Do not add spaces inside parentheses. eslint: [`space-in-parens`](https://eslint.org/docs/rules/space-in-parens)
+  - [19.10](#whitespace--in-parens) داخل پرانتزها فاصله اضافه نکنید. eslint: [`space-in-parens`](https://eslint.org/docs/rules/space-in-parens)
 
     ```javascript
     // bad
@@ -2896,7 +2897,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--in-brackets"></a><a name="18.10"></a>
-  - [19.11](#whitespace--in-brackets) Do not add spaces inside brackets. eslint: [`array-bracket-spacing`](https://eslint.org/docs/rules/array-bracket-spacing)
+  - [19.11](#whitespace--in-brackets) داخل براکت‌ها فاصله اضافه نکنید. eslint: [`array-bracket-spacing`](https://eslint.org/docs/rules/array-bracket-spacing)
 
     ```javascript
     // bad
@@ -2909,7 +2910,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--in-braces"></a><a name="18.11"></a>
-  - [19.12](#whitespace--in-braces) Add spaces inside curly braces. eslint: [`object-curly-spacing`](https://eslint.org/docs/rules/object-curly-spacing)
+  - [19.12](#whitespace--in-braces) داخل آکولادها فاصله اضافه کنید. eslint: [`object-curly-spacing`](https://eslint.org/docs/rules/object-curly-spacing)
 
     ```javascript
     // bad
@@ -2920,9 +2921,9 @@ Other Style Guides
     ```
 
   <a name="whitespace--max-len"></a><a name="18.12"></a>
-  - [19.13](#whitespace--max-len) Avoid having lines of code that are longer than 100 characters (including whitespace). Note: per [above](#strings--line-length), long strings are exempt from this rule, and should not be broken up. eslint: [`max-len`](https://eslint.org/docs/rules/max-len)
+  - [19.13](#whitespace--max-len) از داشتن خطوط کد طولانی‌تر از ۱۰۰ کاراکتر (شامل فاصله‌ها) خودداری کنید. توجه: بر اساس [بخش بالا](#strings--line-length)، رشته‌های طولانی از این قانون مستثنی هستند و نباید شکسته شوند. eslint: [`max-len`](https://eslint.org/docs/rules/max-len)
 
-    > Why? This ensures readability and maintainability.
+    > چرا؟ این کار خوانایی و قابلیت نگهداری را تضمین می‌کند.
 
     ```javascript
     // bad
@@ -2958,7 +2959,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--block-spacing"></a>
-  - [19.14](#whitespace--block-spacing) Require consistent spacing inside an open block token and the next token on the same line. This rule also enforces consistent spacing inside a close block token and previous token on the same line. eslint: [`block-spacing`](https://eslint.org/docs/rules/block-spacing)
+  - [19.14](#whitespace--block-spacing) فاصله‌گذاری یکپارچه را داخل توکنِ بلوکِ باز و توکن بعدی در همان خط الزامی کنید. این قانون همچنین فاصله‌گذاری یکپارچه را داخل توکنِ بلوکِ بسته و توکن قبلی در همان خط اعمال می‌کند. eslint: [`block-spacing`](https://eslint.org/docs/rules/block-spacing)
 
     ```javascript
     // bad
@@ -2971,7 +2972,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--comma-spacing"></a>
-  - [19.15](#whitespace--comma-spacing) Avoid spaces before commas and require a space after commas. eslint: [`comma-spacing`](https://eslint.org/docs/rules/comma-spacing)
+  - [19.15](#whitespace--comma-spacing) از فاصله قبل از ویرگول‌ها خودداری کنید و یک فاصله بعد از ویرگول‌ها الزامی کنید. eslint: [`comma-spacing`](https://eslint.org/docs/rules/comma-spacing)
 
     ```javascript
     // bad
@@ -2984,7 +2985,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--computed-property-spacing"></a>
-  - [19.16](#whitespace--computed-property-spacing) Enforce spacing inside of computed property brackets. eslint: [`computed-property-spacing`](https://eslint.org/docs/rules/computed-property-spacing)
+  - [19.16](#whitespace--computed-property-spacing) فاصله‌گذاری داخل براکت‌های ویژگی محاسبه‌شده (computed property) را اعمال کنید. eslint: [`computed-property-spacing`](https://eslint.org/docs/rules/computed-property-spacing)
 
     ```javascript
     // bad
@@ -3001,7 +3002,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--func-call-spacing"></a>
-  - [19.17](#whitespace--func-call-spacing) Avoid spaces between functions and their invocations. eslint: [`func-call-spacing`](https://eslint.org/docs/rules/func-call-spacing)
+  - [19.17](#whitespace--func-call-spacing) بین توابع و فراخوانی‌های آن‌ها فاصله‌ای قرار ندهید. eslint: [`func-call-spacing`](https://eslint.org/docs/rules/func-call-spacing)
 
     ```javascript
     // bad
@@ -3015,7 +3016,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--key-spacing"></a>
-  - [19.18](#whitespace--key-spacing) Enforce spacing between keys and values in object literal properties. eslint: [`key-spacing`](https://eslint.org/docs/rules/key-spacing)
+  - [19.18](#whitespace--key-spacing) فاصله‌گذاری بین کلیدها و مقادیر در ویژگی‌های لیترالِ شئ را اعمال کنید. eslint: [`key-spacing`](https://eslint.org/docs/rules/key-spacing)
 
     ```javascript
     // bad
@@ -3027,42 +3028,42 @@ Other Style Guides
     ```
 
   <a name="whitespace--no-trailing-spaces"></a>
-  - [19.19](#whitespace--no-trailing-spaces) Avoid trailing spaces at the end of lines. eslint: [`no-trailing-spaces`](https://eslint.org/docs/rules/no-trailing-spaces)
+  - [19.19](#whitespace--no-trailing-spaces) از فاصله‌های پشت سرهم (trailing spaces) در انتهای خطوط خودداری کنید. eslint: [`no-trailing-spaces`](https://eslint.org/docs/rules/no-trailing-spaces)
 
   <a name="whitespace--no-multiple-empty-lines"></a>
-  - [19.20](#whitespace--no-multiple-empty-lines) Avoid multiple empty lines, only allow one newline at the end of files, and avoid a newline at the beginning of files. eslint: [`no-multiple-empty-lines`](https://eslint.org/docs/rules/no-multiple-empty-lines)
+  - [19.20](#whitespace--no-multiple-empty-lines) از چندین خط خالی خودداری کنید، فقط اجازه دهید یک خط جدید در انتهای فایل وجود داشته باشد، و از خط جدید در ابتدای فایل‌ها اجتناب کنید. eslint: [`no-multiple-empty-lines`](https://eslint.org/docs/rules/no-multiple-empty-lines)
 
     <!-- markdownlint-disable MD012 -->
     ```javascript
-    // bad - multiple empty lines
+    // bad - بد - چندین خط خالی
     const x = 1;
 
 
     const y = 2;
 
-    // bad - 2+ newlines at end of file
+    // بد - 2+ خط جدید در انتهای فایل
     const x = 1;
     const y = 2;
 
 
-    // bad - 1+ newline(s) at beginning of file
+    // بد - 1+ خط(های) جدید در ابتدای فایل
 
     const x = 1;
     const y = 2;
 
-    // good
+    // خوب
     const x = 1;
     const y = 2;
 
     ```
     <!-- markdownlint-enable MD012 -->
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Commas
+## ویرگول ها
 
   <a name="commas--leading-trailing"></a><a name="19.1"></a>
-  - [20.1](#commas--leading-trailing) Leading commas: **Nope.** eslint: [`comma-style`](https://eslint.org/docs/rules/comma-style)
+  - [20.1](#commas--leading-trailing) ویرگول‌های ابتدایی: **نخیر.** eslint: [`comma-style`](https://eslint.org/docs/rules/comma-style)
 
     ```javascript
     // bad
@@ -3097,12 +3098,12 @@ Other Style Guides
     ```
 
   <a name="commas--dangling"></a><a name="19.2"></a>
-  - [20.2](#commas--dangling) Additional trailing comma: **Yup.** eslint: [`comma-dangle`](https://eslint.org/docs/rules/comma-dangle)
+  - [20.2](#commas--dangling) ویرگول انتهایی اضافه کردن: **بله.** eslint: [`comma-dangle`](https://eslint.org/docs/rules/comma-dangle)
 
-    > Why? This leads to cleaner git diffs. Also, transpilers like Babel will remove the additional trailing comma in the transpiled code which means you don’t have to worry about the [trailing comma problem](https://github.com/airbnb/javascript/blob/es5-deprecated/es5/README.md#commas) in legacy browsers.
+    > چرا؟ این کار منجر به تمیزتر شدن تفاوت‌های گیت (git diffs) می‌شود. همچنین ترنسپایلرهایی مانند Babel، ویرگول انتهایی اضافی را در کد ترنسپایل شده حذف می‌کنند که به این معنی است که نیازی نیست نگران [مشکل ویرگول انتهایی](https://github.com/airbnb/javascript/blob/es5-deprecated/es5/README.md#commas) در مرورگرهای قدیمی باشید.
 
     ```diff
-    // bad - git diff without trailing comma
+    // بد - git diff بدون ویرگول انتهایی
     const hero = {
          firstName: 'Florence',
     -    lastName: 'Nightingale'
@@ -3110,7 +3111,7 @@ Other Style Guides
     +    inventorOf: ['coxcomb chart', 'modern nursing']
     };
 
-    // good - git diff with trailing comma
+    // خوب - git diff با ویرگول انتهایی
     const hero = {
          firstName: 'Florence',
          lastName: 'Nightingale',
@@ -3119,7 +3120,7 @@ Other Style Guides
     ```
 
     ```javascript
-    // bad
+    // bad - بد
     const hero = {
       firstName: 'Dana',
       lastName: 'Scully'
@@ -3130,7 +3131,7 @@ Other Style Guides
       'Superman'
     ];
 
-    // good
+    // خوب
     const hero = {
       firstName: 'Dana',
       lastName: 'Scully',
@@ -3141,49 +3142,49 @@ Other Style Guides
       'Superman',
     ];
 
-    // bad
+    // بد
     function createHero(
       firstName,
       lastName,
       inventorOf
     ) {
-      // does nothing
+      // کاری انجام نمی‌دهد
     }
 
-    // good
+    // خوب
     function createHero(
       firstName,
       lastName,
       inventorOf,
     ) {
-      // does nothing
+      // کاری انجام نمی‌دهد
     }
 
-    // good (note that a comma must not appear after a "rest" element)
+    // خوب (توجه کنید که ویرگول نباید بعد از یک عنصر "rest" ظاهر شود)
     function createHero(
       firstName,
       lastName,
       inventorOf,
       ...heroArgs
     ) {
-      // does nothing
+      // کاری انجام نمی‌دهد
     }
 
-    // bad
+    // بد
     createHero(
       firstName,
       lastName,
       inventorOf
     );
 
-    // good
+    // خوب
     createHero(
       firstName,
       lastName,
       inventorOf,
     );
 
-    // good (note that a comma must not appear after a "rest" element)
+    // خوب (توجه کنید که ویرگول نباید بعد از یک عنصر "rest" ظاهر شود)
     createHero(
       firstName,
       lastName,
@@ -3192,65 +3193,65 @@ Other Style Guides
     );
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Semicolons
+## نقطه ویرگول ها
 
   <a name="semicolons--required"></a><a name="20.1"></a>
-  - [21.1](#semicolons--required) **Yup.** eslint: [`semi`](https://eslint.org/docs/rules/semi)
+  - [21.1](#semicolons--required) **بله.** eslint: [`semi`](https://eslint.org/docs/rules/semi)
 
-    > Why? When JavaScript encounters a line break without a semicolon, it uses a set of rules called [Automatic Semicolon Insertion](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion) to determine whether it should regard that line break as the end of a statement, and (as the name implies) place a semicolon into your code before the line break if it thinks so. ASI contains a few eccentric behaviors, though, and your code will break if JavaScript misinterprets your line break. These rules will become more complicated as new features become a part of JavaScript. Explicitly terminating your statements and configuring your linter to catch missing semicolons will help prevent you from encountering issues.
+    > چرا؟ وقتی جاوااسکریپت با یک خط شکسته بدون نقطه ویرگول مواجه می‌شود، از مجموعه‌ای از قوانین به نام [درج خودکار نقطه‌ویرگول (Automatic Semicolon Insertion)](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion) استفاده می‌کند تا تعیین کند آیا باید آن خط شکسته را به عنوان پایان یک دستور در نظر بگیرد یا خیر و (همان‌طور که از نامش پیداست) اگر چنین تصور کند، یک نقطه‌ویرگول قبل از خط شکسته در کد شما قرار دهد. با این حال، ASI شامل چندین رفتار عجیب و غریب است و اگر جاوااسکریپت خط شکسته شما را اشتباه تفسیر کند، کد شما خراب می‌شود. این قوانین با اضافه شدن ویژگی‌های جدید به جاوااسکریپت پیچیده‌تر خواهند شد. پایان دادن صریح به دستورات خود و پیکربندی لینتر برای گرفتن نقطه‌ویرگول‌های جاودان شده به شما کمک می‌کند تا از مواجهه با مشکلات جلوگیری کنید.
 
     ```javascript
-    // bad - raises exception
+    // bad - بد - خطا پرتاب می‌کند
     const luke = {}
     const leia = {}
     [luke, leia].forEach((jedi) => jedi.father = 'vader')
 
-    // bad - raises exception
+    // بد - خطا پرتاب می‌کند
     const reaction = "No! That’s impossible!"
     (async function meanwhileOnTheFalcon() {
       // handle `leia`, `lando`, `chewie`, `r2`, `c3p0`
       // ...
     }())
 
-    // bad - returns `undefined` instead of the value on the next line - always happens when `return` is on a line by itself because of ASI!
+    // بد - به جای مقدار در خط بعدی، `undefined` برمی‌گرداند - این همیشه وقتی `return` در یک خط به تنهایی قرار دارد به دلیل ASI رخ می‌دهد!
     function foo() {
       return
         'search your feelings, you know it to be foo'
     }
 
-    // good
+    // خوب
     const luke = {};
     const leia = {};
     [luke, leia].forEach((jedi) => {
       jedi.father = 'vader';
     });
 
-    // good
+    // خوب
     const reaction = 'No! That’s impossible!';
     (async function meanwhileOnTheFalcon() {
       // handle `leia`, `lando`, `chewie`, `r2`, `c3p0`
       // ...
     }());
 
-    // good
+    // خوب
     function foo() {
       return 'search your feelings, you know it to be foo';
     }
     ```
 
-    [Read more](https://stackoverflow.com/questions/7365172/semicolon-before-self-invoking-function/7365214#7365214).
+    [بیشتر بخوانید](https://stackoverflow.com/questions/7365172/semicolon-before-self-invoking-function/7365214#7365214).
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Type Casting & Coercion
+## تبدیل نوع و واداشتن به تبدیل (Coercion)
 
   <a name="coercion--explicit"></a><a name="21.1"></a>
-  - [22.1](#coercion--explicit) Perform type coercion at the beginning of the statement.
+  - [22.1](#coercion--explicit) واداشتن به تبدیل نوع (type coercion) را در ابتدای دستور انجام دهید.
 
   <a name="coercion--strings"></a><a name="21.2"></a>
-  - [22.2](#coercion--strings) Strings: eslint: [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
+  - [22.2](#coercion--strings) رشته ها: eslint: [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
 
     ```javascript
     // => this.reviewScore = 9;
@@ -3259,57 +3260,57 @@ Other Style Guides
     const totalScore = new String(this.reviewScore); // typeof totalScore is "object" not "string"
 
     // bad
-    const totalScore = this.reviewScore + ''; // invokes this.reviewScore.valueOf()
+    const totalScore = this.reviewScore + ''; // این کار باعث فراخوانی this.reviewScore.valueOf() می‌شود
 
     // bad
-    const totalScore = this.reviewScore.toString(); // isn’t guaranteed to return a string
+    const totalScore = this.reviewScore.toString(); // تضمین نمی‌کند که یک رشته برگرداند
 
     // good
     const totalScore = String(this.reviewScore);
     ```
 
   <a name="coercion--numbers"></a><a name="21.3"></a>
-  - [22.3](#coercion--numbers) Numbers: Use `Number` for type casting and `parseInt` always with a radix for parsing strings. eslint: [`radix`](https://eslint.org/docs/rules/radix) [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
+  - [22.3](#coercion--numbers) اعداد: برای تبدیل نوع از `Number` و برای تجزیه رشته‌ها همیشه از `parseInt` به همراه یک مبنای عددی (radix) استفاده کنید. eslint: [`radix`](https://eslint.org/docs/rules/radix) [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
 
-    > Why? The `parseInt` function produces an integer value dictated by interpretation of the contents of the string argument according to the specified radix. Leading whitespace in string is ignored. If radix is `undefined` or `0`, it is assumed to be `10` except when the number begins with the character pairs `0x` or `0X`, in which case a radix of 16 is assumed. This differs from ECMAScript 3, which merely discouraged (but allowed) octal interpretation. Many implementations have not adopted this behavior as of 2013. And, because older browsers must be supported, always specify a radix.
+    > چرا؟ تابع `parseInt` یک مقدار صحیح تولید می‌کند که بر اساس تفسیر محتویات آرگومان رشته‌ای طبق مبنای مشخص شده، دیکته می‌شود. فاصله‌های سفید ابتدایی در رشته نادیده گرفته می‌شود. اگر مبنای عددی (radix) `undefined` یا `0` باشد، فرض می‌شود که `10` است، مگر اینکه عدد با جفت کاراکترهای `0x` یا `0X` شروع شود، که در این صورت مبنای 16 فرض می‌شود. این با ECMAScript 3 که صرفاً تفسیر هشت‌تایی (octal) را منع می‌کرد (اما اجازه می‌داد) متفاوت است. بسیاری از پیاده‌سازی‌ها تا سال 2013 این رفتار را اتخاذ نکرده‌اند. و از آنجا که باید از مرورگرهای قدیمی پشتیبانی کرد، همیشه یک مبنای عددی مشخص کنید.
 
     ```javascript
     const inputValue = '4';
 
-    // bad
+    // بد
     const val = new Number(inputValue);
 
-    // bad
+    // بد
     const val = +inputValue;
 
-    // bad
+    // بد
     const val = inputValue >> 0;
 
-    // bad
+    // بد
     const val = parseInt(inputValue);
 
-    // good
+    // خوب
     const val = Number(inputValue);
 
-    // good
+    // خوب
     const val = parseInt(inputValue, 10);
     ```
 
   <a name="coercion--comment-deviations"></a><a name="21.4"></a>
-  - [22.4](#coercion--comment-deviations) If for whatever reason you are doing something wild and `parseInt` is your bottleneck and need to use Bitshift for [performance reasons](https://web.archive.org/web/20200414205431/https://jsperf.com/coercion-vs-casting/3), leave a comment explaining why and what you’re doing.
+  - [22.4](#coercion--comment-deviations) اگر به هر دلیلی کاری عجیب و غریب انجام می‌دهید و `parseInt` گلوگاه (bottleneck) شماست و به دلیل [مسائل مربوط به کارایی](https://web.archive.org/web/20200414205431/https://jsperf.com/coercion-vs-casting/3) مجبور به استفاده از عملیات شیفت بیتی (Bitshift) هستید، توضیحی گذاشته و دلیل کارتان و آنچه انجام می‌دهید را شرح دهید.
 
     ```javascript
     // good
     /**
-     * parseInt was the reason my code was slow.
-     * Bitshifting the String to coerce it to a
-     * Number made it a lot faster.
+     * parseInt دلیل کندی کد من بود.
+     * شیفت بیتیِ رشته برای واداشتن آن به یک عدد
+     * باعث شد بسیار سریع‌تر شود.
      */
     const val = inputValue >> 0;
     ```
 
   <a name="coercion--bitwise"></a><a name="21.5"></a>
-  - [22.5](#coercion--bitwise) **Note:** Be careful when using bitshift operations. Numbers are represented as [64-bit values](https://es5.github.io/#x4.3.19), but bitshift operations always return a 32-bit integer ([source](https://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/airbnb/javascript/issues/109). Largest signed 32-bit Int is 2,147,483,647:
+  - [22.5](#coercion--bitwise) **نکته:** هنگام استفاده از عملیات شیفت بیتی محتاط باشید. اعداد به صورت [مقادیر ۶۴ بیتی](https://es5.github.io/#x4.3.19) نمایش داده می‌شوند، اما عملیات شیفت بیتی همیشه یک عدد صحیح ۳۲ بیتی برمی‌گردانند ([منبع](https://es5.github.io/#x11.7)). شیفت بیتی می‌تواند منجر به رفتارهای غیرمنتظره برای مقادیر صحیح بزرگتر از ۳۲ بیت شود. [بحث](https://github.com/airbnb/javascript/issues/109). بزرگترین عدد صحیح علامت‌دار ۳۲ بیتی 2,147,483,647 است:
 
     ```javascript
     2147483647 >> 0; // => 2147483647
@@ -3318,27 +3319,27 @@ Other Style Guides
     ```
 
   <a name="coercion--booleans"></a><a name="21.6"></a>
-  - [22.6](#coercion--booleans) Booleans: eslint: [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
+  - [22.6](#coercion--booleans) بولین‌ها: eslint: [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
 
     ```javascript
     const age = 0;
 
-    // bad
+    // بد
     const hasAge = new Boolean(age);
 
-    // good
+    // خوب
     const hasAge = Boolean(age);
 
-    // best
+    // بهترین
     const hasAge = !!age;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Naming Conventions
+## مقررات نام گذاری
 
   <a name="naming--descriptive"></a><a name="22.1"></a>
-  - [23.1](#naming--descriptive) Avoid single letter names. Be descriptive with your naming. eslint: [`id-length`](https://eslint.org/docs/rules/id-length)
+  - [23.1](#naming--descriptive) از نام‌های تک‌حرفی اجتناب کنید. نام‌گذاری‌هایتان باید توصیفی باشند. eslint: [`id-length`](https://eslint.org/docs/rules/id-length)
 
     ```javascript
     // bad
@@ -3353,7 +3354,7 @@ Other Style Guides
     ```
 
   <a name="naming--camelCase"></a><a name="22.2"></a>
-  - [23.2](#naming--camelCase) Use camelCase when naming objects, functions, and instances. eslint: [`camelcase`](https://eslint.org/docs/rules/camelcase)
+  - [23.2](#naming--camelCase) هنگام نام‌گذاری اشیاء، توابع و نمونه‌ها (instances) از `camelCase` استفاده کنید. eslint: [`camelcase`](https://eslint.org/docs/rules/camelcase)
 
     ```javascript
     // bad
@@ -3367,7 +3368,7 @@ Other Style Guides
     ```
 
   <a name="naming--PascalCase"></a><a name="22.3"></a>
-  - [23.3](#naming--PascalCase) Use PascalCase only when naming constructors or classes. eslint: [`new-cap`](https://eslint.org/docs/rules/new-cap)
+  - [23.3](#naming--PascalCase) از `PascalCase` فقط هنگام نام‌گذاری سازنده‌ها (constructors) یا کلاس‌ها استفاده کنید. eslint: [`new-cap`](https://eslint.org/docs/rules/new-cap)
 
     ```javascript
     // bad
@@ -3392,27 +3393,27 @@ Other Style Guides
     ```
 
   <a name="naming--leading-underscore"></a><a name="22.4"></a>
-  - [23.4](#naming--leading-underscore) Do not use trailing or leading underscores. eslint: [`no-underscore-dangle`](https://eslint.org/docs/rules/no-underscore-dangle)
+  - [23.4](#naming--leading-underscore) از خط زیر (_) انتهایی یا ابتدایی استفاده نکنید. eslint: [`no-underscore-dangle`](https://eslint.org/docs/rules/no-underscore-dangle)
 
-    > Why? JavaScript does not have the concept of privacy in terms of properties or methods. Although a leading underscore is a common convention to mean “private”, in fact, these properties are fully public, and as such, are part of your public API contract. This convention might lead developers to wrongly think that a change won’t count as breaking, or that tests aren’t needed. tl;dr: if you want something to be “private”, it must not be observably present.
+    > چرا؟ جاوااسکریپت از نظر ویژگی‌ها یا متدها، مفهوم خصوصی‌سازی (privacy) ندارد. اگرچه خط زیر ابتدایی یک قرارداد رایج برای به معنای "خصوصی" است، اما در واقع این ویژگی‌ها کاملاً عمومی هستند و در نتیجه، بخشی از قرارداد API عمومی شما محسوب می‌شوند. این قرارداد ممکن است باعث شود توسعه‌دهندگان به اشتباه فکر کنند که یک تغییر، فوری (تکان دهنده - breaking) محسوب نمی‌شود، یا نیازی به تست ندارد. خلاصه: اگر می‌خواهید چیزی "خصوصی" باشد، نباید به صورت مشهود حضور داشته باشد.
 
     ```javascript
-    // bad
+    // bad - بد
     this.__firstName__ = 'Panda';
     this.firstName_ = 'Panda';
     this._firstName = 'Panda';
 
-    // good
+    // خوب
     this.firstName = 'Panda';
 
-    // good, in environments where WeakMaps are available
-    // see https://compat-table.github.io/compat-table/es6/#test-WeakMap
+    // خوب، در محیط‌هایی که WeakMap در دسترس است
+    // ببینید https://compat-table.github.io/compat-table/es6/#test-WeakMap
     const firstNames = new WeakMap();
     firstNames.set(this, 'Panda');
     ```
 
   <a name="naming--self-this"></a><a name="22.5"></a>
-  - [23.5](#naming--self-this) Don’t save references to `this`. Use arrow functions or [Function#bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+  - [23.5](#naming--self-this) ارجاعات `this` را ذخیره نکنید. از توابع پیکانی یا [Function#bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) استفاده کنید.
 
     ```javascript
     // bad
@@ -3440,43 +3441,43 @@ Other Style Guides
     ```
 
   <a name="naming--filename-matches-export"></a><a name="22.6"></a>
-  - [23.6](#naming--filename-matches-export) A base filename should exactly match the name of its default export.
+  - [23.6](#naming--filename-matches-export) نام فایلِ پایه باید دقیقاً با نام خروجی پیش‌فرض (default export) آن مطابقت داشته باشد.
 
     ```javascript
-    // file 1 contents
+    // file 1 contents - محتوای فایل 1
     class CheckBox {
       // ...
     }
     export default CheckBox;
 
-    // file 2 contents
+    // محتوای فایل 2
     export default function fortyTwo() { return 42; }
 
-    // file 3 contents
+    // محتوای فایل 3
     export default function insideDirectory() {}
 
-    // in some other file
-    // bad
-    import CheckBox from './checkBox'; // PascalCase import/export, camelCase filename
-    import FortyTwo from './FortyTwo'; // PascalCase import/filename, camelCase export
-    import InsideDirectory from './InsideDirectory'; // PascalCase import/filename, camelCase export
+    // در برخی فایل‌های دیگر
+    // بد
+    import CheckBox from './checkBox'; // ورودی/خروجی PascalCase، نام فایل camelCase
+    import FortyTwo from './FortyTwo'; // ورودی/نام فایل PascalCase، خروجی camelCase
+    import InsideDirectory from './InsideDirectory'; // ورودی/نام فایل PascalCase، خروجی camelCase
 
-    // bad
-    import CheckBox from './check_box'; // PascalCase import/export, snake_case filename
-    import forty_two from './forty_two'; // snake_case import/filename, camelCase export
-    import inside_directory from './inside_directory'; // snake_case import, camelCase export
-    import index from './inside_directory/index'; // requiring the index file explicitly
-    import insideDirectory from './insideDirectory/index'; // requiring the index file explicitly
+    // بد
+    import CheckBox from './check_box'; // ورودی/خروجی PascalCase، نام فایل snake_case
+    import forty_two from './forty_two'; // ورودی/نام فایل snake_case، خروجی camelCase
+    import inside_directory from './inside_directory'; // ورودی snake_case، خروجی camelCase
+    import index from './inside_directory/index'; // صراحتاً درخواست فایل index
+    import insideDirectory from './insideDirectory/index'; // صراحتاً درخواست فایل index
 
-    // good
-    import CheckBox from './CheckBox'; // PascalCase export/import/filename
-    import fortyTwo from './fortyTwo'; // camelCase export/import/filename
-    import insideDirectory from './insideDirectory'; // camelCase export/import/directory name/implicit "index"
-    // ^ supports both insideDirectory.js and insideDirectory/index.js
+    // خوب
+    import CheckBox from './CheckBox'; // خروجی/ورودی/نام فایل PascalCase
+    import fortyTwo from './fortyTwo'; // خروجی/ورودی/نام فایل camelCase
+    import insideDirectory from './insideDirectory'; // خروجی/ورودی/نام دایرکتوری/"index" ضمنی camelCase
+    // ^ از هر دو مورد insideDirectory.js و insideDirectory/index.js پشتیبانی می‌کند
     ```
 
   <a name="naming--camelCase-default-export"></a><a name="22.7"></a>
-  - [23.7](#naming--camelCase-default-export) Use camelCase when you export-default a function. Your filename should be identical to your function’s name.
+  - [23.7](#naming--camelCase-default-export) هنگام export-default کردن یک تابع از `camelCase` استفاده کنید. نام فایل شما باید دقیقاً با نام تابع شما یکسان باشد.
 
     ```javascript
     function makeStyleGuide() {
@@ -3487,7 +3488,7 @@ Other Style Guides
     ```
 
   <a name="naming--PascalCase-singleton"></a><a name="22.8"></a>
-  - [23.8](#naming--PascalCase-singleton) Use PascalCase when you export a constructor / class / singleton / function library / bare object.
+  - [23.8](#naming--PascalCase-singleton) هنگام صادر کردن یک سازنده / کلاس / سینگلتون (singleton) / کتابخانه تابع / شئ خام (bare object) از `PascalCase` استفاده کنید.
 
     ```javascript
     const AirbnbStyleGuide = {
@@ -3499,88 +3500,88 @@ Other Style Guides
     ```
 
   <a name="naming--Acronyms-and-Initialisms"></a>
-  - [23.9](#naming--Acronyms-and-Initialisms) Acronyms and initialisms should always be all uppercased, or all lowercased.
+  - [23.9](#naming--Acronyms-and-Initialisms) مخفف‌ها و سرنام‌ها (Acronyms and initialisms) همیشه باید کاملاً با حروف بزرگ یا کاملاً با حروف کوچک نوشته شوند.
 
-    > Why? Names are for readability, not to appease a computer algorithm.
+    > چرا؟ نام‌ها برای خوانایی هستند، نه برای ارضای یک الگوریتم کامپیوتری.
 
     ```javascript
-    // bad
+    // bad - بد
     import SmsContainer from './containers/SmsContainer';
 
-    // bad
+    // بد
     const HttpRequests = [
       // ...
     ];
 
-    // good
+    // خوب
     import SMSContainer from './containers/SMSContainer';
 
-    // good
+    // خوب
     const HTTPRequests = [
       // ...
     ];
 
-    // also good
+    // همچنین خوب است
     const httpRequests = [
       // ...
     ];
 
-    // best
+    // بهترین
     import TextMessageContainer from './containers/TextMessageContainer';
 
-    // best
+    // بهترین
     const requests = [
       // ...
     ];
     ```
 
   <a name="naming--uppercase"></a>
-  - [23.10](#naming--uppercase) You may optionally uppercase a constant only if it (1) is exported, (2) is a `const` (it can not be reassigned), and (3) the programmer can trust it (and its nested properties) to never change.
+  - [23.10](#naming--uppercase) شما می‌توانید به صورت اختیاری یک ثابت را با حروف بزرگ بنویسید تنها در صورتی که (۱) صادر شده (export) باشد، (۲) یک `const` باشد (نمی‌تواند مجدداً انتساب داده شود)، و (۳) برنامه‌نویس بتواند به آن (و ویژگی‌های تودرتویش) اعتماد کند که هرگز تغییر نمی‌کند.
 
-    > Why? This is an additional tool to assist in situations where the programmer would be unsure if a variable might ever change. UPPERCASE_VARIABLES are letting the programmer know that they can trust the variable (and its properties) not to change.
-    - What about all `const` variables? - This is unnecessary, so uppercasing should not be used for constants within a file. It should be used for exported constants however.
-    - What about exported objects? - Uppercase at the top level of export (e.g. `EXPORTED_OBJECT.key`) and maintain that all nested properties do not change.
+    > چرا؟ این یک ابزار اضافی برای کمک در شرایطی است که برنامه‌نویس مطمئن نیست آیا یک متغیر ممکن است تغییر کند یا خیر. متغیرهای_بزرگ‌نویسی_شده (UPPERCASE_VARIABLES) به برنامه‌نویس اطلاع می‌دهند که می‌توانند به متغیر (و ویژگی‌های آن) اعتماد کنند که تغییر نخواهند کرد.
+    - در مورد همه متغیرهای `const` چه اتفاقی می‌افتد؟ - این کار غیرضروری است، بنابراین نباید برای ثابت‌های درون یک فایل از بزرگ‌نویسی استفاده کرد. با این حال، باید برای ثابت‌های صادر شده (exported) استفاده شود.
+    - در مورد اشیاء صادر شده چه؟ - در سطح بالای صادرات بزرگ‌نویسی کنید (مثلاً `EXPORTED_OBJECT.key`) و تضمین کنید که تمام ویژگی‌های تودرتو تغییر نمی‌کنند.
 
     ```javascript
-    // bad
-    const PRIVATE_VARIABLE = 'should not be unnecessarily uppercased within a file';
+    // bad - بد
+    const PRIVATE_VARIABLE = 'نباید درون یک فایل به طور غیرضروری بزرگ‌نویسی شود';
 
-    // bad
-    export const THING_TO_BE_CHANGED = 'should obviously not be uppercased';
+    // بد
+    export const THING_TO_BE_CHANGED = 'واضح است که نباید بزرگ‌نویسی شود';
 
-    // bad
-    export let REASSIGNABLE_VARIABLE = 'do not use let with uppercase variables';
+    // بد
+    export let REASSIGNABLE_VARIABLE = 'از let همراه با متغیرهای بزرگ‌نویسی شده استفاده نکنید';
 
     // ---
 
-    // allowed but does not supply semantic value
+    // مجاز است اما ارزش معنایی (semantic value) ارائه نمی‌دهد
     export const apiKey = 'SOMEKEY';
 
-    // better in most cases
+    // در بیشتر موارد بهتر است
     export const API_KEY = 'SOMEKEY';
 
     // ---
 
-    // bad - unnecessarily uppercases key while adding no semantic value
+    // بد - در حالی که هیچ ارزش معنایی ارائه نمی‌دهد، به صورت غیرضروری کلید را بزرگ‌نویسی می‌کند
     export const MAPPING = {
       KEY: 'value'
     };
 
-    // good
+    // خوب
     export const MAPPING = {
       key: 'value',
     };
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Accessors
+## اکسسورها (Accessors)
 
   <a name="accessors--not-required"></a><a name="23.1"></a>
-  - [24.1](#accessors--not-required) Accessor functions for properties are not required.
+  - [24.1](#accessors--not-required) توابع اکسسور برای ویژگی‌ها الزامی نیستند.
 
   <a name="accessors--no-getters-setters"></a><a name="23.2"></a>
-  - [24.2](#accessors--no-getters-setters) Do not use JavaScript getters/setters as they cause unexpected side effects and are harder to test, maintain, and reason about. Instead, if you do make accessor functions, use `getVal()` and `setVal('hello')`.
+  - [24.2](#accessors--no-getters-setters) از گِتِرها/سِتِرهای جاوااسکریپت (getters/setters) استفاده نکنید زیرا آن‌ها باعث ایجاد اثرات جانبی غیرمنتظره می‌شوند و تست، نگهداری و استدلال در مورد آن‌ها دشوارتر است. در عوض، اگر توابع اکسسور می‌سازید، از `getVal()` و `setVal('hello')` استفاده کنید.
 
     ```javascript
     // bad
@@ -3607,7 +3608,7 @@ Other Style Guides
     ```
 
   <a name="accessors--boolean-prefix"></a><a name="23.3"></a>
-  - [24.3](#accessors--boolean-prefix) If the property/method is a `boolean`, use `isVal()` or `hasVal()`.
+  - [24.3](#accessors--boolean-prefix) اگر ویژگی/متد از نوع `boolean` است، از `isVal()` یا `hasVal()` استفاده کنید.
 
     ```javascript
     // bad
@@ -3622,7 +3623,7 @@ Other Style Guides
     ```
 
   <a name="accessors--consistent"></a><a name="23.4"></a>
-  - [24.4](#accessors--consistent) It’s okay to create `get()` and `set()` functions, but be consistent.
+  - [24.4](#accessors--consistent) ایجاد توابع `get()` و `set()` اشکالی ندارد، اما یکپارچه باشید.
 
     ```javascript
     class Jedi {
@@ -3641,12 +3642,12 @@ Other Style Guides
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Events
+## رویدادها (Events)
 
   <a name="events--hash"></a><a name="24.1"></a>
-  - [25.1](#events--hash) When attaching data payloads to events (whether DOM events or something more proprietary like Backbone events), pass an object literal (also known as a "hash") instead of a raw value. This allows a subsequent contributor to add more data to the event payload without finding and updating every handler for the event. For example, instead of:
+  - [25.1](#events--hash) هنگام پیوست کردن داده‌های محموله (data payloads) به رویدادها (چه رویدادهای DOM و چه چیزهای اختصاصی‌تر مانند رویدادهای Backbone)، به جای یک مقدار خام، یک لیترال شئ (که به عنوان "هش" نیز شناخته می‌شود) را پاس دهید. این امر به مشارکت‌کننده‌afterی اجازه می‌دهد تا بدون نیاز به پیدا کردن و به‌روزرسانی هر هندلر (handler) برای آن رویداد، داده‌های بیشتری به محموله رویداد اضافه کند. برای مثال، به جای:
 
     ```javascript
     // bad
@@ -3655,11 +3656,11 @@ Other Style Guides
     // ...
 
     $(this).on('listingUpdated', (e, listingID) => {
-      // do something with listingID
+      // کاری با listingID انجام دهید
     });
     ```
 
-    prefer:
+    این مورد ترجیح داده می‌شود:
 
     ```javascript
     // good
@@ -3668,16 +3669,16 @@ Other Style Guides
     // ...
 
     $(this).on('listingUpdated', (e, data) => {
-      // do something with data.listingID
+      // کاری با data.listingID انجام دهید
     });
     ```
 
-  **[⬆ back to top](#table-of-contents)**
+  **[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 ## jQuery
 
   <a name="jquery--dollar-prefix"></a><a name="25.1"></a>
-  - [26.1](#jquery--dollar-prefix) Prefix jQuery object variables with a `$`.
+  - [26.1](#jquery--dollar-prefix) به متغیرهای شئ jQuery پیشوند `$` اضافه کنید.
 
     ```javascript
     // bad
@@ -3691,7 +3692,7 @@ Other Style Guides
     ```
 
   <a name="jquery--cache"></a><a name="25.2"></a>
-  - [26.2](#jquery--cache) Cache jQuery lookups.
+  - [26.2](#jquery--cache) جستجوهای jQuery را کَش (Cache) کنید.
 
     ```javascript
     // bad
@@ -3719,10 +3720,10 @@ Other Style Guides
     ```
 
   <a name="jquery--queries"></a><a name="25.3"></a>
-  - [26.3](#jquery--queries) For DOM queries use Cascading `$('.sidebar ul')` or parent > child `$('.sidebar > ul')`. [jsPerf](https://web.archive.org/web/20200414183810/https://jsperf.com/jquery-find-vs-context-sel/16)
+  - [26.3](#jquery--queries) برای جستجوهای DOM از حالت آبشاری `$('.sidebar ul')` یا والد > فرزند `$('.sidebar > ul')` استفاده کنید. [jsPerf](https://web.archive.org/web/20200414183810/https://jsperf.com/jquery-find-vs-context-sel/16)
 
   <a name="jquery--find"></a><a name="25.4"></a>
-  - [26.4](#jquery--find) Use `find` with scoped jQuery object queries.
+  - [26.4](#jquery--find) از `find` به همراه جستجوهای شئ jQuery دارای دامنه (scoped) استفاده کنید.
 
     ```javascript
     // bad
@@ -3741,54 +3742,54 @@ Other Style Guides
     $sidebar.find('ul').hide();
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## ECMAScript 5 Compatibility
+## سازگاری با ECMAScript 5
 
   <a name="es5-compat--kangax"></a><a name="26.1"></a>
-  - [27.1](#es5-compat--kangax) Refer to [Kangax](https://twitter.com/kangax/)’s ES5 [compatibility table](https://compat-table.github.io/compat-table/es5/).
+  - [27.1](#es5-compat--kangax) به [جدول سازگاری ES5](https://compat-table.github.io/compat-table/es5/) اثر [Kangax](https://twitter.com/kangax/) مراجعه کنید.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
 <a name="ecmascript-6-styles"></a>
 ## ECMAScript 6+ (ES 2015+) Styles
 
   <a name="es6-styles"></a><a name="27.1"></a>
-  - [28.1](#es6-styles) This is a collection of links to the various ES6+ features.
+  - [28.1](#es6-styles) این مجموعه‌ای از لینک‌ها به ویژگی‌های مختلف ES6+ است.
 
-1. [Arrow Functions](#arrow-functions)
-1. [Classes](#classes--constructors)
+1. [Arrow Functions](#توابع-پیکانی)
+1. [Classes](#کلاس-ها-و-سازنده-ها)
 1. [Object Shorthand](#es6-object-shorthand)
 1. [Object Concise](#es6-object-concise)
 1. [Object Computed Properties](#es6-computed-properties)
 1. [Template Strings](#es6-template-literals)
-1. [Destructuring](#destructuring)
+1. [Destructuring](#ساختارزدایی-Destructuring)
 1. [Default Parameters](#es6-default-parameters)
 1. [Rest](#es6-rest)
 1. [Array Spreads](#es6-array-spreads)
-1. [Let and Const](#references)
+1. [Let and Const](#ارجاعات-references)
 1. [Exponentiation Operator](#es2016-properties--exponentiation-operator)
-1. [Iterators and Generators](#iterators-and-generators)
-1. [Modules](#modules)
+1. [Iterators and Generators](#تکرارکننده-ها-و-مولد-ها-Iterators-and-Generators)
+1. [Modules](#ماژول-ها-modules)
 
   <a name="tc39-proposals"></a>
-  - [28.2](#tc39-proposals) Do not use [TC39 proposals](https://github.com/tc39/proposals) that have not reached stage 3.
+  - [28.2](#tc39-proposals) از [پروپوزال‌های TC39](https://github.com/tc39/proposals) که به مرحله ۳ نرسیده‌اند استفاده نکنید.
 
-    > Why? [They are not finalized](https://tc39.github.io/process-document/), and they are subject to change or to be withdrawn entirely. We want to use JavaScript, and proposals are not JavaScript yet.
+    > چرا؟ [آن‌ها هنوز نهایی نشده‌اند](https://tc39.github.io/process-document/) و ممکن است تغییر کنند یا به طور کامل پس گرفته شوند. ما می‌خواهیم از جاوااسکریپت استفاده کنیم، و پروپوزال‌ها هنوز جاوااسکریپت نیستند.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Standard Library
+## کتابخانه استاندارد
 
-  The [Standard Library](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects)
-  contains utilities that are functionally broken but remain for legacy reasons.
+  [کتابخانه استاندارد](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects)
+  شامل ابزارهایی است که از نظر عملکردی خراب هستند اما به دلایل میراثی (legacy) باقی مانده‌اند.
 
   <a name="standard-library--isnan"></a>
-  - [29.1](#standard-library--isnan) Use `Number.isNaN` instead of global `isNaN`.
+  - [29.1](#standard-library--isnan) به جای `isNaN` سراسری، از `Number.isNaN` استفاده کنید.
     eslint: [`no-restricted-globals`](https://eslint.org/docs/rules/no-restricted-globals)
 
-    > Why? The global `isNaN` coerces non-numbers to numbers, returning true for anything that coerces to NaN.
-    > If this behavior is desired, make it explicit.
+    > چرا؟ `isNaN` سراسری، غیراعداد را به عدد تبدیل (coerce) می‌کند و برای هر چیزی که به NaN تبدیل شود، `true` برمی‌گرداند.
+    > اگر این رفتار مورد نظر است، آن را به صراحت انجام دهید.
 
     ```javascript
     // bad
@@ -3801,11 +3802,11 @@ Other Style Guides
     ```
 
   <a name="standard-library--isfinite"></a>
-  - [29.2](#standard-library--isfinite) Use `Number.isFinite` instead of global `isFinite`.
+  - [29.2](#standard-library--isfinite) به جای `isFinite` سراسری، از `Number.isFinite` استفاده کنید.
     eslint: [`no-restricted-globals`](https://eslint.org/docs/rules/no-restricted-globals)
 
-    > Why? The global `isFinite` coerces non-numbers to numbers, returning true for anything that coerces to a finite number.
-    > If this behavior is desired, make it explicit.
+    > چرا؟ `isFinite` سراسری، غیراعداد را به عدد تبدیل می‌کند و برای هر چیزی که به یک عدد متناهی تبدیل شود، `true` برمی‌گرداند.
+    > اگر این رفتار مورد نظر است، آن را به صراحت انجام دهید.
 
     ```javascript
     // bad
@@ -3816,12 +3817,12 @@ Other Style Guides
     Number.isFinite(parseInt('2e3', 10)); // true
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Testing
+## آزمایش کردن (Testing)
 
   <a name="testing--yup"></a><a name="28.1"></a>
-  - [30.1](#testing--yup) **Yup.**
+  - [30.1](#testing--yup) **بله.**
 
     ```javascript
     function foo() {
@@ -3830,17 +3831,17 @@ Other Style Guides
     ```
 
   <a name="testing--for-real"></a><a name="28.2"></a>
-  - [30.2](#testing--for-real) **No, but seriously**:
-    - Whichever testing framework you use, you should be writing tests!
-    - Strive to write many small pure functions, and minimize where mutations occur.
-    - Be cautious about stubs and mocks - they can make your tests more brittle.
-    - We primarily use [`mocha`](https://www.npmjs.com/package/mocha) and [`jest`](https://www.npmjs.com/package/jest) at Airbnb. [`tape`](https://www.npmjs.com/package/tape) is also used occasionally for small, separate modules.
-    - 100% test coverage is a good goal to strive for, even if it’s not always practical to reach it.
-    - Whenever you fix a bug, *write a regression test*. A bug fixed without a regression test is almost certainly going to break again in the future.
+  - [30.2](#testing--for-real) **نه، اما جدی بگیرید**:
+    - هر فریم‌ورک تستی که استفاده می‌کنید، باید تست بنویسید!
+    - برای نوشتن توابع خالصِ کوچک و متعدد تلاش کنید و جاهایی که تغییرات (mutations) رخ می‌دهد را به حداقل برسانید.
+    - در مورد stubها و mockها محتاط باشید - می‌توانند تست‌های شما را شکننده‌تر کنند.
+    - ما در Airbnb عمدتاً از [`mocha`](https://www.npmjs.com/package/mocha) و [`jest`](https://www.npmjs.com/package/jest) استفاده می‌کنیم. [`tape`](https://www.npmjs.com/package/tape) نیز گاهی برای ماژول‌های کوچک و مجزا استفاده می‌شود.
+    - پوشش تست (test coverage) ۱۰۰٪ هدف خوبی است که باید برای آن تلاش کنید، حتی اگر همیشه رسیدن به آن عملی نباشد.
+    - هر بار که یک باگ را برطرف می‌کنید، *یک تست رِگرِسیون (regression test) بنویسید*. باگی که بدون تست رِگرِسیون اصلاح شود، تقریباً قطعا در آینده دوباره خراب خواهد شد.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Performance
+## کارایی (Performance)
 
   - [On Layout & Web Performance](https://www.kellegous.com/j/2013/01/26/layout-performance/)
   - [String vs Array Concat](https://web.archive.org/web/20200414200857/https://jsperf.com/string-vs-array-concat/2)
@@ -3852,53 +3853,53 @@ Other Style Guides
   - [Are JavaScript functions like `map()`, `reduce()`, and `filter()` optimized for traversing arrays?](https://www.quora.com/JavaScript-programming-language-Are-Javascript-functions-like-map-reduce-and-filter-already-optimized-for-traversing-array/answer/Quildreen-Motta)
   - Loading...
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Resources
+## منابع
 
-**Learning ES6+**
+**یادگیری ES6+**
 
-  - [Latest ECMA spec](https://tc39.github.io/ecma262/)
+  - [آخرین مشخصات ECMA](https://tc39.github.io/ecma262/)
   - [ExploringJS](https://exploringjs.com/)
-  - [ES6 Compatibility Table](https://compat-table.github.io/compat-table/es6/)
-  - [Comprehensive Overview of ES6 Features](https://web.archive.org/web/20240404212626/http://es6-features.org/)
-  - [JavaScript Roadmap](https://roadmap.sh/javascript)
+  - [جدول سازگاری ES6](https://compat-table.github.io/compat-table/es6/)
+  - [نمای کلی جامع از ویژگی‌های ES6](https://web.archive.org/web/20240404212626/http://es6-features.org/)
+  - [نقشه راه جاوااسکریپت (JavaScript Roadmap)](https://roadmap.sh/javascript)
 
-**Read This**
+**این را بخوانید**
 
-  - [Standard ECMA-262](https://www.ecma-international.org/ecma-262/6.0/index.html)
+  - [استاندارد ECMA-262](https://www.ecma-international.org/ecma-262/6.0/index.html)
 
-**Tools**
+**ابزار ها**
 
-  - Code Style Linters
+  - لینترهای سبک کد (Code Style Linters)
     - [ESlint](https://eslint.org/) - [Airbnb Style .eslintrc](https://github.com/airbnb/javascript/blob/master/linters/.eslintrc)
     - [JSHint](https://jshint.com/) - [Airbnb Style .jshintrc](https://github.com/airbnb/javascript/blob/master/linters/.jshintrc)
   - Neutrino Preset - [@neutrinojs/airbnb](https://neutrinojs.org/packages/airbnb/)
 
-**Other Style Guides**
+**راهنماهای سبک دیگر (Other Style Guides)**
 
-  - [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
-  - [Google JavaScript Style Guide (Old)](https://google.github.io/styleguide/javascriptguide.xml)
-  - [jQuery Core Style Guidelines](https://contribute.jquery.org/style-guide/js/)
-  - [Principles of Writing Consistent, Idiomatic JavaScript](https://github.com/rwaldron/idiomatic.js)
+  - [راهنمای سبک جاوااسکریپت گوگل](https://google.github.io/styleguide/jsguide.html)
+  - [راهنمای سبک جاوااسکریپت گوگل (قدیمی)](https://google.github.io/styleguide/javascriptguide.xml)
+  - [دستورالعمل‌های سبک اصلی جی‌کوئری](https://contribute.jquery.org/style-guide/js/)
+  - [اصول نوشتن جاوااسکریپت یکپارچه و اصولی (Idiomatic)](https://github.com/rwaldron/idiomatic.js)
   - [StandardJS](https://standardjs.com)
 
-**Other Styles**
+**سبک‌های دیگر (Other Styles)**
 
-  - [Naming this in nested functions](https://gist.github.com/cjohansen/4135065) - Christian Johansen
-  - [Conditional Callbacks](https://github.com/airbnb/javascript/issues/52) - Ross Allen
-  - [Popular JavaScript Coding Conventions on GitHub](http://sideeffect.kr/popularconvention/#javascript) - JeongHoon Byun
-  - [Multiple var statements in JavaScript, not superfluous](https://benalman.com/news/2012/05/multiple-var-statements-javascript/) - Ben Alman
+  - [نام‌گذاری this در توابع تو در تو (nested functions)](https://gist.github.com/cjohansen/4135065) - Christian Johansen
+  - [کال‌بک‌های شرطی (Conditional Callbacks)](https://github.com/airbnb/javascript/issues/52) - Ross Allen
+  - [کنوانسیون‌های (conventions) محبوب کدنویسی جاوااسکریپت در گیت‌هاب](http://sideeffect.kr/popularconvention/#javascript) - JeongHoon Byun
+  - [چندین دستور var در جاوااسکریپت، غیرضروری نیستند](https://benalman.com/news/2012/05/multiple-var-statements-javascript/) - Ben Alman
 
-**Further Reading**
+**مطالعه بیشتر**
 
-  - [Understanding JavaScript Closures](https://javascriptweblog.wordpress.com/2010/10/25/understanding-javascript-closures/) - Angus Croll
-  - [Basic JavaScript for the impatient programmer](https://www.2ality.com/2013/06/basic-javascript.html) - Dr. Axel Rauschmayer
-  - [You Might Not Need jQuery](https://youmightnotneedjquery.com/) - Zack Bloom & Adam Schwartz
-  - [ES6 Features](https://github.com/lukehoban/es6features) - Luke Hoban
-  - [Frontend Guidelines](https://github.com/bendc/frontend-guidelines) - Benjamin De Cock
+  - [درک بسته‌های جاوااسکریپت (Closures)](https://javascriptweblog.wordpress.com/2010/10/25/understanding-javascript-closures/) - Angus Croll
+  - [جاوااسکریپت پایه برای برنامه‌نویسان عجول](https://www.2ality.com/2013/06/basic-javascript.html) - Dr. Axel Rauschmayer
+  - [شاید به جی‌کوئری نیازی نداشته باشید](https://youmightnotneedjquery.com/) - Zack Bloom & Adam Schwartz
+  - [ES6 ویژگی‌های](https://github.com/lukehoban/es6features) - Luke Hoban
+  - [دستورالعمل‌های فرانت‌اند](https://github.com/bendc/frontend-guidelines) - Benjamin De Cock
 
-**Books**
+**کتاب ها**
 
   - [JavaScript: The Good Parts](https://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742) - Douglas Crockford
   - [JavaScript Patterns](https://www.amazon.com/JavaScript-Patterns-Stoyan-Stefanov/dp/0596806752) - Stoyan Stefanov
@@ -3917,7 +3918,7 @@ Other Style Guides
   - [Eloquent JavaScript](https://eloquentjavascript.net/) - Marijn Haverbeke
   - [You Don’t Know JS: ES6 & Beyond](https://shop.oreilly.com/product/0636920033769.do) - Kyle Simpson
 
-**Blogs**
+**وبلاگ ها**
 
   - [JavaScript Weekly](https://javascriptweekly.com/)
   - [JavaScript, JavaScript...](https://javascriptweblog.wordpress.com/)
@@ -3929,16 +3930,16 @@ Other Style Guides
   - [Dmitry Baranovskiy](http://dmitry.baranovskiy.com/)
   - [nettuts](https://code.tutsplus.com/?s=javascript)
 
-**Podcasts**
+**پادکست ها**
 
   - [JavaScript Air](https://javascriptair.com/)
   - [JavaScript Jabber](https://devchat.tv/js-jabber/)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## In the Wild
+## در دنیای واقعی
 
-  This is a list of organizations that are using this style guide. Send us a pull request and we'll add you to the list.
+  این فهرستی از سازمان‌هایی است که از این راهنمای سبک استفاده می‌کنند. یک Pull Request برای ما بفرستید تا شما را به فهرست اضافه کنیم.
 
   - **123erfasst**: [123erfasst/javascript](https://github.com/123erfasst/javascript)
   - **4Catalyzer**: [4Catalyzer/javascript](https://github.com/4Catalyzer/javascript)
@@ -4028,11 +4029,11 @@ Other Style Guides
   - **Zit Software**: [zit-software/javascript](https://github.com/zit-software/javascript)
   - **ZocDoc**: [ZocDoc/javascript](https://github.com/ZocDoc/javascript)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Translation
+## ترجمه
 
-  This style guide is also available in other languages:
+  این راهنمای سبک به زبان‌های دیگری نیز در دسترس است:
 
   - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [armoucar/javascript-style-guide](https://github.com/armoucar/javascript-style-guide)
   - ![bg](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Bulgaria.png) **Bulgarian**: [borislavvv/javascript](https://github.com/borislavvv/javascript)
@@ -4051,19 +4052,19 @@ Other Style Guides
   - ![ua](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Ukraine.png) **Ukrainian**: [ivanzusko/javascript](https://github.com/ivanzusko/javascript)
   - ![vn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnam**: [dangkyokhoang/javascript-style-guide](https://github.com/dangkyokhoang/javascript-style-guide)
 
-## The JavaScript Style Guide Guide
+## راهنمای راهنمای سبک جاوااسکریپت
 
-  - [Reference](https://github.com/airbnb/javascript/wiki/The-JavaScript-Style-Guide-Guide)
+  - [مرجع](https://github.com/airbnb/javascript/wiki/The-JavaScript-Style-Guide-Guide)
 
-## Chat With Us About JavaScript
+## با ما درباره جاوااسکریپت گپ بزنید
 
-  - Find us on [gitter](https://gitter.im/airbnb/javascript).
+  - ما را در [گِیتر (gitter)](https://gitter.im/airbnb/javascript) پیدا کنید.
 
-## Contributors
+## همکاران (Contributors)
 
-  - [View Contributors](https://github.com/airbnb/javascript/graphs/contributors)
+  - [مشاهده مشارکت‌کنندگان](https://github.com/airbnb/javascript/graphs/contributors)
 
-## License
+## مجوز
 
 (The MIT License)
 
@@ -4088,10 +4089,10 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ بازگشت به بالا](#فهرست-مطالب)**
 
-## Amendments
+## اصلاحیه ها
 
-We encourage you to fork this guide and change the rules to fit your team’s style guide. Below, you may list some amendments to the style guide. This allows you to periodically update your style guide without having to deal with merge conflicts.
+ما شما را تشویق می‌کنیم که این راهنما را فورک (fork) کنید و قوانین را برای تطبیق با راهنمای سبک تیم خود تغییر دهید. در زیر، می‌توانید فهرستی از اصلاحیه‌های مربوط به راهنمای سبک را لیست کنید. این امر به شما اجازه می‌دهد تا راهنمای سبک خود را به صورت دوره‌ای به‌روزرسانی کنید بدون اینکه مجبور باشید با تضادهای ادغام (merge conflicts) دست و پنجه نرم کنید.
 
 # };
